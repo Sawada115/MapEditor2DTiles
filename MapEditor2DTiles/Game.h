@@ -7,9 +7,8 @@
 #include "StepTimer.h"
 #include <SimpleMath.h>
 #include <Mouse.h>
-#include "Obj2d.h"
 #include "MakedMap.h"
-
+#include "Tile.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -68,9 +67,13 @@ private:
     // Rendering loop timer.
     DX::StepTimer                                   m_timer;
 
-	//Obj2d backImage1;	// 左側の背景画像
-	MakedMap m_map;
-
+	// マウス
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
+
+	// 左側のマップ
+	MakedMap m_map;
+
+	// タイル(仮)
+	Tile m_tile;
 };

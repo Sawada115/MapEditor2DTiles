@@ -1,3 +1,9 @@
+/// <summary>
+/// 概要　 制作マップ
+/// 作成者 GS1 04 牛山航平
+/// </summary>
+
+/* －－ ヘッダーのインクルード －－－－ */
 #include "pch.h"
 #include "MakedMap.h"
 

@@ -25,6 +25,9 @@
     <ClInclude Include="Obj2d.h">
       <Filter>UsshiFile</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="Obj2d.cpp">
       <Filter>UsshiFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

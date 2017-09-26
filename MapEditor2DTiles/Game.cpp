@@ -40,8 +40,11 @@ void Game::Initialize(HWND window, int width, int height)
 
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
 	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
-	//backImage1.initialize(L"Resources/BackImage1.png", DirectX::SimpleMath::Vector2(235.5f, 300.0f));
-    // TODO: Change the timer settings if you want something other than the default variable timestep mode.
+
+	// ƒ^ƒCƒ‹(‰¼)
+	m_tile.initialize(1, 1);
+
+	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
     m_timer.SetFixedTimeStep(true);
@@ -94,6 +97,8 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
+	m_tile.draw();
+
     Present();
 }
 
