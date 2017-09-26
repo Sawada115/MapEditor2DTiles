@@ -5,16 +5,28 @@
       <UniqueIdentifier>53a78a8b-172a-4d1c-8bf4-0bd2da89ad89</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="UsshiFile">
+      <UniqueIdentifier>{d2b6e705-6ae6-425c-8932-b8028e47bd15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Resources">
+      <UniqueIdentifier>{4d7fb77b-dc96-4b0e-9d68-830f27f2c8a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="Classes\Obj2d.h">
+      <Filter>UsshiFile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Classes\Obj2d.cpp">
+      <Filter>UsshiFile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -22,6 +34,15 @@
   <ItemGroup>
     <Image Include="directx.ico">
       <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Resources\BackImage1.png">
+      <Filter>Assets\Resources</Filter>
+    </Image>
+    <Image Include="Resources\TileFlame.png">
+      <Filter>Assets\Resources</Filter>
+    </Image>
+    <Image Include="Resources\TileFlameRed.png">
+      <Filter>Assets\Resources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
