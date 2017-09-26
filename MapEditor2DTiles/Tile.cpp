@@ -43,3 +43,21 @@ void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 p
 	// ”»’è‚ğİ’è
 	m_isColision = m_datas[imageType].isColision;
 }
+
+/// <summary>
+/// m_isColision‚ğ•ÏX
+/// </summary>
+/// <returns>•ÏXŒã‚Ì”»’è</returns>
+bool Tile::changheColision()
+{
+	if (m_isColision) 
+	{
+		m_isColision = false;
+	}
+	else
+	{
+		m_isColision = true;
+	}
+
+	return m_isColision;
+}

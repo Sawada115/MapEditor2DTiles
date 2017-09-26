@@ -20,6 +20,10 @@ public:
 	bool getColision() { return m_isColision; };						// 当たるか
 	bool setColision(bool newColision) { m_isColision = newColision; }; //		どうか
 
+
+	// m_isColisionを変更
+	bool changheColision();
+
 private:
 
 	// タイルに必要なデータ
