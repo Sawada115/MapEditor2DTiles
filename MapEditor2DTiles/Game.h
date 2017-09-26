@@ -67,7 +67,14 @@ private:
     // Rendering loop timer.
     DX::StepTimer                                   m_timer;
 
+<<<<<<< HEAD
 	// ƒ}ƒEƒX
+=======
+	//Obj2d backImage1;	// ¶‘¤‚Ì”wŒi‰æ‘œ
+	MakedMap m_map;
+	Obj2d m_backGround3;	// ‰E‰ºƒpƒŒƒbƒg‚Ì”wŒi‰æ‘œ
+
+>>>>>>> 264d6f8e717874552bb30a1640a68a345830664c
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 
