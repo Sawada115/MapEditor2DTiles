@@ -7,7 +7,7 @@
 #include "StepTimer.h"
 #include <SimpleMath.h>
 #include "Obj2d.h"
-
+#include "MakedMap.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -66,6 +66,6 @@ private:
     // Rendering loop timer.
     DX::StepTimer                                   m_timer;
 
-	Obj2d backImage1;	// ¶‘¤‚Ì”wŒi‰æ‘œ
-
+	//Obj2d backImage1;	// ¶‘¤‚Ì”wŒi‰æ‘œ
+	MakedMap m_map;
 };

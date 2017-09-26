@@ -34,8 +34,8 @@ void Game::Initialize(HWND window, int width, int height)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
-	backImage1.initialize(L"Resources/BackImage1.png", DirectX::SimpleMath::Vector2(235.5f, 300.0f));
-
+	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
+	//backImage1.initialize(L"Resources/BackImage1.png", DirectX::SimpleMath::Vector2(235.5f, 300.0f));
     // TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
@@ -77,8 +77,8 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 
-	backImage1.draw();
-
+	//backImage1.draw();
+	m_map.draw();
     Present();
 }
 
