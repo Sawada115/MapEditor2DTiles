@@ -70,6 +70,7 @@ private:
 
 	//Obj2d backImage1;	// ¶‘¤‚Ì”wŒi‰æ‘œ
 	MakedMap m_map;
+	Obj2d m_backGround3;	// ‰E‰ºƒpƒŒƒbƒg‚Ì”wŒi‰æ‘œ
 
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
