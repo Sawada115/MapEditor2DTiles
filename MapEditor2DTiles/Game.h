@@ -67,14 +67,11 @@ private:
     // Rendering loop timer.
     DX::StepTimer                                   m_timer;
 
-<<<<<<< HEAD
-	// マウス
-=======
 	//Obj2d backImage1;	// 左側の背景画像
-	MakedMap m_map;
 	Obj2d m_backGround3;	// 右下パレットの背景画像
 
->>>>>>> 264d6f8e717874552bb30a1640a68a345830664c
+
+	// マウス
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 

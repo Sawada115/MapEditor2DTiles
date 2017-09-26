@@ -40,17 +40,14 @@ void Game::Initialize(HWND window, int width, int height)
 
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
 	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
-<<<<<<< HEAD
 
 	// ƒ^ƒCƒ‹(‰¼)
 	m_tile.initialize(1, 1);
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
-=======
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
-	//backImage1.initialize(L"Resources/BackImage1.png", DirectX::SimpleMath::Vector2(235.5f, 300.0f));
-    // TODO: Change the timer settings if you want something other than the default variable timestep mode.
->>>>>>> 264d6f8e717874552bb30a1640a68a345830664c
+
+	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
     m_timer.SetFixedTimeStep(true);
@@ -103,13 +100,13 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
-<<<<<<< HEAD
+
 	m_tile.draw();
 
-=======
+
 	m_backGround3.draw();
->>>>>>> 264d6f8e717874552bb30a1640a68a345830664c
-    Present();
+
+Present();
 }
 
 // Helper method to clear the back buffers.
