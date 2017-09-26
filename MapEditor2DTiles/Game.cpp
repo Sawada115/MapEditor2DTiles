@@ -11,6 +11,8 @@ using namespace DirectX;
 
 using Microsoft::WRL::ComPtr;
 
+static std::unique_ptr<Mouse> s_mouse(new Mouse);
+
 Game::Game() :
     m_window(0),
     m_outputWidth(800),
@@ -29,6 +31,9 @@ void Game::Initialize(HWND window, int width, int height)
     CreateDevice();
 
     CreateResources();
+
+	// マウストラッカー
+	m_mouseTracker = std::make_unique<DirectX::Mouse::ButtonStateTracker>();
 
 	// obj2Dの静的変数の初期化(2D画像の初期化はここより下に書いてください)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
@@ -63,7 +68,15 @@ void Game::Update(DX::StepTimer const& timer)
     // TODO: Add your game logic here.
     elapsedTime;
 
-	
+	// マウス情報を取得
+	m_mouse = s_mouse->GetState();
+	m_mouseTracker->Update(m_mouse);
+
+	// 左クリックしたら
+	if (m_mouse.leftButton)
+	{
+
+	}
 }
 
 // Draws the scene.
