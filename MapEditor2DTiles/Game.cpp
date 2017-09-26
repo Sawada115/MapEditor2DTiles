@@ -5,7 +5,6 @@
 #include "pch.h"
 #include "Game.h"
 
-
 extern void ExitGame();
 
 using namespace DirectX;
@@ -30,6 +29,12 @@ void Game::Initialize(HWND window, int width, int height)
     CreateDevice();
 
     CreateResources();
+
+	// obj2D‚ÌÃ“I•Ï”‚Ì‰Šú‰»(2D‰æ‘œ‚Ì‰Šú‰»‚Í‚±‚±‚æ‚è‰º‚É‘‚¢‚Ä‚­‚¾‚³‚¢)
+	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
+
+	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
+	backImage1.initialize(L"Resources/BackImage1.png", DirectX::SimpleMath::Vector2(235.5f, 300.0f));
 
     // TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -71,6 +76,8 @@ void Game::Render()
     Clear();
 
     // TODO: Add your rendering code here.
+
+	backImage1.draw();
 
     Present();
 }
