@@ -6,8 +6,10 @@
 
 #include "StepTimer.h"
 #include <SimpleMath.h>
+#include <Mouse.h>
 #include "Obj2d.h"
 #include "MakedMap.h"
+
 
 
 // A basic game implementation that creates a D3D11 device and

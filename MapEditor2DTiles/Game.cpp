@@ -62,6 +62,8 @@ void Game::Update(DX::StepTimer const& timer)
 
     // TODO: Add your game logic here.
     elapsedTime;
+
+	
 }
 
 // Draws the scene.
