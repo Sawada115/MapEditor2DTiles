@@ -11,12 +11,18 @@
     <Filter Include="Assets\Resources">
       <UniqueIdentifier>{4d7fb77b-dc96-4b0e-9d68-830f27f2c8a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UsshiFile\NewClass">
+      <UniqueIdentifier>{babfed91-f2f1-4307-abbe-f0a6594704c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="Classes\Obj2d.h">
+    <ClInclude Include="MakedMap.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj2d.h">
       <Filter>UsshiFile</Filter>
     </ClInclude>
   </ItemGroup>
@@ -24,7 +30,10 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Classes\Obj2d.cpp">
+    <ClCompile Include="MakedMap.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj2d.cpp">
       <Filter>UsshiFile</Filter>
     </ClCompile>
   </ItemGroup>

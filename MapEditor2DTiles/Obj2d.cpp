@@ -2,7 +2,7 @@
 /// 概要　 2D画像クラス
 /// 作成者 GS1 04 牛山航平
 /// </summary>
-#include "../pch.h"
+#include "pch.h"
 #include "Obj2d.h"
 
 /* -- 名前空間を解放 ---- */

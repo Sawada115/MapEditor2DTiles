@@ -6,7 +6,7 @@
 
 #include "StepTimer.h"
 #include <SimpleMath.h>
-#include "Classes/Obj2d.h"
+#include "Obj2d.h"
 
 
 
