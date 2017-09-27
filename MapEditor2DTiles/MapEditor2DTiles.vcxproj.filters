@@ -37,8 +37,13 @@
     <ClInclude Include="TileManager.h">
       <Filter>SawadaFile</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="StatusTile.h">
       <Filter>SuganoFile</Filter>
+=======
+    <ClInclude Include="MapOutPut.h">
+      <Filter>SawadaFile</Filter>
+>>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,8 +62,13 @@
     <ClCompile Include="TileManager.cpp">
       <Filter>SawadaFile</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="StatusTile.cpp">
       <Filter>SuganoFile</Filter>
+=======
+    <ClCompile Include="MapOutPut.cpp">
+      <Filter>SawadaFile</Filter>
+>>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

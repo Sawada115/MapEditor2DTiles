@@ -10,7 +10,11 @@
 #include "MakedMap.h"
 #include "Tile.h"
 #include "TileManager.h"
+<<<<<<< HEAD
 #include "StatusTile.h"
+=======
+#include "MapOutPut.h"
+>>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -83,4 +87,5 @@ private:
 	StatusTile m_status;
 
 	TileManager m_tileManager;			// タイルマネージャー
+	MapOutPut m_outputButton;			// 出力ボタン
 };

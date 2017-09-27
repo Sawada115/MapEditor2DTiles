@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="MakedMap.h" />
+    <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="Obj2d.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StatusTile.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MakedMap.cpp" />
+    <ClCompile Include="MapOutPut.cpp" />
     <ClCompile Include="Obj2d.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
