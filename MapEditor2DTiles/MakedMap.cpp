@@ -18,10 +18,10 @@ MakedMap::~MakedMap()
 {
 	// タイル情報をデリート
 	std::vector<std::vector<OneTileData>>::iterator it1;
-	for (it1 = m_tiles.begin(); it1 < m_tiles.end(); it1++)
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
 	{
 		std::vector<OneTileData> ::iterator it2;
-		for (it2 = (*it1).begin(); it2 < (*it1).end(); it2++)
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
 			delete (*it2).tile;
 		}
@@ -74,16 +74,20 @@ void MakedMap::draw()
 	// 背景画像
 	Obj2d::draw();
 
-	for (int i = 0; i < m_mapNum[1]; i++)
+	std::vector<std::vector<OneTileData>>::iterator it1;
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
 	{
-		for (int j = 0; j < m_mapNum[0]; j++)
+		std::vector<OneTileData> ::iterator it2;
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
 			// タイル画像
-			m_tiles[i][j].tile->draw();
+			(*it2).tile->draw();
 			// グリッド
-			m_tiles[i][j].glids.draw();
+			(*it2).glids.draw();
+
 		}
 	}
+
 }
 
 /// <summary>
@@ -127,6 +131,24 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	// 選択したタイルを変更する
 	changTile(clickedTileID, newTile);
 }
+
+/// <summary>
+/// マップのサイズを変更する
+/// </summary>
+/// <param name="sizeX">横軸の大きさ</param>
+/// <param name="sizeY">縦軸の大きさ</param>
+void MakedMap::setMapSize(int sizeX, int sizeY)
+{
+	m_mapNum[0] = sizeX; m_mapNum[1] = sizeY;
+
+	// マップ情報の初期化
+	m_tiles.resize(sizeX);	// 縦の長さを設定
+	for (int i = 0; i < sizeX; i++)
+	{
+		m_tiles[i].resize(sizeY);// 横の長さの設定
+	}
+}
+
 
 /// <summary>
 /// 選択したタイルを変更する

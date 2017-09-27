@@ -17,6 +17,8 @@ public:
 	// 初期化
 	void initialize(int imageType ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
 
+	// 
+
 	// ゲット・セット
 	bool getColision() { return m_isColision; };						// 当たるか
 	void setColision(bool isColision) { m_isColision = isColision; };	//		どうか

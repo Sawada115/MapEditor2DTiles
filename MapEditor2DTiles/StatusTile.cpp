@@ -67,8 +67,8 @@ void StatusTile::draw()
 // タイルデータの取得
 void StatusTile::TileChange(Tile* tile)
 {
-	Tile *m_Tile = new Tile(*tile);
-	m_Tile->draw();
+	m_Tile.setNum(tile->getNum());
+	m_Tile.initialize(m_Tile.getNum(), m_Tile.getPos());
 }
 
 
