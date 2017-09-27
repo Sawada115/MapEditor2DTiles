@@ -34,7 +34,14 @@ Tile::~Tile()
 void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 pos)
 {
 	// 画像のファイル名を作る
-	std::wstring fileName = L"Resources/" + m_datas[imageType].fileNames+ std::to_wstring(imageID) + L".png";
+	std::wstring fileName = L"Resources/" + m_datas[imageType].fileNames+ std::to_wstring(imageID);
+
+	// NONEの場合はimageIDをつけない
+	if (imageID == 0)
+	{
+		fileName += std::to_wstring(imageID);
+	}
+	fileName += L".png";
 	const wchar_t* imgName = fileName.c_str();
 
 	// 基底クラスの初期化
