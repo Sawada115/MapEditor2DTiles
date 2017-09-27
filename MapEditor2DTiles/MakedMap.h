@@ -39,8 +39,7 @@ private:
 	};
 
 
-	int m_mapNum;	// グリッドの
-	int GLID_V; //		サイズ
+	int m_mapNum[2];	// グリッドの
 	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち
 
 	// 現在選択中のタイル
