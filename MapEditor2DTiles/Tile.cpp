@@ -9,8 +9,7 @@
 #include "Tile.h"
 
 // ƒNƒ‰ƒX’è”
-Tile::TileData Tile::m_datas[30] = {
-										{ true,L"None" },
+Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
 
 										{ false,L"RoadA1" },
 										{ false,L"RoadA2" },
