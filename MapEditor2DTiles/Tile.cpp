@@ -29,6 +29,26 @@ Tile::~Tile()
 }
 
 /// <summary>
+/// コピーコンストラクタ
+/// </summary>
+/// <param name="tile">コピー元</param>
+/// <returns>新しくできたもの</returns>
+Tile& Tile::operator=(const Tile& tile)
+{
+	Tile& tilee = Tile();
+	tilee.m_isColision = tile.m_isColision;
+	tilee.m_name = tile.m_name;
+
+
+	std::wstring fileName = tilee.m_name;
+	fileName = L"Resources/" + fileName;
+	fileName += L".png";
+	
+
+	return Tile();
+}
+
+/// <summary>
 /// 初期化
 /// </summary>
 /// <param name="imageType">使用する画像のタイプの番号(Grass等)</param>
@@ -36,6 +56,9 @@ Tile::~Tile()
 /// <param name="pos">初期位置</param>
 void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 pos)
 {
+	m_num = imageType*100 + imageID;
+
+
 	// 画像のファイル名を作る
 	std::wstring fileName = m_datas[imageType].fileNames;
 

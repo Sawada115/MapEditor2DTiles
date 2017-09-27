@@ -40,7 +40,7 @@ public:
 	// カーソル位置のタイルを選択
 	void TileSelect(int posX, int posY);
 	// 選択中のタイルを取得
-	Tile GetSelectTile();
+	Tile* GetSelectTile();
 private:
 	std::vector<Tile> m_palletTiles;			// パレット上のタイル
 	Obj2d m_grid;								// グリッド画像

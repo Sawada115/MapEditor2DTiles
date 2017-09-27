@@ -78,16 +78,20 @@ void Game::Update(DX::StepTimer const& timer)
 	// ¶ƒNƒŠƒbƒN‚µ‚½‚ç
 	if (m_mouse.leftButton)
 	{
+		Tile* tile = new Tile();
+		//tile->initialize(1, 1);
+
+		tile = m_tileManager.GetSelectTile();
+
+		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
 
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
 
-		Tile* tile = new Tile();
-		tile->initialize(1, 1);
 
-		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+
 	}
 }
 

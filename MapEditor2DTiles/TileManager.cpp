@@ -86,7 +86,7 @@ void TileManager::Initialize(Vector2 tilePos)
 
 	m_grid.initialize(L"Resources/TileFlame.png");
 	m_selectGrid.initialize(L"Resources/TileFlameRed.png");
-	m_selectTile = -1;
+	m_selectTile = 0;
 }
 
 
@@ -158,7 +158,12 @@ void TileManager::TileSelect(int posX, int posY)
 //!
 //! @return 
 //----------------------------------------------------------------------
-Tile TileManager::GetSelectTile()
+Tile* TileManager::GetSelectTile()
 {
-	return m_palletTiles[m_selectTile];
+	Tile* tile = new Tile();
+	int a = m_palletTiles[m_selectTile].getNum();;
+
+	tile->initialize(a / 100, a % 100);
+
+	return tile;
 }

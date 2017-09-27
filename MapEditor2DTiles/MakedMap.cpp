@@ -135,6 +135,8 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 /// <param name="newTile">新しいタイル</param>
 void MakedMap::changTile(int changeTileID[2], Tile* newTile)
 {
+	newTile->setPosition(m_tiles[changeTileID[0]][changeTileID[1]].tile->getPos());
+
 	// 新しいタイルをセット
 	m_tiles[changeTileID[0]][changeTileID[1]].tile = newTile;
 }
