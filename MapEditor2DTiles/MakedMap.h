@@ -25,7 +25,7 @@ public:
 	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos);
 
 	// マップのサイズを変更する
-	//void setMapSize(int size[2]) {};
+	void setMapSize(int sizeX, int sizeY) ;
 
 private:
 	// 選択したタイルを変更する
@@ -39,7 +39,7 @@ private:
 	};
 
 
-	int m_mapNum[2];	// グリッドの
+	int m_mapNum[2];	// マップのサイズ
 	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち
 
 	// 現在選択中のタイル

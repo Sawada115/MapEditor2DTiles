@@ -43,7 +43,11 @@ void Game::Initialize(HWND window, int width, int height)
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
+	
+	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
+	
+	
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
@@ -79,7 +83,6 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouse.leftButton)
 	{
 		Tile* tile = new Tile();
-		//tile->initialize(1, 1);
 
 		tile = m_tileManager.GetSelectTile();
 
@@ -93,6 +96,17 @@ void Game::Update(DX::StepTimer const& timer)
 
 
 	}
+
+	// 右クリックしたら
+	if (m_mouse.rightButton)
+	{
+		Tile* tile = new Tile();
+		tile->initialize(0);
+
+		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+
+	}
+
 }
 
 // Draws the scene.
