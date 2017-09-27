@@ -56,7 +56,7 @@ void MakedMap::initialize(Vector2 pos)
 			// グリッドとタイル画像の
 			m_tiles[i][j].glids.initialize(L"Resources/TileFlame.png", glidPos);
 			m_tiles[i][j].tile = new Tile();
-			m_tiles[i][j].tile->initialize(0, 0,glidPos);
+			m_tiles[i][j].tile->initialize(0,glidPos);
 		}
 	}
 

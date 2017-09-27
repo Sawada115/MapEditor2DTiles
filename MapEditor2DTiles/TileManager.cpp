@@ -16,7 +16,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // 静的変数の初期化
-const int TileManager::TILE_TYPE_NUM = 5;
+const int TileManager::TILE_TYPE_NUM = 27;
 const int TileManager::TILE_SIZE = 30;
 const int TileManager::PALLET_SIZE_X = 10;
 const int TileManager::PALLET_SIZE_Y = 8;
@@ -56,32 +56,13 @@ TileManager::~TileManager()
 //----------------------------------------------------------------------
 void TileManager::Initialize(Vector2 tilePos)
 {
-	// タイルの種類とタイル数
-	int tileID[TILE_TYPE_NUM] =
-	{
-		1,4,9,9,4
-	};
-
-	// タイルの合計数を求める
-	int tileNum = 0;
-	for (int i = 0; i < TILE_TYPE_NUM; i++)
-		tileNum += tileID[i];
-
-	m_palletTiles.resize(tileNum);
+	m_palletTiles.resize(TILE_TYPE_NUM);
 
 	// タイルの作成
-	int count = 0;
 	for (int i = 0; i < TILE_TYPE_NUM; i++)
 	{
-		for (int j = 0; j < tileID[i]; j++)
-		{
-			Vector2 pos(tilePos.x + TILE_SIZE * (count % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(count / PALLET_SIZE_X));
-			if (tileID[i] == 1)
-				m_palletTiles[count].initialize(1, 1, pos);
-			else
-				m_palletTiles[count].initialize(i, j + 1, pos);
-			count++;
-		}
+		Vector2 pos(tilePos.x + TILE_SIZE * (i % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(i / PALLET_SIZE_X));
+		m_palletTiles[i].initialize(i, pos);
 	}
 
 	m_grid.initialize(L"Resources/TileFlame.png");
@@ -161,7 +142,7 @@ void TileManager::TileSelect(int posX, int posY)
 Tile* TileManager::GetSelectTile()
 {
 	Tile* tile = new Tile();
-	int a = m_palletTiles[m_selectTile].getNum();;
+	int a = m_palletTiles[m_selectTile].getNum();
 
 	tile->initialize(a);
 
