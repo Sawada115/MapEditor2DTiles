@@ -34,6 +34,9 @@
     <ClInclude Include="TileManager.h">
       <Filter>SawadaFile</Filter>
     </ClInclude>
+    <ClInclude Include="USS_Editor.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
     <ClInclude Include="MapOutPut.h">
       <Filter>SawadaFile</Filter>
     </ClInclude>
