@@ -22,7 +22,7 @@ public:
 	void draw();
 
 	// クリックされたとき
-	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 pos);
+	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos);
 
 private:
 	// タイル一つ分のデータ

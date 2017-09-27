@@ -79,9 +79,31 @@ void MakedMap::draw()
 /// </summary>
 /// <param name="newTile">タイルの情報</param>
 /// <param name="pos">クリック座標</param>
-void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 pos)
+void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 {
-	// 一番左上の
-	DirectX::SimpleMath::Vector2 beginPos;
+	// 一番左上の座標
+	DirectX::SimpleMath::Vector2 beginPos = m_screenPos - Vector2(210.0f, 285.0f);
 
+	// クリックされたタイルの位置(V,H)
+	int clickedTileID[2];
+
+	// クリックされた位置を探す(横)
+	int i = m_tiles.size();
+	while (beginPos.x < clickPos.x && beginPos.x + i*Tile::TILE_SIZE > clickPos.x)
+	{
+
+		i--;
+	}
+
+	clickedTileID[0] = i;
+
+	// クリックされた位置を探す(縦)
+	i = m_tiles[0].size();
+	while (beginPos.y < clickPos.y && beginPos.y + i*Tile::TILE_SIZE > clickPos.y)
+	{
+		i--;
+	}
+	clickedTileID[1] = i;
+
+	// 
 }
