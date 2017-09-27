@@ -14,6 +14,9 @@
     <Filter Include="UsshiFile\NewClass">
       <UniqueIdentifier>{babfed91-f2f1-4307-abbe-f0a6594704c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SawadaFile">
+      <UniqueIdentifier>{5e1b1368-5276-49f5-b254-795c06a4b1f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -28,6 +31,9 @@
     <ClInclude Include="Tile.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+    <ClInclude Include="TileManager.h">
+      <Filter>SawadaFile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -41,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="TileManager.cpp">
+      <Filter>SawadaFile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ void Game::Initialize(HWND window, int width, int height)
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
-
+	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(0,0));
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
@@ -78,7 +78,11 @@ void Game::Update(DX::StepTimer const& timer)
 	// ¶ƒNƒŠƒbƒN‚µ‚½‚ç
 	if (m_mouse.leftButton)
 	{
+	}
 
+	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
+	{
+		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
 	}
 }
 
@@ -97,9 +101,8 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
-
 	m_backGround3.draw();
-
+	m_tileManager.Draw();
 Present();
 }
 
