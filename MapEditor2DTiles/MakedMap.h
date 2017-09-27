@@ -24,9 +24,6 @@ public:
 	// クリックされたとき
 	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos);
 
-	// マップのサイズを変更する
-	void setMapSize(int sizeX, int sizeY) ;
-
 private:
 	// 選択したタイルを変更する
 	void changTile(int changeTileID[2],Tile* newTile);
