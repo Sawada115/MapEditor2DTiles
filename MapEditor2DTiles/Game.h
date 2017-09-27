@@ -9,6 +9,7 @@
 #include <Mouse.h>
 #include "MakedMap.h"
 #include "Tile.h"
+#include "TileManager.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -78,6 +79,7 @@ private:
 	// 左側のマップ
 	MakedMap m_map;
 
+	TileManager m_tileManager;			// タイルマネージャー
 	// タイル(仮)
 	Tile m_tile;
 };
