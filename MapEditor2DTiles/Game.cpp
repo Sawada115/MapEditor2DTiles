@@ -89,9 +89,12 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
-
-
-
+	}
+	
+	//if ()
+	{
+		MapOutPut output;
+		output.OutPutCsv(m_map.GetAllTileData(),m_map.GetMapSize().x);
 	}
 }
 

@@ -129,6 +129,39 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 }
 
 /// <summary>
+/// タイルデータの取得
+/// </summary>
+/// <returns>全タイルデータ</returns>
+std::vector<Tile*> MakedMap::GetAllTileData()
+{
+	std::vector<Tile*> tileData;
+
+	// マップサイズの取得
+	Vector2 size((int)m_tiles.size(), (int)m_tiles[0].size());
+	int dataNum = size.x * size.y;
+
+	// タイルデータを取り出す
+	tileData.resize(dataNum);
+	for (int i = 0; i < dataNum; i++)
+		tileData[i] = m_tiles[i % (int)size.x][i / (int)size.x].tile;
+
+	return tileData;
+}
+
+/// <summary>
+/// マップサイズの取得
+/// </summary>
+/// <returns></returns>
+DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
+{
+	// マップサイズの取得
+	Vector2 size((int)m_tiles.size(), (int)m_tiles[0].size());
+	return size;
+}
+
+
+
+/// <summary>
 /// 選択したタイルを変更する
 /// </summary>
 /// <param name="changeTileID">変更するタイルの番号</param>
