@@ -40,13 +40,18 @@ void MakedMap::initialize(Vector2 pos)
 		for (int j = 0; j < GLID_H; j++)
 		{
 			// 位置を設定
-			Vector2 glidPos = Vector2(275.5f + (i*30.0f), 330.0f + (j*30.0f)) - m_screenPos;
+			Vector2 glidPos = Vector2( (i*Tile::TILE_SIZE) - 195.0f,  (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
 
 			// グリッドとタイル画像の
 			m_tiles[i][j].glids.initialize(L"Resources/TileFlame.png", glidPos);
 			m_tiles[i][j].tile.initialize(0, 0,glidPos);
 		}
 	}
+
+	// 何も選択していない状態
+	m_choiceTile[0] = 999;
+	m_choiceTile[1] = 999;
+
 }
 
 /// <summary>
@@ -67,4 +72,16 @@ void MakedMap::draw()
 			m_tiles[i][j].glids.draw();
 		}
 	}
+}
+
+/// <summary>
+/// クリックされたとき
+/// </summary>
+/// <param name="newTile">タイルの情報</param>
+/// <param name="pos">クリック座標</param>
+void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 pos)
+{
+	// 一番左上の
+	DirectX::SimpleMath::Vector2 beginPos;
+
 }
