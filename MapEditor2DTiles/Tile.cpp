@@ -9,11 +9,40 @@
 #include "Tile.h"
 
 // クラス定数
-Tile::TileData Tile::m_datas[5] = {	{ true,L"None" },
-									{ false,L"Grass" },
-									{ false,L"RoadA" },
-									{ true,L"RoadB" },
-									{ true,L"Tree" }};
+Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
+
+										{ false,L"Grass1" },
+										{ false,L"Grass2" },
+										{ false,L"Grass3" },
+										{ false,L"Grass4" },
+
+										{ false,L"RoadA1" },
+										{ false,L"RoadA2" },
+										{ false,L"RoadA3" },
+										{ false,L"RoadA4" },
+										{ false,L"RoadA5" },
+										{ false,L"RoadA6" },
+										{ false,L"RoadA7" },
+										{ false,L"RoadA8" },
+										{ false,L"RoadA9" },
+
+										{ true,L"RoadB1" },
+										{ true,L"RoadB2" },
+										{ true,L"RoadB3" },
+										{ true,L"RoadB4" },
+										{ true,L"RoadB5" },
+										{ true,L"RoadB6" },
+										{ true,L"RoadB7" },
+										{ true,L"RoadB8" },
+										{ true,L"RoadB9" },
+
+										{ true,L"Tree1" },
+										{ true,L"Tree2" },
+										{ true,L"Tree3" },
+										{ true,L"Tree4" },
+
+
+};
 
 // タイルサイズ
 const float Tile::TILE_SIZE = 30.0f;
@@ -51,22 +80,15 @@ Tile& Tile::operator=(const Tile& tile)
 /// <summary>
 /// 初期化
 /// </summary>
-/// <param name="imageType">使用する画像のタイプの番号(Grass等)</param>
-/// <param name="imageID">使用する画像タイプのID</param>
+/// <param name="imageType">使用する画像のタイプの番号</param>
 /// <param name="pos">初期位置</param>
-void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 pos)
+void Tile::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 {
-	m_num = imageType*100 + imageID;
+	m_num = imageType;
 
 
 	// 画像のファイル名を作る
 	std::wstring fileName = m_datas[imageType].fileNames;
-
-	// NONEの場合はimageIDをつけない
-	if (imageID != 0)
-	{
-		fileName += std::to_wstring(imageID);
-	}
 
 	// 名前を保存
 	m_name = fileName;

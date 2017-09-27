@@ -15,7 +15,7 @@ public:
 	Tile& operator=(const Tile& tile);// コピーコンストラクタ
 
 	// 初期化
-	void initialize(int imageType,int imageID ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
+	void initialize(int imageType ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
 
 	// ゲット・セット
 	bool getColision() { return m_isColision; };						// 当たるか
@@ -43,7 +43,7 @@ public:
 
 
 	// IDごとに必要なデータ
-	static TileData m_datas[5];
+	static TileData m_datas[30];
 
 private:
 
