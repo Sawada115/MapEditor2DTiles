@@ -41,6 +41,9 @@ void Game::Initialize(HWND window, int width, int height)
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
 	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
 
+	//@‰Eã‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
+	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
+
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
@@ -91,6 +94,10 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
+
+		m_status.TileChange(m_tileManager.GetSelectTile());
+		m_status.CollisionChange(m_mouse.x, m_mouse.y);
+
 		// o—Íƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
 		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
 			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
@@ -123,6 +130,7 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
+	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
 	m_outputButton.Draw();

@@ -17,6 +17,9 @@
     <Filter Include="SawadaFile">
       <UniqueIdentifier>{5e1b1368-5276-49f5-b254-795c06a4b1f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SuganoFile">
+      <UniqueIdentifier>{1bd4f6e0-c3ec-4670-8f6b-ca25ccdb6a21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -34,11 +37,19 @@
     <ClInclude Include="TileManager.h">
       <Filter>SawadaFile</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="USS_Editor.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+=======
+<<<<<<< HEAD
+    <ClInclude Include="StatusTile.h">
+      <Filter>SuganoFile</Filter>
+=======
+>>>>>>> 4fa146c563aa7956dccd15a173ea5db14ff442c8
     <ClInclude Include="MapOutPut.h">
       <Filter>SawadaFile</Filter>
+>>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,8 +68,13 @@
     <ClCompile Include="TileManager.cpp">
       <Filter>SawadaFile</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="StatusTile.cpp">
+      <Filter>SuganoFile</Filter>
+=======
     <ClCompile Include="MapOutPut.cpp">
       <Filter>SawadaFile</Filter>
+>>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #include "MakedMap.h"
 #include "Tile.h"
 #include "TileManager.h"
+#include "StatusTile.h"
 #include "MapOutPut.h"
 
 
@@ -79,6 +80,8 @@ private:
 
 	// 左側のマップ
 	MakedMap m_map;
+	//右上の選択タイル
+	StatusTile m_status;
 
 	TileManager m_tileManager;			// タイルマネージャー
 	MapOutPut m_outputButton;			// 出力ボタン
