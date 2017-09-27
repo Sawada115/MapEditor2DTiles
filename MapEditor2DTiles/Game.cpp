@@ -39,7 +39,7 @@ void Game::Initialize(HWND window, int width, int height)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
-	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
+	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
 
 	//@‰Eã‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
