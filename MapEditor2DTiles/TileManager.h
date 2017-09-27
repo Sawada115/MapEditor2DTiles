@@ -43,6 +43,8 @@ public:
 	Tile GetSelectTile();
 private:
 	std::vector<Tile> m_palletTiles;			// パレット上のタイル
+	Obj2d m_grid;								// グリッド画像
+	Obj2d m_selectGrid;							// 選択中パネルのグリッド画像
 	int m_selectTile;							// 選択中のタイル
 };
 
