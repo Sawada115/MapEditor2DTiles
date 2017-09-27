@@ -6,6 +6,8 @@
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
 #include "Obj2d.h"
+#include <vector>
+#include <SimpleMath.h>
 #include "Tile.h"
 
 class MakedMap : public Obj2d
@@ -19,11 +21,23 @@ public:
 	// 描画
 	void draw();
 
+	// クリックされたとき
+	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 pos);
+
 private:
-	int GLID_H;
-	int GLID_V;
-	Obj2d m_glids[15][19];	// グリッド線
+	// タイル一つ分のデータ
+	struct OneTileData
+	{
+		Obj2d glids;	// グリッド線画像
+		Tile tile;		// タイル画像
+	};
 
 
+	int GLID_H;	// グリッドの
+	int GLID_V; //		サイズ
+	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち
+
+	// 現在選択中のタイル
+	int m_choiceTile[2];
 };
 

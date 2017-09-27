@@ -80,6 +80,4 @@ private:
 	MakedMap m_map;
 
 	TileManager m_tileManager;			// タイルマネージャー
-	// タイル(仮)
-	Tile m_tile;
 };
