@@ -163,7 +163,7 @@ Tile* TileManager::GetSelectTile()
 	Tile* tile = new Tile();
 	int a = m_palletTiles[m_selectTile].getNum();;
 
-	tile->initialize(a / 100, a % 100);
+	tile->initialize(a);
 
 	return tile;
 }
