@@ -75,7 +75,7 @@ void TileManager::Initialize(Vector2 tilePos)
 	{
 		for (int j = 0; j < tileID[i]; j++)
 		{
-			Vector2 pos(tilePos.x + TILE_SIZE * (count % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(count / PALLET_SIZE_Y));
+			Vector2 pos(tilePos.x + TILE_SIZE * (count % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(count / PALLET_SIZE_X));
 			if (tileID[i] == 1)
 				m_palletTiles[count].initialize(1, 1, pos);
 			else
@@ -83,13 +83,10 @@ void TileManager::Initialize(Vector2 tilePos)
 			count++;
 		}
 	}
-	
-	// 仮座標設定
-	for (int i = 0; i < count; i++)
-	{
-		Vector2 pos(tilePos.x + TILE_SIZE * (i % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(i / PALLET_SIZE_Y));
-		m_palletTiles[i].setPosition(pos);
-	}
+
+	m_grid.initialize(L"Resources/TileFlame.png");
+	m_selectGrid.initialize(L"Resources/TileFlameRed.png");
+	m_selectTile = -1;
 }
 
 
@@ -103,8 +100,26 @@ void TileManager::Initialize(Vector2 tilePos)
 //----------------------------------------------------------------------
 void TileManager::Draw()
 {
+	// タイルの描画
 	for (auto itr = m_palletTiles.begin(); itr != m_palletTiles.end(); itr++)
 		(*itr).draw();
+
+	// グリッドの描画
+	Vector2 tilePos = m_palletTiles[0].getPos();
+	for (int i = 0; i < PALLET_SIZE_X*PALLET_SIZE_Y; i++)
+	{
+		Vector2 pos(tilePos.x + TILE_SIZE * (i % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(i / PALLET_SIZE_X));
+		if (i == m_selectTile)
+		{
+			m_selectGrid.setPosition(pos);
+			m_selectGrid.draw();
+		}
+		else
+		{
+			m_grid.setPosition(pos);
+			m_grid.draw();
+		}
+	}
 }
 
 
@@ -120,16 +135,16 @@ void TileManager::TileSelect(int posX, int posY)
 {
 	int tileHalfSize = TILE_SIZE / 2;
 
-	for (auto itr = m_palletTiles.begin(); itr != m_palletTiles.end(); itr++)
+	for (int i = 0; i < (int)m_palletTiles.size(); i++)
 	{
-		Vector2 tilePos = (*itr).getPos();
+		Vector2 tilePos = m_palletTiles[i].getPos();
 
 		if (tilePos.x + tileHalfSize >= posX &&
 			tilePos.x - tileHalfSize <= posX &&
 			tilePos.y + tileHalfSize >= posY &&
 			tilePos.y - tileHalfSize <= posY)
 		{
-			m_selectTile = 0;
+			m_selectTile = i;
 		}
 	}
 }
@@ -145,5 +160,5 @@ void TileManager::TileSelect(int posX, int posY)
 //----------------------------------------------------------------------
 Tile TileManager::GetSelectTile()
 {
-	return Tile();
+	return m_palletTiles[m_selectTile];
 }
