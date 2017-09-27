@@ -77,7 +77,4 @@ private:
 
 	// 左側のマップ
 	MakedMap m_map;
-
-	// タイル(仮)
-	Tile m_tile;
 };

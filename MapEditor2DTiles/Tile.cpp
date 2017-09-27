@@ -34,10 +34,10 @@ Tile::~Tile()
 void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 pos)
 {
 	// 画像のファイル名を作る
-	std::wstring fileName = L"Resources/" + m_datas[imageType].fileNames+ std::to_wstring(imageID);
+	std::wstring fileName = L"Resources/" + m_datas[imageType].fileNames;
 
 	// NONEの場合はimageIDをつけない
-	if (imageID == 0)
+	if (imageID != 0)
 	{
 		fileName += std::to_wstring(imageID);
 	}
@@ -49,6 +49,9 @@ void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 p
 
 	// 判定を設定
 	m_isColision = m_datas[imageType].isColision;
+
+	// 初期位置設定
+	m_screenPos = pos;
 }
 
 /// <summary>

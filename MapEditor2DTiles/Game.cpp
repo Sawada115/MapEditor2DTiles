@@ -41,9 +41,6 @@ void Game::Initialize(HWND window, int width, int height)
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
 	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
 
-	// ƒ^ƒCƒ‹(‰¼)
-	m_tile.initialize(1, 1);
-
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 
@@ -100,9 +97,6 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
-
-	m_tile.draw();
-
 
 	m_backGround3.draw();
 
