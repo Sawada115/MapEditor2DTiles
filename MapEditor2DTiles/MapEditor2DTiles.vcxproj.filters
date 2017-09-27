@@ -17,6 +17,9 @@
     <Filter Include="SawadaFile">
       <UniqueIdentifier>{5e1b1368-5276-49f5-b254-795c06a4b1f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SuganoFile">
+      <UniqueIdentifier>{1bd4f6e0-c3ec-4670-8f6b-ca25ccdb6a21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -34,6 +37,9 @@
     <ClInclude Include="TileManager.h">
       <Filter>SawadaFile</Filter>
     </ClInclude>
+    <ClInclude Include="StatusTile.h">
+      <Filter>SuganoFile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="TileManager.cpp">
       <Filter>SawadaFile</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusTile.cpp">
+      <Filter>SuganoFile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

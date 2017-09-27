@@ -10,6 +10,7 @@
 #include "MakedMap.h"
 #include "Tile.h"
 #include "TileManager.h"
+#include "StatusTile.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -78,6 +79,8 @@ private:
 
 	// 左側のマップ
 	MakedMap m_map;
+	//右上の選択タイル
+	StatusTile m_status;
 
 	TileManager m_tileManager;			// タイルマネージャー
 };

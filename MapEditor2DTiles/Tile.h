@@ -23,6 +23,7 @@ public:
 	std::wstring getName() { return m_name; };					// –¼
 	void setName(std::wstring newName) { m_name = newName; };	// ‘O
 	int getNum() { return m_num; };						// ‰æ‘œID
+	void setNum(int num) { m_num = num; };
 
 
 	// m_isColision‚ğ•ÏX
