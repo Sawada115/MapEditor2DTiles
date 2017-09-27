@@ -39,7 +39,7 @@ void MakedMap::initialize(Vector2 pos)
 	Obj2d::initialize(L"Resources/BackImage1.png", pos);
 
 	// マップサイズの初期化
-	m_mapNum[0] = 19;
+	m_mapNum[0] = 17;
 	m_mapNum[1] = 14;
 
 	// マップ情報の初期化
@@ -84,7 +84,6 @@ void MakedMap::draw()
 			(*it2).tile->draw();
 			// グリッド
 			(*it2).glids.draw();
-
 		}
 	}
 
@@ -139,14 +138,33 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 /// <param name="sizeY">縦軸の大きさ</param>
 void MakedMap::setMapSize(int sizeX, int sizeY)
 {
-	m_mapNum[0] = sizeX; m_mapNum[1] = sizeY;
 
 	// マップ情報の初期化
-	m_tiles.resize(sizeX);	// 縦の長さを設定
-	for (int i = 0; i < sizeX; i++)
+	for (int i = 0; i < sizeY; i++)
 	{
-		m_tiles[i].resize(sizeY);// 横の長さの設定
+		// 横幅が大きくなった場合
+		if (sizeX > m_mapNum[1])
+		{
+			// そこに空白を敷き詰める
+			int j = m_mapNum[1];
+			for (j; j < sizeX; j++)
+			{
+				Tile* tile = new Tile();
+				// 位置を設定
+				Vector2 glidPos = 
+					Vector2((i*Tile::TILE_SIZE) - 195.0f, (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+				tile->initialize(0, glidPos);
+
+				OneTileData tileData;
+				tileData.tile = tile;
+
+				m_tiles[i].push_back(tileData);
+
+			}
+		}
 	}
+
+	m_mapNum[0] = sizeY; m_mapNum[1] = sizeX;
 }
 
 

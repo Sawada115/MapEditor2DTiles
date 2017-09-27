@@ -39,7 +39,7 @@ void Game::Initialize(HWND window, int width, int height)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
 	// ¶‘¤‚Ì”wŒi‰æ‘œ‚Ì‰Šú‰»
-	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
+	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
