@@ -19,9 +19,9 @@ public:
 
 	// ゲット・セット
 	bool getColision() { return m_isColision; };						// 当たるか
-	bool setColision(bool isColision) { m_isColision = isColision; };	//		どうか
+	void setColision(bool isColision) { m_isColision = isColision; };	//		どうか
 	std::wstring getName() { return m_name; };					// 名
-	bool setName(std::wstring newName) { m_name = newName; };	// 前
+	void setName(std::wstring newName) { m_name = newName; };	// 前
 
 
 	// m_isColisionを変更
@@ -29,8 +29,6 @@ public:
 
 	// タイルサイズ(縦横共通)
 	const static float TILE_SIZE;
-
-private:
 
 	// タイルに必要なデータ
 	struct TileData
@@ -42,10 +40,14 @@ private:
 		const std::wstring fileNames;
 	};
 
-	// 名前
-	std::wstring m_name;
+
 	// IDごとに必要なデータ
 	static TileData m_datas[5];
+
+private:
+
+	// 名前
+	std::wstring m_name;
 	// あたりをとるかどうか
 	bool m_isColision;
 };

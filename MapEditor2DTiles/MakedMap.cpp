@@ -16,6 +16,17 @@ MakedMap::MakedMap()
 
 MakedMap::~MakedMap()
 {
+	// タイル情報をデリート
+	std::vector<std::vector<OneTileData>>::iterator it1;
+	for (it1 = m_tiles.begin(); it1 < m_tiles.end(); it1++)
+	{
+		std::vector<OneTileData> ::iterator it2;
+		for (it2 = (*it1).begin(); it2 < (*it1).end(); it2++)
+		{
+			delete (*it2).tile;
+		}
+	}
+
 }
 
 /// <summary>
@@ -44,7 +55,8 @@ void MakedMap::initialize(Vector2 pos)
 
 			// グリッドとタイル画像の
 			m_tiles[i][j].glids.initialize(L"Resources/TileFlame.png", glidPos);
-			m_tiles[i][j].tile.initialize(0, 0,glidPos);
+			m_tiles[i][j].tile = new Tile();
+			m_tiles[i][j].tile->initialize(0, 0,glidPos);
 		}
 	}
 
@@ -67,7 +79,7 @@ void MakedMap::draw()
 		for (int j = 0; j < GLID_H; j++)
 		{
 			// タイル画像
-			m_tiles[i][j].tile.draw();
+			m_tiles[i][j].tile->draw();
 			// グリッド
 			m_tiles[i][j].glids.draw();
 		}
@@ -94,7 +106,10 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 
 		i--;
 	}
-
+	if (i >= m_tiles.size() || i < 0)
+	{
+		return;
+	}
 	clickedTileID[0] = i;
 
 	// クリックされた位置を探す(縦)
@@ -103,7 +118,23 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	{
 		i--;
 	}
+	if (i >= m_tiles[0].size() || i < 0)
+	{
+		return;
+	}
 	clickedTileID[1] = i;
 
-	// 
+	// 選択したタイルを変更する
+	changTile(clickedTileID, newTile);
+}
+
+/// <summary>
+/// 選択したタイルを変更する
+/// </summary>
+/// <param name="changeTileID">変更するタイルの番号</param>
+/// <param name="newTile">新しいタイル</param>
+void MakedMap::changTile(int changeTileID[2], Tile* newTile)
+{
+	// 新しいタイルをセット
+	m_tiles[changeTileID[0]][changeTileID[1]].tile = newTile;
 }

@@ -25,11 +25,14 @@ public:
 	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos);
 
 private:
+	// 選択したタイルを変更する
+	void changTile(int changeTileID[2],Tile* newTile);
+
 	// タイル一つ分のデータ
 	struct OneTileData
 	{
 		Obj2d glids;	// グリッド線画像
-		Tile tile;		// タイル画像
+		Tile* tile;		// タイル画像
 	};
 
 

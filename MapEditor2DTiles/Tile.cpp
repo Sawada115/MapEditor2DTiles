@@ -46,7 +46,7 @@ void Tile::initialize(int imageType, int imageID, DirectX::SimpleMath::Vector2 p
 	}
 
 	// –¼‘O‚ð•Û‘¶
-	m_name = fileName.c_str();
+	m_name = fileName;
 
 	fileName = L"Resources/" + fileName;
 	fileName += L".png";
