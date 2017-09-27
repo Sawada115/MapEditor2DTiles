@@ -39,16 +39,16 @@ void MakedMap::initialize(Vector2 pos)
 	Obj2d::initialize(L"Resources/BackImage1.png", pos);
 
 	// マップサイズの初期化
-	GLID_V = 14;
-	m_mapNum = 19;
+	m_mapNum[0] = 19;
+	m_mapNum[1] = 14;
 
 	// マップ情報の初期化
-	m_tiles.resize(GLID_V);	// 縦の長さを設定
-	for (int i = 0; i < GLID_V; i++)
+	m_tiles.resize(m_mapNum[1]);	// 縦の長さを設定
+	for (int i = 0; i < m_mapNum[1]; i++)
 	{
-		m_tiles[i].resize(m_mapNum);// 横の長さの設定
+		m_tiles[i].resize(m_mapNum[0]);// 横の長さの設定
 
-		for (int j = 0; j < m_mapNum; j++)
+		for (int j = 0; j < m_mapNum[0]; j++)
 		{
 			// 位置を設定
 			Vector2 glidPos = Vector2( (i*Tile::TILE_SIZE) - 195.0f,  (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
@@ -74,9 +74,9 @@ void MakedMap::draw()
 	// 背景画像
 	Obj2d::draw();
 
-	for (int i = 0; i < GLID_V; i++)
+	for (int i = 0; i < m_mapNum[1]; i++)
 	{
-		for (int j = 0; j < m_mapNum; j++)
+		for (int j = 0; j < m_mapNum[0]; j++)
 		{
 			// タイル画像
 			m_tiles[i][j].tile->draw();
