@@ -142,9 +142,9 @@ void TileManager::TileSelect(int posX, int posY)
 Tile* TileManager::GetSelectTile()
 {
 	Tile* tile = new Tile();
-	int a = m_palletTiles[m_selectTile].getNum();
+	int num = m_palletTiles[m_selectTile].getNum();
 
-	tile->initialize(a);
+	tile->initialize(num);
 
 	return tile;
 }

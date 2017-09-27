@@ -13,8 +13,8 @@ Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
 
 										{ false,L"Grass1" },
 										{ false,L"Grass2" },
-										{ false,L"Grass3" },
 										{ false,L"Grass4" },
+										{ false,L"Grass3" },
 
 										{ false,L"RoadA1" },
 										{ false,L"RoadA2" },
@@ -40,8 +40,6 @@ Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
 										{ true,L"Tree2" },
 										{ true,L"Tree3" },
 										{ true,L"Tree4" },
-
-
 };
 
 // タイルサイズ
