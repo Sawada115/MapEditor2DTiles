@@ -39,11 +39,14 @@ void Game::Initialize(HWND window, int width, int height)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
 	// 左側の背景画像の初期化
-	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 300.0f));
+	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
+	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
+	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(85.0f, 35.0f));
+	
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
@@ -79,7 +82,6 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouse.leftButton)
 	{
 		Tile* tile = new Tile();
-		//tile->initialize(1, 1);
 
 		tile = m_tileManager.GetSelectTile();
 
@@ -89,13 +91,21 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
+		// 出力ボタンを押した
+		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
+			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
 	}
-	
-	//if ()
+
+	// 右クリックしたら
+	if (m_mouse.rightButton)
 	{
-		MapOutPut output;
-		output.OutPutCsv(m_map.GetAllTileData(),m_map.GetMapSize().x);
+		Tile* tile = new Tile();
+		tile->initialize(0);
+
+		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+
 	}
+
 }
 
 // Draws the scene.
@@ -115,6 +125,7 @@ void Game::Render()
 	m_map.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
+	m_outputButton.Draw();
 Present();
 }
 

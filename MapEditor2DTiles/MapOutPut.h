@@ -17,13 +17,26 @@
 // クラスの宣言
 class MapOutPut
 {
+	// 静的変数の宣言
+private:
+	static const int BUTTON_SIZE_X;		// ボタンの横幅
+	static const int BUTTON_SIZE_Y;		// ボタンの縦幅
 public:
 	// コンストラクタ
 	MapOutPut();
 	// デストラクタ
 	~MapOutPut();
 
+	// 初期化処理
+	void Initialize(DirectX::SimpleMath::Vector2 buttonPos);
+	// 描画処理
+	void Draw();
+
 	// タイルデータを出力
 	void OutPutCsv(std::vector<Tile*> tileData,int mapSizeX);
+	// 出力ボタン処理
+	bool PressedButton(int posX, int posY);
+private:
+	Obj2d m_outPutButton;			// 出力ボタン画像
 };
 

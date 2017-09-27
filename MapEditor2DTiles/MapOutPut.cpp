@@ -17,6 +17,14 @@
 #include <sstream>  
 
 using namespace std;
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
+
+// 静的変数の初期化
+const int MapOutPut::BUTTON_SIZE_X = 150;
+const int MapOutPut::BUTTON_SIZE_Y = 50;
+
+
 
 //----------------------------------------------------------------------
 //! @brief コンストラクタ
@@ -40,6 +48,34 @@ MapOutPut::MapOutPut()
 //----------------------------------------------------------------------
 MapOutPut::~MapOutPut()
 {
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief 初期化処理
+//!
+//! @param[in] ボタン座標
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
+{
+	m_outPutButton.initialize(L"Resources/OutPutButton.png",buttonPos);
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief 描画処理
+//!
+//! @param[in] なし
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void MapOutPut::Draw()
+{
+	m_outPutButton.draw();
 }
 
 
@@ -75,4 +111,29 @@ void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,int mapSizeX)
 		}
 	}
 	return;
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief 出力ボタン処理
+//!
+//! @param[in] 座標X 座標Y
+//!
+//! @return なし
+//----------------------------------------------------------------------
+bool MapOutPut::PressedButton(int posX, int posY)
+{
+	Vector2 buttonHalfSize(BUTTON_SIZE_X / 2, BUTTON_SIZE_Y / 2);
+
+	Vector2 buttonPos = m_outPutButton.getPos();
+
+	if (buttonPos.x + buttonHalfSize.x >= posX &&
+		buttonPos.x - buttonHalfSize.x <= posX &&
+		buttonPos.y + buttonHalfSize.y >= posY &&
+		buttonPos.y - buttonHalfSize.y <= posY)
+	{
+		return true;
+	}
+	return false;
 }

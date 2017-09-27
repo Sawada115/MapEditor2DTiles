@@ -81,4 +81,5 @@ private:
 	MakedMap m_map;
 
 	TileManager m_tileManager;			// タイルマネージャー
+	MapOutPut m_outputButton;			// 出力ボタン
 };

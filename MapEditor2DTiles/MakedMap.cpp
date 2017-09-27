@@ -18,10 +18,10 @@ MakedMap::~MakedMap()
 {
 	// タイル情報をデリート
 	std::vector<std::vector<OneTileData>>::iterator it1;
-	for (it1 = m_tiles.begin(); it1 < m_tiles.end(); it1++)
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
 	{
 		std::vector<OneTileData> ::iterator it2;
-		for (it2 = (*it1).begin(); it2 < (*it1).end(); it2++)
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
 			delete (*it2).tile;
 		}
@@ -39,7 +39,7 @@ void MakedMap::initialize(Vector2 pos)
 	Obj2d::initialize(L"Resources/BackImage1.png", pos);
 
 	// マップサイズの初期化
-	m_mapNum[0] = 19;
+	m_mapNum[0] = 17;
 	m_mapNum[1] = 14;
 
 	// マップ情報の初期化
@@ -74,16 +74,19 @@ void MakedMap::draw()
 	// 背景画像
 	Obj2d::draw();
 
-	for (int i = 0; i < m_mapNum[1]; i++)
+	std::vector<std::vector<OneTileData>>::iterator it1;
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
 	{
-		for (int j = 0; j < m_mapNum[0]; j++)
+		std::vector<OneTileData> ::iterator it2;
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
 			// タイル画像
-			m_tiles[i][j].tile->draw();
+			(*it2).tile->draw();
 			// グリッド
-			m_tiles[i][j].glids.draw();
+			(*it2).glids.draw();
 		}
 	}
+
 }
 
 /// <summary>
@@ -159,6 +162,40 @@ DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
 	return size;
 }
 
+/// マップのサイズを変更する
+/// </summary>
+/// <param name="sizeX">横軸の大きさ</param>
+/// <param name="sizeY">縦軸の大きさ</param>
+void MakedMap::setMapSize(int sizeX, int sizeY)
+{
+
+	// マップ情報の初期化
+	for (int i = 0; i < sizeY; i++)
+	{
+		// 横幅が大きくなった場合
+		if (sizeX > m_mapNum[1])
+		{
+			// そこに空白を敷き詰める
+			int j = m_mapNum[1];
+			for (j; j < sizeX; j++)
+			{
+				Tile* tile = new Tile();
+				// 位置を設定
+				Vector2 glidPos = 
+					Vector2((i*Tile::TILE_SIZE) - 195.0f, (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+				tile->initialize(0, glidPos);
+
+				OneTileData tileData;
+				tileData.tile = tile;
+
+				m_tiles[i].push_back(tileData);
+
+			}
+		}
+	}
+
+	m_mapNum[0] = sizeY; m_mapNum[1] = sizeX;
+}
 
 
 /// <summary>
