@@ -8,6 +8,7 @@
 #include <SimpleMath.h>
 #include <Mouse.h>
 #include "MakedMap.h"
+#include "ColisionCheckButtan.h"
 #include "Tile.h"
 #include "TileManager.h"
 #include "StatusTile.h"
@@ -80,6 +81,8 @@ private:
 
 	// 左側のマップ
 	MakedMap m_map;
+	ColisionCheckButtan m_clisionCheckButtan;
+
 	//右上の選択タイル
 	StatusTile m_status;
 

@@ -12,12 +12,12 @@ class Tile:public Obj2d
 public:
 	Tile();
 	virtual ~Tile();
-	Tile& operator=(const Tile& tile);// コピーコンストラクタ
 
 	// 初期化
 	void initialize(int imageType ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
 
-	// 
+	// 描画
+	void draw();
 
 	// ゲット・セット
 	bool getColision() { return m_isColision; };						// 当たるか
@@ -48,6 +48,11 @@ public:
 	// IDごとに必要なデータ
 	static TileData m_datas[30];
 
+	// コリジョンチェックフラグをセットする
+	static void setClisionCheck(bool check) { m_isCheckedColision = check; };
+	static void changheClisionCheck();
+
+
 private:
 
 	// 名前
@@ -56,5 +61,8 @@ private:
 	bool m_isColision;
 
 	int m_num;
+
+	// コリジョンが働いているかを見た目で確認するか
+	static bool m_isCheckedColision;
 };
 

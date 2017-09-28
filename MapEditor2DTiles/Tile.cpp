@@ -9,7 +9,7 @@
 #include "Tile.h"
 
 // クラス定数
-Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
+Tile::TileData Tile::m_datas[30] = {	{ false,L"None" },
 
 										{ false,L"RoadA1" },
 										{ false,L"RoadA2" },
@@ -51,6 +51,9 @@ Tile::TileData Tile::m_datas[30] = {	{ true,L"None" },
 // タイルサイズ
 const float Tile::TILE_SIZE = 30.0f;
 
+// 最初はチェックしない
+bool Tile::m_isCheckedColision = false;
+
 
 Tile::Tile()
 {
@@ -61,25 +64,6 @@ Tile::~Tile()
 {
 }
 
-/// <summary>
-/// コピーコンストラクタ
-/// </summary>
-/// <param name="tile">コピー元</param>
-/// <returns>新しくできたもの</returns>
-Tile& Tile::operator=(const Tile& tile)
-{
-	Tile& tilee = Tile();
-	tilee.m_isColision = tile.m_isColision;
-	tilee.m_name = tile.m_name;
-
-
-	std::wstring fileName = tilee.m_name;
-	fileName = L"Resources/" + fileName;
-	fileName += L".png";
-	
-
-	return Tile();
-}
 
 /// <summary>
 /// 初期化
@@ -111,6 +95,25 @@ void Tile::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 
 	// 初期位置設定
 	m_screenPos = pos;
+
+}
+
+
+/// <summary>
+/// 描画
+/// </summary>
+void Tile::draw()
+{
+	if (m_isColision && m_isCheckedColision)
+	{
+		this->setColer(DirectX::Colors::Red);
+	}
+	else
+	{
+		this->setColer(DirectX::Colors::White);
+	}
+
+	Obj2d::draw();
 }
 
 /// <summary>
@@ -129,4 +132,16 @@ bool Tile::changheColision()
 	}
 
 	return m_isColision;
+}
+
+void Tile::changheClisionCheck()
+{
+	if (m_isCheckedColision)
+	{
+		m_isCheckedColision = false;
+	}
+	else
+	{
+		m_isCheckedColision = true;
+	}
 }

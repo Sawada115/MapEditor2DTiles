@@ -1,102 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Assets">
-      <UniqueIdentifier>53a78a8b-172a-4d1c-8bf4-0bd2da89ad89</UniqueIdentifier>
-      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="UsshiFile">
-      <UniqueIdentifier>{d2b6e705-6ae6-425c-8932-b8028e47bd15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Resources">
-      <UniqueIdentifier>{4d7fb77b-dc96-4b0e-9d68-830f27f2c8a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UsshiFile\NewClass">
-      <UniqueIdentifier>{babfed91-f2f1-4307-abbe-f0a6594704c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SawadaFile">
-      <UniqueIdentifier>{5e1b1368-5276-49f5-b254-795c06a4b1f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SuganoFile">
-      <UniqueIdentifier>{1bd4f6e0-c3ec-4670-8f6b-ca25ccdb6a21}</UniqueIdentifier>
-    </Filter>
+    <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="MakedMap.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-    <ClInclude Include="Obj2d.h">
-      <Filter>UsshiFile</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-    <ClInclude Include="TileManager.h">
-      <Filter>SawadaFile</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="USS_Editor.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-=======
-<<<<<<< HEAD
-    <ClInclude Include="StatusTile.h">
-      <Filter>SuganoFile</Filter>
-=======
->>>>>>> 4fa146c563aa7956dccd15a173ea5db14ff442c8
-    <ClInclude Include="MapOutPut.h">
-      <Filter>SawadaFile</Filter>
->>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="pch.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MakedMap.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClCompile>
+    <ClCompile Include="MapOutPut.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="StatusTile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="Obj2d.cpp">
       <Filter>UsshiFile</Filter>
+    </ClCompile>
+    <ClCompile Include="MakedMap.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
-    <ClCompile Include="TileManager.cpp">
-      <Filter>SawadaFile</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="StatusTile.cpp">
-      <Filter>SuganoFile</Filter>
-=======
-    <ClCompile Include="MapOutPut.cpp">
-      <Filter>SawadaFile</Filter>
->>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
-    </ClCompile>
+    <ClCompile Include="ColisionCheckButtan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="MapOutPut.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="StatusTile.h" />
+    <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="TileManager.h" />
+    <ClInclude Include="Obj2d.h">
+      <Filter>UsshiFile</Filter>
+    </ClInclude>
+    <ClInclude Include="MakedMap.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionCheckButtan.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="directx.ico">
-      <Filter>Assets</Filter>
-    </Image>
+    <Image Include="Resources\TileFlame.png" />
+    <Image Include="Resources\TileFlameRed.png" />
     <Image Include="Resources\BackImage1.png">
-      <Filter>Assets\Resources</Filter>
+      <Filter>Resources</Filter>
     </Image>
-    <Image Include="Resources\TileFlame.png">
-      <Filter>Assets\Resources</Filter>
-    </Image>
-    <Image Include="Resources\TileFlameRed.png">
-      <Filter>Assets\Resources</Filter>
+    <Image Include="directx.ico">
+      <Filter>Resources</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="settings.manifest">
-      <Filter>Assets</Filter>
-    </Manifest>
+    <Filter Include="UsshiFile">
+      <UniqueIdentifier>{e7a79686-f7ff-434d-ba59-0c117db94dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UsshiFile\NewClass">
+      <UniqueIdentifier>{5af6c073-f969-48ba-8d06-ad28c7b42229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

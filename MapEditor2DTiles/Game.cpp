@@ -41,6 +41,9 @@ void Game::Initialize(HWND window, int width, int height)
 	// 左側の背景画像の初期化
 	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
 
+	// コリジョンチェックボタン
+	m_clisionCheckButtan.initialize(DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
 
@@ -106,6 +109,18 @@ void Game::Update(DX::StepTimer const& timer)
 		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
 			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
 
+<<<<<<< HEAD
+=======
+
+		// コリジョンチェックボタンを押した
+		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
+		{
+			Tile::changheClisionCheck();
+		}
+
+
+
+>>>>>>> 4edfcbfbeb1a42527b0dee30b5fdf2920fdb68b9
 	}
 
 	// 右クリックしたら
@@ -135,6 +150,8 @@ void Game::Render()
 
 	//backImage1.draw();
 	m_map.draw();
+	// コリジョンチェックボタン
+	m_clisionCheckButtan.draw();
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();

@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ColisionCheckButtan.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="MakedMap.h" />
     <ClInclude Include="MapOutPut.h" />
@@ -168,9 +169,9 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
-    <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColisionCheckButtan.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MakedMap.cpp" />
