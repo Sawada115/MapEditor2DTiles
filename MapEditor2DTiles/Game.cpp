@@ -89,7 +89,7 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		Tile* tile = new Tile();
 
-		tile = m_tileManager.GetSelectTile();
+		tile = m_tileManager.CopySelectTile();
 
 		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
@@ -99,7 +99,7 @@ void Game::Update(DX::StepTimer const& timer)
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
 
 
-		m_status.TileChange(m_tileManager.GetSelectTile());
+		m_status.TileChange(m_tileManager.CopySelectTile());
 		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
 		
 

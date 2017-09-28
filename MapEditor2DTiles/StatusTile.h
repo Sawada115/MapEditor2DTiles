@@ -22,10 +22,10 @@ public:
 	// タイルデータの取得
 	void TileChange(Tile* tile);		//選択中のタイルデータの取得
 
-
 	void CollisionChange(int posX, int posY, Tile* tile);
 
-void GetCollision(Tile* tile);	//選択中のタイルデータのCollision取得
+	void GetCollision(Tile* tile);	//選択中のタイルデータのCollision取得
+
 
 	// 描画
 	void draw();

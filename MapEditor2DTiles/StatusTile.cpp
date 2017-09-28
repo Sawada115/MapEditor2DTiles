@@ -34,7 +34,6 @@ void StatusTile::initialize(Vector2 pos)
 	m_Collison_OFF.initialize(L"Resources/OFF.png", Collision_Pos);
 	
 
-
 }
 
 
@@ -49,7 +48,7 @@ void StatusTile::draw()
 
 	m_Tile.draw();
 	
-	
+
 	if (m_Tile.getColision())
 	{
 		m_Collison_ON.draw();
@@ -75,10 +74,12 @@ void StatusTile::TileChange(Tile* tile)
 }
 
 
+
 void StatusTile::GetCollision(Tile* tile)
 {
 	m_Tile.setColision(tile->getColision());
 }
+
 
 void StatusTile::CollisionChange(int posX, int posY, Tile* tile)
 {
@@ -88,11 +89,13 @@ void StatusTile::CollisionChange(int posX, int posY, Tile* tile)
 		if (m_Tile.getColision() == true)
 		{
 			TileBase::m_datas[tile->getNum()].isColision = false;
+			tile->setColision(false);
 			m_Tile.setColision(false);
 		}
 		else
 		{
 			TileBase::m_datas[tile->getNum()].isColision = true;
+			tile->setColision(true);
 			m_Tile.setColision(true);
 		}
 	}
