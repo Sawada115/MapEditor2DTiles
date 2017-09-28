@@ -5,36 +5,24 @@
 
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
-#include<string>
-#include<fstream>				
+//#include<string>
+//#include<fstream>				
 
-//void importData(std::string filename)
+// マップ使用用クラス
+//class USS_Explorer
 //{
-//	std::ifstream ifs(filename);
-//	std::string str;
+//public:
+//	USS_Explorer();
+//	~USS_Explorer();
 //
-//	int i;
-//	if (!ifs)
-//	{
-//		for (i = 0; i < MAX_BACK_BALL; i++)
-//		{
-//			g_map[i / 20][i % 20] = 4;
-//		}
-//		return;
-//	}
+//	// マップのCSVデータを読み込む
 //
-//	i = 0;
-//	while (getline(ifs, str))
-//	{
-//		std::string token;
-//		istringstream stream(str);
+//	// マップを描画する
 //
-//		// １行のうち、文字列とコンマを分割する
-//		while (getline(stream, token, ','))
-//		{
-//			// 全て文字列として読み込まれるため数値は変換が必要
-//			g_map[i / 20][i % 20] = atoi(token.c_str());
-//			i++;
-//		}
-//	}
-//}
+//	// タイルとの当たり判定をとる
+//
+//	// マップをスクロールする
+//
+//private:
+//
+//};
