@@ -33,7 +33,7 @@ public:
 	void Draw();
 
 	// タイルデータを出力
-	void OutPutCsv(std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
+	void OutPutCsv(int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
 
 	struct TileData
 	{

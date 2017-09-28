@@ -105,8 +105,13 @@ void Game::Update(DX::StepTimer const& timer)
 		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
 		// o—Íƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
-		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y));
-			//m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize());
+		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
+		{
+			for (int i = 0; i < (int)m_map.size(); i++)
+			{
+				m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
+			}
+		}
 			//m_outputButton.InPutCsv("MapData");
 	}
 

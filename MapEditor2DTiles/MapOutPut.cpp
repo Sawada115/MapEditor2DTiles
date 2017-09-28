@@ -83,14 +83,17 @@ void MapOutPut::Draw()
 //----------------------------------------------------------------------
 //! @brief タイルデータを出力
 //!
-//! @param[in] 出力データ マップの横幅
+//! @param[in] レイヤー番号 出力データ マップの横幅
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,Vector2 mapSize)
+void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSize)
 {
 	// ファイルを開く
-	ofstream ofs("MapData.csv");
+	string fileName = "MapDate";
+	string layerName = "Layer" + std::to_string(layerNum);
+
+	ofstream ofs(fileName + layerName + ".csv");
 	
 	if (ofs)
 	{
