@@ -131,7 +131,10 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	changTile(clickedTileID, newTile);
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 /// <summary>
 /// タイルデータの取得
 /// </summary>
@@ -163,6 +166,7 @@ DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
 	return size;
 }
 
+<<<<<<< HEAD
 /// マップのサイズを変更する
 /// </summary>
 /// <param name="sizeX">横軸の大きさ</param>
@@ -200,6 +204,8 @@ void MakedMap::setMapSize(int sizeX, int sizeY)
 
 
 
+=======
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 /// <summary>
 /// 選択したタイルを変更する
 /// </summary>

@@ -38,9 +38,15 @@
       <Filter>SawadaFile</Filter>
     </ClInclude>
 <<<<<<< HEAD
+    <ClInclude Include="USS_Editor.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+=======
+<<<<<<< HEAD
     <ClInclude Include="StatusTile.h">
       <Filter>SuganoFile</Filter>
 =======
+>>>>>>> 4fa146c563aa7956dccd15a173ea5db14ff442c8
     <ClInclude Include="MapOutPut.h">
       <Filter>SawadaFile</Filter>
 >>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1

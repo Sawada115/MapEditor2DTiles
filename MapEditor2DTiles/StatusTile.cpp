@@ -75,7 +75,14 @@ void StatusTile::TileChange(Tile* tile)
 }
 
 
+<<<<<<< HEAD
 
+=======
+void StatusTile::GetCollision(Tile* tile)
+{
+	m_Tile.setColision(tile->getColision());
+}
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 
 void StatusTile::CollisionChange(int posX, int posY, Tile* tile)
 {

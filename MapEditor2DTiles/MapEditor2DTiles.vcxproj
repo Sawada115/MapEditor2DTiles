@@ -168,6 +168,7 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
+    <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
