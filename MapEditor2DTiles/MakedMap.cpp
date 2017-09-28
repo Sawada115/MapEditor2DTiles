@@ -64,6 +64,7 @@ void MakedMap::initialize(Vector2 pos)
 	m_choiceTile[0] = 999;
 	m_choiceTile[1] = 999;
 
+	this->setVisible(false);
 }
 
 /// <summary>

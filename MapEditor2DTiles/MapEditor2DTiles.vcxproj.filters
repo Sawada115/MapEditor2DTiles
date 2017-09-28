@@ -19,7 +19,12 @@
     <ClCompile Include="Tile.cpp">
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
-    <ClCompile Include="ColisionCheckButtan.cpp" />
+    <ClCompile Include="ColisionCheckButtan.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="USS_Editor.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -37,7 +42,12 @@
     <ClInclude Include="Tile.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
-    <ClInclude Include="ColisionCheckButtan.h" />
+    <ClInclude Include="ColisionCheckButtan.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="USS_Editor.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
