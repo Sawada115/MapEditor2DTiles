@@ -131,6 +131,10 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	changTile(clickedTileID, newTile);
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 /// <summary>
 /// タイルデータの取得
 /// </summary>
@@ -162,6 +166,46 @@ DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
 	return size;
 }
 
+<<<<<<< HEAD
+/// マップのサイズを変更する
+/// </summary>
+/// <param name="sizeX">横軸の大きさ</param>
+/// <param name="sizeY">縦軸の大きさ</param>
+void MakedMap::setMapSize(int sizeX, int sizeY)
+{
+
+	// マップ情報の初期化
+	for (int i = 0; i < sizeY; i++)
+	{
+		// 横幅が大きくなった場合
+		if (sizeX > m_mapNum[1])
+		{
+			// そこに空白を敷き詰める
+			int j = m_mapNum[1];
+			for (j; j < sizeX; j++)
+			{
+				Tile* tile = new Tile();
+				// 位置を設定
+				Vector2 glidPos = 
+					Vector2((i*Tile::TILE_SIZE) - 195.0f, (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+				tile->initialize(0, glidPos);
+
+				OneTileData tileData;
+				tileData.tile = tile;
+
+				m_tiles[i].push_back(tileData);
+
+			}
+		}
+	}
+
+	m_mapNum[0] = sizeY; m_mapNum[1] = sizeX;
+}
+
+
+
+=======
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 /// <summary>
 /// 選択したタイルを変更する
 /// </summary>

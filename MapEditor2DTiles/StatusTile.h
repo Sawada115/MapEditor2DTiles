@@ -22,17 +22,23 @@ public:
 	// タイルデータの取得
 	void TileChange(Tile* tile);		//選択中のタイルデータの取得
 
+<<<<<<< HEAD
+	void CollisionChange(int posX, int posY, Tile* tile);
+=======
 	void GetCollision(Tile* tile);	//選択中のタイルデータのCollision取得
 
 	void CollisionChange(int posX, int posY);
+>>>>>>> 8910561aa0a8150b36047f7d51d8ae3b90f22207
 
 	// 描画
 	void draw();
 
 private:
 	Obj2d m_backImage;			//背景
-	Obj2d m_Collison_Status;	//あたり判定の状態表示
+	Obj2d m_Collison_ON;	//あたり判定の状態表示ON
+	Obj2d m_Collison_OFF;	//あたり判定の状態表示OFF
 
+	std::wstring tile_name;					//選択中のタイルの名前
 	DirectX::SimpleMath::Vector2 Tile_Pos;	//選択中のタイルの名前の表示座標
 
 	Tile m_Tile;							//選択中のタイル
