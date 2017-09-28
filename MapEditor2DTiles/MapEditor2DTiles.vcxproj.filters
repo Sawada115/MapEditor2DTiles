@@ -22,7 +22,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapOutPut.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="StatusTile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="Obj2d.cpp">
       <Filter>UsshiFile</Filter>
@@ -33,11 +32,17 @@
     <ClCompile Include="Tile.cpp">
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="ColisionCheckButtan.cpp" />
+    <ClCompile Include="StatusTile.cpp">
+      <Filter>SuganoFile</Filter>
+=======
     <ClCompile Include="ColisionCheckButtan.cpp">
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
     <ClCompile Include="USS_Editor.cpp">
       <Filter>UsshiFile\NewClass</Filter>
+>>>>>>> c3263a442e909608030cd6755a910df19fb6426a
     </ClCompile>
     <ClCompile Include="UI_Buttan.cpp">
       <Filter>UsshiFile\NewClass</Filter>
@@ -47,7 +52,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="StatusTile.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="Obj2d.h">
@@ -59,6 +63,12 @@
     <ClInclude Include="Tile.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="ColisionCheckButtan.h" />
+    <ClInclude Include="StatusTile.h">
+      <Filter>SuganoFile</Filter>
+    </ClInclude>
+=======
     <ClInclude Include="ColisionCheckButtan.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
@@ -71,6 +81,7 @@
     </ClInclude>
 =======
 >>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
+>>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -115,6 +126,12 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="SuganoFile">
+      <UniqueIdentifier>{e817554f-c3c7-4a4d-bbea-143df7e37961}</UniqueIdentifier>
+    </Filter>
+=======
 >>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
+>>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
 </Project>

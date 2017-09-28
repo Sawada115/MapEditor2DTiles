@@ -15,6 +15,7 @@ StatusTile::StatusTile()
 
 StatusTile::~StatusTile()
 {
+
 }
 
 /// <summary>
@@ -32,6 +33,7 @@ void StatusTile::initialize(Vector2 pos)
 
 	m_Collison_ON.initialize(L"Resources/ON.png", Collision_Pos);
 	m_Collison_OFF.initialize(L"Resources/OFF.png", Collision_Pos);
+	
 	
 
 }
@@ -57,9 +59,6 @@ void StatusTile::draw()
 	{
 		m_Collison_OFF.draw();
 	}
-
-	
-	
 
 
 }
