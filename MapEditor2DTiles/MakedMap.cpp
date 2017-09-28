@@ -63,8 +63,6 @@ void MakedMap::initialize(Vector2 pos)
 	// ‰½‚à‘I‘ğ‚µ‚Ä‚¢‚È‚¢ó‘Ô
 	m_choiceTile[0] = 999;
 	m_choiceTile[1] = 999;
-
-	this->setVisible(false);
 }
 
 /// <summary>
@@ -87,7 +85,6 @@ void MakedMap::draw()
 			(*it2).glids.draw();
 		}
 	}
-
 }
 
 /// <summary>

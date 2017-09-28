@@ -1,9 +1,9 @@
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
-//! @file   MapOutPut.h
+//! @file   LayerManager.h
 //!
-//! @brief  マップ出力クラス
+//! @brief  レイヤーマネージャークラス
 //!
-//! @date   日付　2017/09/27
+//! @date   日付　2017/09/28
 //!
 //! @author 制作者名 澤田
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
@@ -12,44 +12,32 @@
 #pragma once
 
 // ヘッダーファイルのインクルード==============================================
-#include "UI_Buttan.h"
-#include "MakedMap.h"
+#include <vector>
+#include "Obj2d.h"
 
 // クラスの宣言
-class MapOutPut:public UI_ButtanBase
+class LayerManager
 {
 	// 静的変数の宣言
 private:
 	static const int BUTTON_SIZE_X;		// ボタンの横幅
 	static const int BUTTON_SIZE_Y;		// ボタンの縦幅
+	static const int LAYER_NUM;			// レイヤーの数
 public:
 	// コンストラクタ
-	MapOutPut();
+	LayerManager();
 	// デストラクタ
-	~MapOutPut();
+	~LayerManager();
 
 	// 初期化処理
 	void Initialize(DirectX::SimpleMath::Vector2 buttonPos);
+	// 描画処理
+	void Draw();
 
-	// ボタンが押されたら呼ぶ処理
-	void toActivate();
-
-	// 出力ボタン処理
-	bool isPressed(int posX, int posY);
-
-	// タイルデータを出力
-	void OutPutCsv(int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
-
-	struct TileData
-	{
-		int imageType;			// 画像番号
-		bool isColision;		// 当たり判定
-	};
-
-	// マップデータの読み込み
-	std::vector<TileData> InPutCsv(std::string fileName);
-
+	// ボタン処理
+	bool PressedButton(int posX, int posY);
+	int GetSelectLayer() { return m_selectLayer; }
 private:
-	Obj2d m_outPutButton;			// 出力ボタン画像
+	std::vector<Obj2d> m_layerButton;			// レイヤーボタン画像
+	int m_selectLayer;							// 選択中のレイヤー番号
 };
-

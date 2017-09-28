@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="ColisionCheckButtan.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="LayerManager.h" />
     <ClInclude Include="MakedMap.h" />
     <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="Obj2d.h" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClCompile Include="ColisionCheckButtan.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MakedMap.cpp" />
     <ClCompile Include="MapOutPut.cpp" />

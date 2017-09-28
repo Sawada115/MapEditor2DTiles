@@ -2,6 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Manifest Include="settings.manifest" />
+<<<<<<< HEAD
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MakedMap.cpp" />
+    <ClCompile Include="MapOutPut.cpp" />
+    <ClCompile Include="Obj2d.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="StatusTile.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
+    <ClCompile Include="LayerManager.cpp" />
+=======
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -51,14 +65,37 @@
     <ClInclude Include="USS_Editor.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="UI_Buttan.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+=======
+>>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="MakedMap.h" />
+    <ClInclude Include="MapOutPut.h" />
+    <ClInclude Include="Obj2d.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="StatusTile.h" />
+    <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileManager.h" />
+    <ClInclude Include="USS_Editor.h" />
+    <ClInclude Include="LayerManager.h" />
+>>>>>>> c3263a442e909608030cd6755a910df19fb6426a
+  </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="directx.ico" />
+    <Image Include="Resources\BackImage1.png" />
+    <Image Include="Resources\TileFlame.png" />
+    <Image Include="Resources\TileFlameRed.png" />
+=======
     <Image Include="Resources\TileFlame.png" />
     <Image Include="Resources\TileFlameRed.png" />
     <Image Include="Resources\BackImage1.png">
@@ -78,5 +115,6 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
     </Filter>
+>>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
   </ItemGroup>
 </Project>
