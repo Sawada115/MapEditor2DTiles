@@ -72,7 +72,7 @@ void MakedMap::initialize(Vector2 pos)
 void MakedMap::draw()
 {
 	// ”wŒi‰æ‘œ
-	//Obj2d::draw();
+	Obj2d::draw();
 
 	std::vector<std::vector<OneTileData>>::iterator it1;
 	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
