@@ -89,7 +89,7 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		Tile* tile = new Tile();
 
-		tile = m_tileManager.GetSelectTile();
+		tile = m_tileManager.CopySelectTile();
 
 		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
@@ -99,7 +99,7 @@ void Game::Update(DX::StepTimer const& timer)
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
 
 
-		m_status.TileChange(m_tileManager.GetSelectTile());
+		m_status.TileChange(m_tileManager.CopySelectTile());
 		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
 		
 
@@ -109,8 +109,6 @@ void Game::Update(DX::StepTimer const& timer)
 		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
 			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
 
-<<<<<<< HEAD
-=======
 
 		// コリジョンチェックボタンを押した
 		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
@@ -120,7 +118,6 @@ void Game::Update(DX::StepTimer const& timer)
 
 
 
->>>>>>> 4edfcbfbeb1a42527b0dee30b5fdf2920fdb68b9
 	}
 
 	// 右クリックしたら

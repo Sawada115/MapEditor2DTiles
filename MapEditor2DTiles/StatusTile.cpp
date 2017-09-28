@@ -74,20 +74,12 @@ void StatusTile::TileChange(Tile* tile)
 }
 
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 4edfcbfbeb1a42527b0dee30b5fdf2920fdb68b9
 void StatusTile::GetCollision(Tile* tile)
 {
 	m_Tile.setColision(tile->getColision());
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4edfcbfbeb1a42527b0dee30b5fdf2920fdb68b9
 
 void StatusTile::CollisionChange(int posX, int posY, Tile* tile)
 {
