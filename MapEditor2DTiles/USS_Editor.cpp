@@ -4,12 +4,27 @@
 /// </summary>
 
 /* －－ ヘッダーのインクルード －－－－ */
-//#include "USS_Editor.h"
-//
-//USS_Explorer::USS_Explorer()
-//{
-//}
-//
-//USS_Explorer::~USS_Explorer()
-//{
-//}
+#include "pch.h"
+#include "USS_Editor.h"
+
+// ----- マップ使用用クラス ------------------------------------------------------------------------------
+USS_Explorer::USS_Explorer()
+{
+}
+
+USS_Explorer::~USS_Explorer()
+{
+}
+
+
+
+
+
+// ----- 読み込む用タイルクラス -----------------------------------------------------------------------------
+LoadedTile::LoadedTile()
+{
+}
+
+LoadedTile::~LoadedTile()
+{
+}

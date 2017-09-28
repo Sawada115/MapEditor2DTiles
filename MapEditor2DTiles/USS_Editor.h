@@ -5,24 +5,37 @@
 
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
-//#include<string>
-//#include<fstream>				
+#include<string>
+#include<fstream>
+#include "Tile.h"
 
 // マップ使用用クラス
-//class USS_Explorer
-//{
-//public:
-//	USS_Explorer();
-//	~USS_Explorer();
-//
-//	// マップのCSVデータを読み込む
-//
-//	// マップを描画する
-//
-//	// タイルとの当たり判定をとる
-//
-//	// マップをスクロールする
-//
-//private:
-//
-//};
+class USS_Explorer
+{
+public:
+	USS_Explorer();
+	~USS_Explorer();
+
+	// マップのCSVデータを読み込む
+
+	// マップを描画する
+
+	// タイルとの当たり判定をとる
+
+	// マップをスクロールする
+
+private:
+
+};
+
+// 読み込む用タイルクラス
+class LoadedTile
+{
+public:
+	LoadedTile();
+	~LoadedTile();
+
+private:
+
+};
+

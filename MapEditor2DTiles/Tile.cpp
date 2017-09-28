@@ -8,8 +8,8 @@
 #include <string>
 #include "Tile.h"
 
-// クラス定数
-Tile::TileData Tile::m_datas[30] = {	{ false,L"None" },
+// ----- タイルのベース --------------------------------------------------------------------------------
+TileBase::TileData TileBase::m_datas[30] = {	{ false,L"None" },
 
 										{ false,L"RoadA1" },
 										{ false,L"RoadA2" },
@@ -48,6 +48,65 @@ Tile::TileData Tile::m_datas[30] = {	{ false,L"None" },
 										{ true,L"RoadB9" },
 };
 
+
+TileBase::TileBase()
+{
+}
+
+TileBase::~TileBase()
+{
+}
+
+/// <summary>
+/// 初期化
+/// </summary>
+/// <param name="imageType">使用する画像のタイプの番号</param>
+/// <param name="pos">初期位置</param>
+void TileBase::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
+{
+	m_num = imageType;
+
+
+	// 画像のファイル名を作る
+	std::wstring fileName = m_datas[imageType].fileNames;
+
+	fileName = L"Resources/" + fileName;
+	fileName += L".png";
+
+	// 型変換
+	const wchar_t* imgName = fileName.c_str();
+
+	// 基底クラスの初期化
+	Obj2d::initialize(imgName);
+
+	// 判定を設定
+	m_isColision = m_datas[imageType].isColision;
+
+	// 初期位置設定
+	m_screenPos = pos;
+
+}
+
+/// <summary>
+/// m_isColisionを変更
+/// </summary>
+/// <returns>変更後の判定</returns>
+bool TileBase::changheColision()
+{
+	if (m_isColision)
+	{
+		m_isColision = false;
+	}
+	else
+	{
+		m_isColision = true;
+	}
+
+	return m_isColision;
+}
+
+
+// ----- エディターで使うタイル -------------------------------------------------------------------------
 // タイルサイズ
 const float Tile::TILE_SIZE = 30.0f;
 
@@ -72,11 +131,11 @@ Tile::~Tile()
 /// <param name="pos">初期位置</param>
 void Tile::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 {
-	m_num = imageType;
+	TileBase::m_num = imageType;
 
 
 	// 画像のファイル名を作る
-	std::wstring fileName = m_datas[imageType].fileNames;
+	std::wstring fileName = TileBase::m_datas[imageType].fileNames;
 
 	// 名前を保存
 	m_name = fileName;
@@ -91,7 +150,7 @@ void Tile::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 	Obj2d::initialize(imgName);
 
 	// 判定を設定
-	m_isColision = m_datas[imageType].isColision;
+	m_isColision = TileBase::m_datas[imageType].isColision;
 
 	// 初期位置設定
 	m_screenPos = pos;
@@ -116,23 +175,6 @@ void Tile::draw()
 	Obj2d::draw();
 }
 
-/// <summary>
-/// m_isColisionを変更
-/// </summary>
-/// <returns>変更後の判定</returns>
-bool Tile::changheColision()
-{
-	if (m_isColision) 
-	{
-		m_isColision = false;
-	}
-	else
-	{
-		m_isColision = true;
-	}
-
-	return m_isColision;
-}
 
 void Tile::changheClisionCheck()
 {
