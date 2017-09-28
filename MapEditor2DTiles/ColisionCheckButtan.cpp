@@ -28,7 +28,7 @@ void ColisionCheckButtan::initialize(DirectX::SimpleMath::Vector2 pos)
 {
 	Obj2d::initialize(L"Resources/OutPutButton.png", pos);
 	setColer(DirectX::Colors::Blue);
-	setScale(DirectX::XMFLOAT2(0.5f,0.5f));
+	//setScale(DirectX::XMFLOAT2(0.5f,0.5f));
 }
 
 bool ColisionCheckButtan::PressedButton(int posX, int posY)

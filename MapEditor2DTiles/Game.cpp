@@ -43,7 +43,7 @@ void Game::Initialize(HWND window, int width, int height)
 	// 左側の背景画像の初期化
 	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
 		(*itr).initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
-
+	m_map[0].setVisible(false);
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
@@ -56,7 +56,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
-	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(85.0f, 35.0f));
+	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
 	
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
