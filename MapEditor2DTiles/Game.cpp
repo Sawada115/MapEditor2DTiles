@@ -94,16 +94,18 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
-<<<<<<< HEAD
+
 
 		m_status.TileChange(m_tileManager.GetSelectTile());
-		m_status.CollisionChange(m_mouse.x, m_mouse.y);
+		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
+		
 
-=======
+
+
 		// 出力ボタンを押した
 		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
 			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
->>>>>>> 27c5db24b95d360f3a30b0f7a5d46ed5cae923b1
+
 	}
 
 	// 右クリックしたら
