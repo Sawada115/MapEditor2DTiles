@@ -38,8 +38,13 @@ void Game::Initialize(HWND window, int width, int height)
 	// obj2Dの静的変数の初期化(2D画像の初期化はここより下に書いてください)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
+	m_map.resize(2);
+
 	// 左側の背景画像の初期化
-	m_map.initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
+	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
+		(*itr).initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
+
+	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
@@ -88,7 +93,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 		tile = m_tileManager.GetSelectTile();
 
-		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
 
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
@@ -97,11 +102,12 @@ void Game::Update(DX::StepTimer const& timer)
 
 		m_status.TileChange(m_tileManager.GetSelectTile());
 		m_status.CollisionChange(m_mouse.x, m_mouse.y);
+		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
 		// 出力ボタンを押した
-		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
-			m_outputButton.InPutCsv("MapData");
+		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y));
 			//m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize());
+			//m_outputButton.InPutCsv("MapData");
 	}
 
 	// 右クリックしたら
@@ -110,8 +116,7 @@ void Game::Update(DX::StepTimer const& timer)
 		Tile* tile = new Tile();
 		tile->initialize(0);
 
-		m_map.beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
-
+		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
 
 }
@@ -130,7 +135,12 @@ void Game::Render()
     // TODO: Add your rendering code here.
 
 	//backImage1.draw();
-	m_map.draw();
+
+	// レイヤーの描画
+	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
+		m_map[i - 1].draw();
+	m_layerManager.Draw();
+
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();

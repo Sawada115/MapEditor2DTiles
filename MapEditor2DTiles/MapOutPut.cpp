@@ -21,8 +21,8 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // Ã“I•Ï”‚Ì‰Šú‰»
-const int MapOutPut::BUTTON_SIZE_X = 150;
-const int MapOutPut::BUTTON_SIZE_Y = 50;
+const int MapOutPut::BUTTON_SIZE_X = 75;
+const int MapOutPut::BUTTON_SIZE_Y = 25;
 
 
 

@@ -12,6 +12,7 @@
 #include "TileManager.h"
 #include "StatusTile.h"
 #include "MapOutPut.h"
+#include "LayerManager.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -73,16 +74,16 @@ private:
 	//Obj2d backImage1;	// 左側の背景画像
 	Obj2d m_backGround3;	// 右下パレットの背景画像
 
-
 	// マウス
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 
 	// 左側のマップ
-	MakedMap m_map;
+	std::vector<MakedMap> m_map;
 	//右上の選択タイル
 	StatusTile m_status;
 
 	TileManager m_tileManager;			// タイルマネージャー
 	MapOutPut m_outputButton;			// 出力ボタン
+	LayerManager m_layerManager;		// レイヤーマネージャー
 };
