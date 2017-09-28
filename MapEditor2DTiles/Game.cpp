@@ -17,8 +17,10 @@ Game::Game() :
     m_window(0),
     m_outputWidth(800),
     m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1)
+    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+	m_outputButton()
 {
+
 }
 
 // Initialize the Direct3D resources required to run.
@@ -106,8 +108,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 
 		// 出力ボタンを押した
-		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
-			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
+		m_outputButton.isPressed(m_mouse.x, m_mouse.y, m_map.GetAllTileData(), m_map.GetMapSize().x);
 
 
 		// コリジョンチェックボタンを押した
@@ -152,7 +153,7 @@ void Game::Render()
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
-	m_outputButton.Draw();
+	m_outputButton.draw();
 Present();
 }
 

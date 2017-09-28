@@ -29,12 +29,14 @@ const int MapOutPut::BUTTON_SIZE_Y = 50;
 //----------------------------------------------------------------------
 //! @brief コンストラクタ
 //!
-//! @param[in] なし
+//! @param[in] サイズ
 //!
 //! @return 存在しない
 //----------------------------------------------------------------------
 MapOutPut::MapOutPut()
+	:UI_ButtanBase(Vector2(150, 50))
 {
+
 }
 
 
@@ -61,22 +63,19 @@ MapOutPut::~MapOutPut()
 //----------------------------------------------------------------------
 void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	m_outPutButton.initialize(L"Resources/OutPutButton.png",buttonPos);
+	UI_ButtanBase::initialize(L"Resources/OutPutButton.png",buttonPos);
 }
 
-
-
-//----------------------------------------------------------------------
-//! @brief 描画処理
-//!
-//! @param[in] なし
-//!
-//! @return なし
-//----------------------------------------------------------------------
-void MapOutPut::Draw()
+/// <summary>
+/// ボタンを押したときの処理
+/// </summary>
+void MapOutPut::toActivate()
 {
-	m_outPutButton.draw();
+
 }
+
+
+
 
 
 
@@ -122,18 +121,13 @@ void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,int mapSizeX)
 //!
 //! @return なし
 //----------------------------------------------------------------------
-bool MapOutPut::PressedButton(int posX, int posY)
+bool MapOutPut::isPressed(int posX, int posY, std::vector<Tile*> tileData, int mapSizeX)
 {
-	Vector2 buttonHalfSize(BUTTON_SIZE_X / 2, BUTTON_SIZE_Y / 2);
-
-	Vector2 buttonPos = m_outPutButton.getPos();
-
-	if (buttonPos.x + buttonHalfSize.x >= posX &&
-		buttonPos.x - buttonHalfSize.x <= posX &&
-		buttonPos.y + buttonHalfSize.y >= posY &&
-		buttonPos.y - buttonHalfSize.y <= posY)
+	if (UI_ButtanBase::isPressed(posX, posY))
 	{
+		OutPutCsv(tileData, mapSizeX);
 		return true;
 	}
 	return false;
+
 }

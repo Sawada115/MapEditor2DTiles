@@ -25,6 +25,9 @@
     <ClCompile Include="USS_Editor.cpp">
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
+    <ClCompile Include="UI_Buttan.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -46,6 +49,9 @@
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
     <ClInclude Include="USS_Editor.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Buttan.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
   </ItemGroup>
