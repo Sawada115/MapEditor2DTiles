@@ -8,7 +8,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapOutPut.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="StatusTile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="Obj2d.cpp">
       <Filter>UsshiFile</Filter>
@@ -20,12 +19,14 @@
       <Filter>UsshiFile\NewClass</Filter>
     </ClCompile>
     <ClCompile Include="ColisionCheckButtan.cpp" />
+    <ClCompile Include="StatusTile.cpp">
+      <Filter>SuganoFile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="StatusTile.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="Obj2d.h">
@@ -38,6 +39,9 @@
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
     <ClInclude Include="ColisionCheckButtan.h" />
+    <ClInclude Include="StatusTile.h">
+      <Filter>SuganoFile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -61,6 +65,9 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SuganoFile">
+      <UniqueIdentifier>{e817554f-c3c7-4a4d-bbea-143df7e37961}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
