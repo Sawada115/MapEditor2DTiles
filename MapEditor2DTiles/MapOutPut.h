@@ -33,7 +33,17 @@ public:
 	void Draw();
 
 	// タイルデータを出力
-	void OutPutCsv(std::vector<Tile*> tileData,int mapSizeX);
+	void OutPutCsv(std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
+
+	struct TileData
+	{
+		int imageType;			// 画像番号
+		bool isColision;		// 当たり判定
+	};
+
+	// マップデータの読み込み
+	std::vector<TileData> InPutCsv(std::string fileName);
+
 	// 出力ボタン処理
 	bool PressedButton(int posX, int posY);
 private:

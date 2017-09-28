@@ -87,13 +87,16 @@ void MapOutPut::Draw()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,int mapSizeX)
+void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,Vector2 mapSize)
 {
 	// ファイルを開く
 	ofstream ofs("MapData.csv");
 	
 	if (ofs)
 	{
+		// マップの縦幅・横幅を出力
+		ofs << mapSize.x << "," << mapSize.y << endl;
+
 		int count = 0;
 		for (auto itr = tileData.begin(); itr != tileData.end(); itr++)
 		{
@@ -103,7 +106,7 @@ void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,int mapSizeX)
 			// データの書き出し
 			ofs << data << ",";
 			// 改行する
-			if (count >= mapSizeX)
+			if (count >= mapSize.x)
 			{
 				count = 0;
 				ofs << endl;
@@ -114,6 +117,47 @@ void MapOutPut::OutPutCsv(std::vector<Tile*> tileData,int mapSizeX)
 }
 
 
+
+vector<MapOutPut::TileData> MapOutPut::InPutCsv(std::string fileName)
+{
+	// ファイルを開く
+	ifstream ifs(fileName + ".csv");
+	string str;
+	int i = 0;
+
+	vector<TileData> tileData;
+
+	if (ifs)
+	{
+		string token;
+		Vector2 mapSize;
+
+		// マップサイズの読み込み
+		if (getline(ifs, str))
+		{
+			istringstream stream(str);
+			getline(stream, token, ',');
+			mapSize.x = atoi(token.c_str());
+			getline(stream, token, ',');
+			mapSize.y = atoi(token.c_str());
+		}
+
+		tileData.resize(mapSize.x * mapSize.y);
+		// タイルデータの読み込み
+		while (getline(ifs, str))
+		{
+			istringstream stream(str);
+			while (getline(stream, token, ','))
+			{
+				int num = atoi(token.c_str());
+				tileData[i].imageType = num / 10;
+				tileData[i].isColision = num % 10;
+				i++;
+			}
+		}
+	}
+	return tileData;
+}
 
 //----------------------------------------------------------------------
 //! @brief 出力ボタン処理

@@ -100,7 +100,8 @@ void Game::Update(DX::StepTimer const& timer)
 
 		// 出力ボタンを押した
 		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
-			m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize().x);
+			m_outputButton.InPutCsv("MapData");
+			//m_outputButton.OutPutCsv(m_map.GetAllTileData(), m_map.GetMapSize());
 	}
 
 	// 右クリックしたら
