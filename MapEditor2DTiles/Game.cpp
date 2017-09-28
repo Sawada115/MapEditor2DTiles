@@ -124,10 +124,7 @@ void Game::Update(DX::StepTimer const& timer)
 		}
 
 		// コリジョンチェックボタンを押した
-		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
-		{
-			Tile::changheClisionCheck();
-		}
+		m_clisionCheckButtan.isPressed(m_mouse.x, m_mouse.y);
 	}
 
 	// 右クリックしたら
