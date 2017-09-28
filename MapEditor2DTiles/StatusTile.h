@@ -9,7 +9,6 @@
 #include "string.h"
 #include "Tile.h"
 
-
 class StatusTile : public Obj2d
 {
 public:

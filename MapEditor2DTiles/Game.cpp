@@ -4,6 +4,8 @@
 
 #include "pch.h"
 #include "Game.h"
+// テスト
+#include <iostream>
 
 extern void ExitGame();
 
@@ -17,8 +19,10 @@ Game::Game() :
     m_window(0),
     m_outputWidth(800),
     m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1)
+    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+	m_outputButton()
 {
+
 }
 
 // Initialize the Direct3D resources required to run.
@@ -106,25 +110,21 @@ void Game::Update(DX::StepTimer const& timer)
 		m_status.CollisionChange(m_mouse.x, m_mouse.y);*/
 		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
+
+		m_status.TileChange(m_tileManager.CopySelectTile());
+		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
+		
 		// 出力ボタンを押した
-		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
+		if (m_outputButton.isPressed(m_mouse.x, m_mouse.y))
 		{
 			for (int i = 0; i < (int)m_map.size(); i++)
 			{
 				m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
 			}
 		}
-			//m_outputButton.InPutCsv("MapData");
-
-		m_status.TileChange(m_tileManager.CopySelectTile());
-		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
-		
 
 		// コリジョンチェックボタンを押した
-		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
-		{
-			Tile::changheClisionCheck();
-		}
+		m_clisionCheckButtan.isPressed(m_mouse.x, m_mouse.y);
 	}
 
 	// 右クリックしたら
@@ -163,9 +163,11 @@ void Game::Render()
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
-	m_outputButton.Draw();
+	m_outputButton.draw();
+
 Present();
 }
+
 
 // Helper method to clear the back buffers.
 void Game::Clear()

@@ -10,13 +10,10 @@
 // –¼‘O‹óŠÔ‚ÌŠJ•ú
 using namespace DirectX::SimpleMath;
 
-// Ã“I•Ï”‚Ì‰Šú‰»
-const int ColisionCheckButtan::BUTTON_SIZE_X = 150;
-const int ColisionCheckButtan::BUTTON_SIZE_Y = 50;
-
-
 ColisionCheckButtan::ColisionCheckButtan()
+	:UI_ButtanBase(Vector2(150,50))
 {
+
 }
 
 
@@ -31,18 +28,7 @@ void ColisionCheckButtan::initialize(DirectX::SimpleMath::Vector2 pos)
 	//setScale(DirectX::XMFLOAT2(0.5f,0.5f));
 }
 
-bool ColisionCheckButtan::PressedButton(int posX, int posY)
+void ColisionCheckButtan::toActivate()
 {
-	Vector2 buttonHalfSize(BUTTON_SIZE_X / 2, BUTTON_SIZE_Y / 2);
-
-	Vector2 buttonPos = this->getPos();
-
-	if (buttonPos.x + buttonHalfSize.x >= posX &&
-		buttonPos.x - buttonHalfSize.x <= posX &&
-		buttonPos.y + buttonHalfSize.y >= posY &&
-		buttonPos.y - buttonHalfSize.y <= posY)
-	{
-		return true;
-	}
-	return false;
+	Tile::changheClisionCheck();
 }
