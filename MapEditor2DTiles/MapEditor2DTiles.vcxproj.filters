@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Manifest Include="settings.manifest" />
+<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -14,6 +15,54 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="LayerManager.cpp" />
+=======
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapOutPut.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="StatusTile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
+    <ClCompile Include="Obj2d.cpp">
+      <Filter>UsshiFile</Filter>
+    </ClCompile>
+    <ClCompile Include="MakedMap.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="ColisionCheckButtan.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+    <ClCompile Include="USS_Editor.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="MapOutPut.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="StatusTile.h" />
+    <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="TileManager.h" />
+    <ClInclude Include="Obj2d.h">
+      <Filter>UsshiFile</Filter>
+    </ClInclude>
+    <ClInclude Include="MakedMap.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionCheckButtan.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+    <ClInclude Include="USS_Editor.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+>>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -29,6 +78,7 @@
     <ClInclude Include="LayerManager.h" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -36,5 +86,26 @@
     <Image Include="Resources\BackImage1.png" />
     <Image Include="Resources\TileFlame.png" />
     <Image Include="Resources\TileFlameRed.png" />
+=======
+    <Image Include="Resources\TileFlame.png" />
+    <Image Include="Resources\TileFlameRed.png" />
+    <Image Include="Resources\BackImage1.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="directx.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UsshiFile">
+      <UniqueIdentifier>{e7a79686-f7ff-434d-ba59-0c117db94dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UsshiFile\NewClass">
+      <UniqueIdentifier>{5af6c073-f969-48ba-8d06-ad28c7b42229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
+    </Filter>
+>>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
   </ItemGroup>
 </Project>

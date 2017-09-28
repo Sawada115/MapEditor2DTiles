@@ -6,35 +6,36 @@
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
 #include<string>
-#include<fstream>				
+#include<fstream>
+#include "Tile.h"
 
-//void importData(std::string filename)
-//{
-//	std::ifstream ifs(filename);
-//	std::string str;
-//
-//	int i;
-//	if (!ifs)
-//	{
-//		for (i = 0; i < MAX_BACK_BALL; i++)
-//		{
-//			g_map[i / 20][i % 20] = 4;
-//		}
-//		return;
-//	}
-//
-//	i = 0;
-//	while (getline(ifs, str))
-//	{
-//		std::string token;
-//		istringstream stream(str);
-//
-//		// １行のうち、文字列とコンマを分割する
-//		while (getline(stream, token, ','))
-//		{
-//			// 全て文字列として読み込まれるため数値は変換が必要
-//			g_map[i / 20][i % 20] = atoi(token.c_str());
-//			i++;
-//		}
-//	}
-//}
+// マップ使用用クラス
+class USS_Explorer
+{
+public:
+	USS_Explorer();
+	~USS_Explorer();
+
+	// マップのCSVデータを読み込む
+
+	// マップを描画する
+
+	// タイルとの当たり判定をとる
+
+	// マップをスクロールする
+
+private:
+
+};
+
+// 読み込む用タイルクラス
+class LoadedTile
+{
+public:
+	LoadedTile();
+	~LoadedTile();
+
+private:
+
+};
+

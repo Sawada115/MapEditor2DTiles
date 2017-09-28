@@ -139,7 +139,7 @@ void TileManager::TileSelect(int posX, int posY)
 //!
 //! @return 
 //----------------------------------------------------------------------
-Tile* TileManager::GetSelectTile()
+Tile* TileManager::CopySelectTile()
 {
 	Tile* tile = new Tile();
 	int num = m_palletTiles[m_selectTile].getNum();
@@ -148,3 +148,8 @@ Tile* TileManager::GetSelectTile()
 
 	return tile;
 }
+
+Tile* TileManager::GetSelectTile()
+{
+	return &m_palletTiles[m_selectTile] ;
+};

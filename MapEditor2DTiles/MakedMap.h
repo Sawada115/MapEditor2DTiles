@@ -24,10 +24,12 @@ public:
 	// クリックされたとき
 	void beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos);
 
+
 	// タイルデータの取得
 	std::vector<Tile*> GetAllTileData();
 	// マップサイズの取得
 	DirectX::SimpleMath::Vector2 GetMapSize();
+	
 
 private:
 	// 選択したタイルを変更する

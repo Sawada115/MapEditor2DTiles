@@ -46,6 +46,9 @@ void Game::Initialize(HWND window, int width, int height)
 
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
+	// コリジョンチェックボタン
+	m_clisionCheckButtan.initialize(DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
 
@@ -91,7 +94,7 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		Tile* tile = new Tile();
 
-		tile = m_tileManager.GetSelectTile();
+		tile = m_tileManager.CopySelectTile();
 
 		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
@@ -99,9 +102,8 @@ void Game::Update(DX::StepTimer const& timer)
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
 	{
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
-
-		m_status.TileChange(m_tileManager.GetSelectTile());
-		m_status.CollisionChange(m_mouse.x, m_mouse.y);
+		/*m_status.TileChange(m_tileManager.GetSelectTile());
+		m_status.CollisionChange(m_mouse.x, m_mouse.y);*/
 		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
 		// 出力ボタンを押した
@@ -113,6 +115,16 @@ void Game::Update(DX::StepTimer const& timer)
 			}
 		}
 			//m_outputButton.InPutCsv("MapData");
+
+		m_status.TileChange(m_tileManager.CopySelectTile());
+		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
+		
+
+		// コリジョンチェックボタンを押した
+		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
+		{
+			Tile::changheClisionCheck();
+		}
 	}
 
 	// 右クリックしたら
@@ -146,6 +158,8 @@ void Game::Render()
 		m_map[i - 1].draw();
 	m_layerManager.Draw();
 
+	// コリジョンチェックボタン
+	m_clisionCheckButtan.draw();
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();

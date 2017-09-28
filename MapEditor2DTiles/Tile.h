@@ -7,31 +7,25 @@
 #pragma once
 #include "Obj2d.h"
 
-class Tile:public Obj2d
+// ----- タイルのベース --------------------------------------------------------------------------------
+class TileBase : public Obj2d
 {
 public:
-	Tile();
-	virtual ~Tile();
-	Tile& operator=(const Tile& tile);// コピーコンストラクタ
+	TileBase();
+	virtual ~TileBase();
 
 	// 初期化
-	void initialize(int imageType ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
-
-	// 
+	void initialize(int imageType, DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
 
 	// ゲット・セット
 	bool getColision() { return m_isColision; };						// 当たるか
 	void setColision(bool isColision) { m_isColision = isColision; };	//		どうか
-	std::wstring getName() { return m_name; };					// 名
-	void setName(std::wstring newName) { m_name = newName; };	// 前
 	int getNum() { return m_num; };						// 画像ID
 	void setNum(int num) { m_num = num; };
-
 
 	// m_isColisionを変更
 	bool changheColision();
 
-	// タイルサイズ(縦横共通)
 	const static float TILE_SIZE;
 
 	// タイルに必要なデータ
@@ -44,17 +38,48 @@ public:
 		const std::wstring fileNames;
 	};
 
-
 	// IDごとに必要なデータ
 	static TileData m_datas[30];
+
+
+protected:
+	// あたりをとるかどうか
+	bool m_isColision;
+
+	int m_num;
+
+};
+
+
+
+// ----- エディターで使うタイル -------------------------------------------------------------------------
+class Tile:public TileBase
+{
+public:
+	Tile();
+	virtual ~Tile();
+
+	// 初期化
+	void initialize(int imageType ,DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
+
+	// 描画
+	void draw();
+
+	// ゲット・セット
+	std::wstring getName() { return m_name; };					// 名
+	void setName(std::wstring newName) { m_name = newName; };	// 前
+
+	// コリジョンチェックフラグをセットする
+	static void setClisionCheck(bool check) { m_isCheckedColision = check; };
+	static void changheClisionCheck();
+
 
 private:
 
 	// 名前
 	std::wstring m_name;
-	// あたりをとるかどうか
-	bool m_isColision;
 
-	int m_num;
+	// コリジョンが働いているかを見た目で確認するか
+	static bool m_isCheckedColision;
 };
 
