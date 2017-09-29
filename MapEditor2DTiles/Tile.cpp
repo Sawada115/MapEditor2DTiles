@@ -9,7 +9,7 @@
 #include "Tile.h"
 
 // ----- タイルのベース --------------------------------------------------------------------------------
-TileBase::TileData TileBase::m_datas[30] = {	{ false,L"None" },
+TileBase::TileData TileBase::m_datas[80] = {	{ false,L"None" },
 
 										{ false,L"RoadA1" },
 										{ false,L"RoadA2" },
@@ -19,11 +19,12 @@ TileBase::TileData TileBase::m_datas[30] = {	{ false,L"None" },
 										{ true,L"RoadB2" },
 										{ true,L"RoadB3" },
 
-										{ true,L"Tree1" },
-										{ true,L"Tree2" },
+										{ false,L"RoadC1" },
+										{ false,L"RoadC2" },
+										{ false,L"RoadC3" },
+
 
 										{ false,L"Grass1" },
-										{ false,L"Grass2" },
 
 										{ false,L"RoadA4" },
 										{ false,L"RoadA5" },
@@ -33,11 +34,12 @@ TileBase::TileData TileBase::m_datas[30] = {	{ false,L"None" },
 										{ true,L"RoadB5" },
 										{ true,L"RoadB6" },
 
-										{ true,L"Tree3" },
-										{ true,L"Tree4" },
+										{ false,L"RoadC4" },
+										{ false,L"RoadC5" },
+										{ false,L"RoadC6" },
 
-										{ false,L"Grass3" },
-										{ false,L"Grass4" },
+
+										{ false,L"Grass2" },
 
 										{ false,L"RoadA7" },
 										{ false,L"RoadA8" },
@@ -46,6 +48,72 @@ TileBase::TileData TileBase::m_datas[30] = {	{ false,L"None" },
 										{ true,L"RoadB7" },
 										{ true,L"RoadB8" },
 										{ true,L"RoadB9" },
+
+										{ false,L"RoadC7" },
+										{ false,L"RoadC8" },
+										{ false,L"RoadC9" },
+
+
+										{ false,L"Grass3" },
+
+										{ false,L"RoadD1" },
+										{ false,L"RoadD2" },
+										{ false,L"RoadD3" },
+
+										{ true,L"RoadE1" },
+										{ true,L"RoadE2" },
+										{ true,L"RoadE3" },
+
+										{ false,L"RoadF1" },
+										{ false,L"RoadF2" },
+										{ false,L"RoadF3" },
+
+
+										{ false,L"Grass4" },
+
+										{ false,L"RoadD4" },
+										{ false,L"RoadD5" },
+										{ false,L"RoadD6" },
+
+										{ true,L"RoadE4" },
+										{ true,L"RoadE5" },
+										{ true,L"RoadE6" },
+
+										{ false,L"RoadF4" },
+										{ false,L"RoadF5" },
+										{ false,L"RoadF6" },
+
+
+										{ false,L"Grass1" },
+
+										{ false,L"RoadD7" },
+										{ false,L"RoadD8" },
+										{ false,L"RoadD9" },
+
+										{ true,L"RoadE7" },
+										{ true,L"RoadE8" },
+										{ true,L"RoadE9" },
+
+										{ false,L"RoadF7" },
+										{ false,L"RoadF8" },
+										{ false,L"RoadF9" },
+
+										{ true,L"Tree1" },
+										{ true,L"Tree2" },
+
+										{ false,L"Grass1" },
+										{ false,L"Grass2" },
+										{ false,L"Grass3" },
+										{ false,L"Grass4" },
+
+										{ false,L"Grass1" },
+										{ false,L"Grass2" },
+										{ false,L"Grass3" },
+										{ false,L"Grass4" },
+
+										{ true,L"Tree3" },
+										{ true,L"Tree4" },
+
 };
 
 
