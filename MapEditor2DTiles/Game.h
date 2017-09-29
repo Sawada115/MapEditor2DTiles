@@ -15,6 +15,7 @@
 #include "StatusTile.h"
 #include "MapOutPut.h"
 #include "LayerManager.h"
+#include "ClearBotton.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -86,6 +87,8 @@ private:
 	UI_Buttan m_clisionCheckButtan;
 	// マップサイズ変更ボタン
 
+	//レイヤーの透過処理の変更ボタン
+	ClearBotton m_ClearBotton;
 
 	//右上の選択タイル
 	StatusTile m_status;
@@ -93,6 +96,7 @@ private:
 	TileManager m_tileManager;			// タイルマネージャー
 	MapOutPut m_outputButton;			// 出力ボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
+
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
 

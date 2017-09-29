@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ClearBotton.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LayerManager.h" />
     <ClInclude Include="MakedMap.h" />
@@ -173,6 +174,7 @@
     <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClearBotton.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="Main.cpp" />
