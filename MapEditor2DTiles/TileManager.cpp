@@ -157,7 +157,7 @@ Tile* TileManager::GetSelectTile()
 void TileManager::TileScroll(int posX, int posY, int scrollValue)
 {
 	int tileHalfSize = TILE_SIZE / 2;
-	int move = -scrollValue / 120;
+	int move = scrollValue / 120;
 	
 	Vector2 tilePos = m_palletTiles[m_drawStartTile].getPos() - Vector2(tileHalfSize);
 
