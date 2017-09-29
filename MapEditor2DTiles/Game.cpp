@@ -66,6 +66,8 @@ void Game::Initialize(HWND window, int width, int height)
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
 	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
 	
+	m_oldScrollWheelValue = 0;
+
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
     /*
@@ -140,6 +142,10 @@ void Game::Update(DX::StepTimer const& timer)
 		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
 
+	// マウスホイール
+	if (m_mouse.scrollWheelValue != m_oldScrollWheelValue)
+		m_tileManager.TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
 }
 
 // Draws the scene.

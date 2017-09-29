@@ -55,5 +55,6 @@ public:
 
 	// ÉQÉbÉ^Å[
 	DirectX::SimpleMath::Vector2 getPos() { return m_screenPos; };
+	bool getVisible() { return m_isVisible; };
 };
 

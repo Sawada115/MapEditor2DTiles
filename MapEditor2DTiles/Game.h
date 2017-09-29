@@ -93,4 +93,6 @@ private:
 	TileManager m_tileManager;			// タイルマネージャー
 	MapOutPut m_outputButton;			// 出力ボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
+
+	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
 };

@@ -68,6 +68,7 @@ void TileManager::Initialize(Vector2 tilePos)
 	m_grid.initialize(L"Resources/TileFlame.png");
 	m_selectGrid.initialize(L"Resources/TileFlameRed.png");
 	m_selectTile = 0;
+	m_drawStartTile = 0;
 }
 
 
@@ -86,20 +87,19 @@ void TileManager::Draw()
 		(*itr).draw();
 
 	// グリッドの描画
-	Vector2 tilePos = m_palletTiles[0].getPos();
+	Vector2 tilePos = m_palletTiles[m_drawStartTile].getPos();
 	for (int i = 0; i < PALLET_SIZE_X*PALLET_SIZE_Y; i++)
 	{
 		Vector2 pos(tilePos.x + TILE_SIZE * (i % PALLET_SIZE_X), tilePos.y + TILE_SIZE*(i / PALLET_SIZE_X));
-		if (i == m_selectTile)
-		{
-			m_selectGrid.setPosition(pos);
-			m_selectGrid.draw();
-		}
-		else
-		{
 			m_grid.setPosition(pos);
 			m_grid.draw();
-		}
+	}
+
+	// 選択中枠の描画
+	if (m_palletTiles[m_selectTile].getVisible())
+	{
+		m_selectGrid.setPosition(m_palletTiles[m_selectTile].getPos());
+		m_selectGrid.draw();
 	}
 }
 
@@ -115,19 +115,7 @@ void TileManager::Draw()
 void TileManager::TileSelect(int posX, int posY)
 {
 	int tileHalfSize = TILE_SIZE / 2;
-
-	for (int i = 0; i < (int)m_palletTiles.size(); i++)
-	{
-		Vector2 tilePos = m_palletTiles[i].getPos();
-
-		if (tilePos.x + tileHalfSize >= posX &&
-			tilePos.x - tileHalfSize <= posX &&
-			tilePos.y + tileHalfSize >= posY &&
-			tilePos.y - tileHalfSize <= posY)
-		{
-			m_selectTile = i;
-		}
-	}
+	m_selectTile = GetHitTile(posX, posY);
 }
 
 
@@ -152,4 +140,77 @@ Tile* TileManager::CopySelectTile()
 Tile* TileManager::GetSelectTile()
 {
 	return &m_palletTiles[m_selectTile] ;
-};
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief パレットタイルのスクロール
+//!
+//! @param[in] 座標X 座標Y
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void TileManager::TileScroll(int posX, int posY, int scrollValue)
+{
+	int tileHalfSize = TILE_SIZE / 2;
+	int move = -scrollValue / 120;
+	
+	Vector2 tilePos = m_palletTiles[m_drawStartTile].getPos() - Vector2(tileHalfSize);
+
+	// パレットのタイルに触れている
+	if (tilePos.x <= posX &&
+		tilePos.x + TILE_SIZE * PALLET_SIZE_X >= posX &&
+		tilePos.y <= posY &&
+		tilePos.y + TILE_SIZE * PALLET_SIZE_Y >= posY)
+	{
+		// スクロール可能
+		if (m_drawStartTile + -move * 10 >= 0 && m_drawStartTile + -move * 10 < TILE_TYPE_NUM)
+		{
+			m_drawStartTile += -move * 10;
+
+			// タイルをずらす
+			for (int i = 0; i < (int)m_palletTiles.size(); i++)
+			{
+				Vector2 pos = m_palletTiles[i].getPos();
+				m_palletTiles[i].setPosition(Vector2(pos.x, pos.y + TILE_SIZE * move));
+
+				if (m_drawStartTile > i)
+					m_palletTiles[i].setVisible(false);
+				else
+					m_palletTiles[i].setVisible(true);
+			}
+		}
+	}
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief 座標地点にあるタイルを取得
+//!
+//! @param[in] 座標X 座標Y
+//!
+//! @return タイル番号 ない場合は-1
+//----------------------------------------------------------------------
+int TileManager::GetHitTile(int posX, int posY)
+{
+	int tileHalfSize = TILE_SIZE / 2;
+
+	for (int i = 0; i < (int)m_palletTiles.size(); i++)
+	{
+		if (m_palletTiles[i].getVisible())
+		{
+			Vector2 tilePos = m_palletTiles[i].getPos();
+
+			if (tilePos.x + tileHalfSize >= posX &&
+				tilePos.x - tileHalfSize <= posX &&
+				tilePos.y + tileHalfSize >= posY &&
+				tilePos.y - tileHalfSize <= posY)
+			{
+				return i;
+			}
+		}
+	}
+	return -1;
+}
