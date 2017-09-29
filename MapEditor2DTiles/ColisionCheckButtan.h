@@ -5,10 +5,11 @@
 
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
-#include "Obj2d.h"
+#include "UI_Buttan.h"
+#include "Tile.h"
 
 
-class ColisionCheckButtan : public Obj2d
+class ColisionCheckButtan : public UI_ButtanBase
 {
 public:
 	ColisionCheckButtan();
@@ -18,10 +19,6 @@ public:
 	virtual void initialize(DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2());
 
 	// ボタンが押される
-	bool ColisionCheckButtan::PressedButton(int posX, int posY);
-private:
-	static const int BUTTON_SIZE_X;		// ボタンの横幅
-	static const int BUTTON_SIZE_Y;		// ボタンの縦幅
-
+	void toActivate();
 };
 

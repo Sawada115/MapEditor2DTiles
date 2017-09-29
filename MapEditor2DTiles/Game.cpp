@@ -4,6 +4,8 @@
 
 #include "pch.h"
 #include "Game.h"
+// テスト
+#include <iostream>
 
 extern void ExitGame();
 
@@ -17,8 +19,10 @@ Game::Game() :
     m_window(0),
     m_outputWidth(800),
     m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1)
+    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+	m_outputButton()
 {
+
 }
 
 // Initialize the Direct3D resources required to run.
@@ -43,7 +47,7 @@ void Game::Initialize(HWND window, int width, int height)
 	// 左側の背景画像の初期化
 	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
 		(*itr).initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
-
+	m_map[0].setVisible(false);
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
@@ -56,7 +60,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
-	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(85.0f, 35.0f));
+	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
 	
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -106,25 +110,21 @@ void Game::Update(DX::StepTimer const& timer)
 		m_status.CollisionChange(m_mouse.x, m_mouse.y);*/
 		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
+
+		m_status.TileChange(m_tileManager.CopySelectTile());
+		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
+		
 		// 出力ボタンを押した
-		if (m_outputButton.PressedButton(m_mouse.x, m_mouse.y))
+		if (m_outputButton.isPressed(m_mouse.x, m_mouse.y))
 		{
 			for (int i = 0; i < (int)m_map.size(); i++)
 			{
 				m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
 			}
 		}
-			//m_outputButton.InPutCsv("MapData");
-
-		m_status.TileChange(m_tileManager.CopySelectTile());
-		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
-		
 
 		// コリジョンチェックボタンを押した
-		if (m_clisionCheckButtan.PressedButton(m_mouse.x, m_mouse.y))
-		{
-			Tile::changheClisionCheck();
-		}
+		m_clisionCheckButtan.isPressed(m_mouse.x, m_mouse.y);
 	}
 
 	// 右クリックしたら
@@ -163,9 +163,11 @@ void Game::Render()
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
-	m_outputButton.Draw();
+	m_outputButton.draw();
+
 Present();
 }
+
 
 // Helper method to clear the back buffers.
 void Game::Clear()

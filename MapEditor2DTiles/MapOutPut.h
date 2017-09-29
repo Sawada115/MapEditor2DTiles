@@ -12,10 +12,11 @@
 #pragma once
 
 // ヘッダーファイルのインクルード==============================================
+#include "UI_Buttan.h"
 #include "MakedMap.h"
 
 // クラスの宣言
-class MapOutPut
+class MapOutPut:public UI_ButtanBase
 {
 	// 静的変数の宣言
 private:
@@ -29,8 +30,12 @@ public:
 
 	// 初期化処理
 	void Initialize(DirectX::SimpleMath::Vector2 buttonPos);
-	// 描画処理
-	void Draw();
+
+	// ボタンが押されたら呼ぶ処理
+	void toActivate();
+
+	// 出力ボタン処理
+	bool isPressed(int posX, int posY);
 
 	// タイルデータを出力
 	void OutPutCsv(int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
@@ -44,8 +49,6 @@ public:
 	// マップデータの読み込み
 	std::vector<TileData> InPutCsv(std::string fileName);
 
-	// 出力ボタン処理
-	bool PressedButton(int posX, int posY);
 private:
 	Obj2d m_outPutButton;			// 出力ボタン画像
 };

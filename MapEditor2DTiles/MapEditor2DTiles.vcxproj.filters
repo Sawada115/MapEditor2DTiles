@@ -44,6 +44,9 @@
       <Filter>UsshiFile\NewClass</Filter>
 >>>>>>> c3263a442e909608030cd6755a910df19fb6426a
     </ClCompile>
+    <ClCompile Include="UI_Buttan.cpp">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -72,6 +75,11 @@
     <ClInclude Include="USS_Editor.h">
       <Filter>UsshiFile\NewClass</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="UI_Buttan.h">
+      <Filter>UsshiFile\NewClass</Filter>
+    </ClInclude>
+=======
 >>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
 >>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
@@ -87,6 +95,7 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="USS_Editor.h" />
     <ClInclude Include="LayerManager.h" />
+>>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
