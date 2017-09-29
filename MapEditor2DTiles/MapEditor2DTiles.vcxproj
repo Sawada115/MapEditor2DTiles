@@ -159,7 +159,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ColisionCheckButtan.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LayerManager.h" />
     <ClInclude Include="MakedMap.h" />
@@ -174,7 +173,6 @@
     <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ColisionCheckButtan.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="Main.cpp" />

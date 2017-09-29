@@ -11,7 +11,7 @@
 using namespace DirectX::SimpleMath;
 
 ColisionCheckButtan::ColisionCheckButtan()
-	:UI_ButtanBase(Vector2(150,50))
+	:UI_Buttan(Vector2(150,50))
 {
 
 }
@@ -30,5 +30,5 @@ void ColisionCheckButtan::initialize(DirectX::SimpleMath::Vector2 pos)
 
 void ColisionCheckButtan::toActivate()
 {
-	Tile::changheClisionCheck();
+	
 }

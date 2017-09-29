@@ -9,7 +9,7 @@
 #include "Tile.h"
 
 
-class ColisionCheckButtan : public UI_ButtanBase
+class ColisionCheckButtan : public UI_Buttan
 {
 public:
 	ColisionCheckButtan();
