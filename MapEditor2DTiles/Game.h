@@ -7,6 +7,7 @@
 #include "StepTimer.h"
 #include <SimpleMath.h>
 #include <Mouse.h>
+#include <SpriteFont.h>
 #include "MakedMap.h"
 #include "ColisionCheckButtan.h"
 #include "Tile.h"
@@ -74,6 +75,9 @@ private:
 
 	//Obj2d backImage1;	// 左側の背景画像
 	Obj2d m_backGround3;	// 右下パレットの背景画像
+
+	DirectX::SpriteBatch* m_spriteBatch;
+	DirectX::SpriteFont* m_spriteFont;
 
 	// マウス
 	DirectX::Mouse::State m_mouse;

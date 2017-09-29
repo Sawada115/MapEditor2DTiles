@@ -42,6 +42,10 @@ void Game::Initialize(HWND window, int width, int height)
 	// obj2Dの静的変数の初期化(2D画像の初期化はここより下に書いてください)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
+	//初期化
+	m_spriteBatch = new SpriteBatch(m_d3dContext.Get());						// スプライト表示
+	m_spriteFont = new SpriteFont(m_d3dDevice.Get(), L"myfile.spritefont");		// フォント表示
+
 	m_map.resize(2);
 
 	// 左側の背景画像の初期化
@@ -134,6 +138,7 @@ void Game::Update(DX::StepTimer const& timer)
 		tile->initialize(0);
 
 		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+	
 	}
 
 }
@@ -164,6 +169,18 @@ void Game::Render()
 	m_backGround3.draw();
 	m_tileManager.Draw();
 	m_outputButton.draw();
+
+	// 文字描画
+	m_spriteBatch->Begin();
+
+	// タイル名取得
+	std::wstring ws_name = m_tileManager.GetSelectTile()->getName();
+	// wstring→wchar_tに変換
+	const wchar_t* wc_name = ws_name.c_str();
+
+	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(500, 85));
+	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(500, 200));
+	m_spriteBatch->End();
 
 Present();
 }
