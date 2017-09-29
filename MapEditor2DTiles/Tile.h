@@ -39,7 +39,7 @@ public:
 	};
 
 	// IDごとに必要なデータ
-	static TileData m_datas[30];
+	static TileData m_datas[80];
 
 
 protected:
