@@ -51,7 +51,7 @@ void TileBase::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 	// 画像のファイル名を作る
 	std::wstring fileName = m_datas[imageType].fileNames;
 
-	fileName = L"Resources/" + fileName;
+	fileName = L"Resources/Tiles/" + fileName;
 	fileName += L".png";
 
 	// 型変換
@@ -121,7 +121,7 @@ void Tile::initialize(int imageType, DirectX::SimpleMath::Vector2 pos)
 	// 名前を保存
 	m_name = fileName;
 
-	fileName = L"Resources/" + fileName;
+	fileName = L"Resources/Tiles/" + fileName;
 	fileName += L".png";
 
 	// 型変換

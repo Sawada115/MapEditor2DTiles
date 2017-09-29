@@ -82,8 +82,9 @@ private:
 
 	// 左側のマップ
 	std::vector<MakedMap> m_map;
-	//ColisionCheckButtan m_clisionCheckButtan;
+	// コリジョンチェックボタン
 	UI_Buttan m_clisionCheckButtan;
+	// マップサイズ変更ボタン
 
 
 	//右上の選択タイル
