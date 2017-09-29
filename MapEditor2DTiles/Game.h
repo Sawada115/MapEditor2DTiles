@@ -94,6 +94,8 @@ private:
 	MapOutPut m_outputButton;			// 出力ボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
 
+	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
+
 	DirectX::SpriteBatch* m_spriteBatch;
 	DirectX::SpriteFont*	m_spriteFont;
 };

@@ -42,10 +42,17 @@ public:
 	// 選択中のタイルを取得
 	Tile* CopySelectTile();
 	Tile* GetSelectTile();
+	// パレットタイルのスクロール
+	void TileScroll(int posX, int posY ,int scrollValue);
+
+	// 座標地点にあるタイルを取得
+	int GetHitTile(int posX, int posY);
 private:
 	std::vector<Tile> m_palletTiles;			// パレット上のタイル
 	Obj2d m_grid;								// グリッド画像
 	Obj2d m_selectGrid;							// 選択中パネルのグリッド画像
 	int m_selectTile;							// 選択中のタイル
+
+	int m_drawStartTile;						// 描画するタイル							
 };
 
