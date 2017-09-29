@@ -10,6 +10,7 @@
 extern void ExitGame();
 
 using namespace DirectX;
+using namespace DirectX::SimpleMath;
 
 using Microsoft::WRL::ComPtr;
 
@@ -20,7 +21,8 @@ Game::Game() :
     m_outputWidth(800),
     m_outputHeight(600),
     m_featureLevel(D3D_FEATURE_LEVEL_9_1),
-	m_outputButton()
+	m_outputButton(),
+	m_clisionCheckButtan(Vector2(150, 50))
 {
 
 }
@@ -55,7 +57,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
-	m_clisionCheckButtan.initialize(DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	m_clisionCheckButtan.initialize(L"Resources/OutPutButton.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
 
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
@@ -130,7 +132,7 @@ void Game::Update(DX::StepTimer const& timer)
 		}
 
 		// コリジョンチェックボタンを押した
-		m_clisionCheckButtan.isPressed(m_mouse.x, m_mouse.y);
+		m_clisionCheckButtan.pressed(m_mouse.x, m_mouse.y, Tile::changheClisionCheck);
 	}
 
 	// 右クリックしたら
@@ -140,6 +142,7 @@ void Game::Update(DX::StepTimer const& timer)
 		tile->initialize(0);
 
 		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+	
 	}
 
 	// マウスホイール

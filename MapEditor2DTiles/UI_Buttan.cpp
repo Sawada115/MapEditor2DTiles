@@ -9,7 +9,7 @@ using namespace DirectX::SimpleMath;
 /// コンストラクタ
 /// </summary>
 /// <param name="size">ボタンのサイズ</param>
-UI_ButtanBase::UI_ButtanBase(DirectX::SimpleMath::Vector2 size)
+UI_Buttan::UI_Buttan(DirectX::SimpleMath::Vector2 size)
 	:BUTTON_SIZE_X(size.x)
 	,BUTTON_SIZE_Y(size.y)
 {
@@ -17,7 +17,7 @@ UI_ButtanBase::UI_ButtanBase(DirectX::SimpleMath::Vector2 size)
 }
 
 
-UI_ButtanBase::~UI_ButtanBase()
+UI_Buttan::~UI_Buttan()
 {
 }
 
@@ -25,7 +25,7 @@ UI_ButtanBase::~UI_ButtanBase()
 /// 初期化
 /// </summary>
 /// <param name="buttonPos">初期位置</param>
-void UI_ButtanBase::initialize(const wchar_t* imageFileName, DirectX::SimpleMath::Vector2 buttonPos)
+void UI_Buttan::initialize(const wchar_t* imageFileName, DirectX::SimpleMath::Vector2 buttonPos)
 {
 	Obj2d::initialize(imageFileName, buttonPos);
 }
@@ -36,7 +36,7 @@ void UI_ButtanBase::initialize(const wchar_t* imageFileName, DirectX::SimpleMath
 /// <param name="posX">マウスの位置(横)</param>
 /// <param name="posY">マウスの位置(縦)</param>
 /// <returns></returns>
-bool UI_ButtanBase::isPressed(int posX, int posY)
+bool UI_Buttan::isPressed(int posX, int posY)
 {
 	Vector2 buttonHalfSize(BUTTON_SIZE_X / 2, BUTTON_SIZE_Y / 2);
 
@@ -53,4 +53,21 @@ bool UI_ButtanBase::isPressed(int posX, int posY)
 		return true;
 	}
 	return false;
+}
+
+/// <summary>
+/// ボタンが押された際の処理
+/// </summary>
+/// <param name="posX">マウスの位置(横)</param>
+/// <param name="posY">マウスの位置(縦)</param>
+/// <param name="func">押されたときに呼ぶ処理</param>
+void UI_Buttan::pressed(int posX, int posY, void(*func)())
+{
+	// ボタンが押されたら
+	if (isPressed(posX, posY))
+	{
+		// 引数の関数を呼ぶ
+		func();
+	}
+	
 }

@@ -76,16 +76,15 @@ private:
 	//Obj2d backImage1;	// 左側の背景画像
 	Obj2d m_backGround3;	// 右下パレットの背景画像
 
-	DirectX::SpriteBatch* m_spriteBatch;
-	DirectX::SpriteFont* m_spriteFont;
-
 	// マウス
 	DirectX::Mouse::State m_mouse;
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 
 	// 左側のマップ
 	std::vector<MakedMap> m_map;
-	ColisionCheckButtan m_clisionCheckButtan;
+	//ColisionCheckButtan m_clisionCheckButtan;
+	UI_Buttan m_clisionCheckButtan;
+
 
 	//右上の選択タイル
 	StatusTile m_status;
@@ -95,4 +94,7 @@ private:
 	LayerManager m_layerManager;		// レイヤーマネージャー
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
+
+	DirectX::SpriteBatch* m_spriteBatch;
+	DirectX::SpriteFont*	m_spriteFont;
 };

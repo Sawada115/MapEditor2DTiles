@@ -16,7 +16,7 @@
 #include "MakedMap.h"
 
 // ƒNƒ‰ƒX‚ÌéŒ¾
-class MapOutPut:public UI_ButtanBase
+class MapOutPut:public UI_Buttan
 {
 	// Ã“I•Ï”‚ÌéŒ¾
 private:

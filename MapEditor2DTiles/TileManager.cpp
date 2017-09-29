@@ -115,7 +115,10 @@ void TileManager::Draw()
 void TileManager::TileSelect(int posX, int posY)
 {
 	int tileHalfSize = TILE_SIZE / 2;
-	m_selectTile = GetHitTile(posX, posY);
+
+	int tile = GetHitTile(posX, posY);
+	if (tile != -1)
+		m_selectTile = tile;
 }
 
 

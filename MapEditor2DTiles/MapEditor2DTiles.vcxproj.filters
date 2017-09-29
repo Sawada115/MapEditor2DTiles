@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Manifest Include="settings.manifest" />
-<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MakedMap.cpp" />
     <ClCompile Include="MapOutPut.cpp" />
@@ -14,77 +14,12 @@
     <ClCompile Include="StatusTile.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
-    <ClCompile Include="LayerManager.cpp" />
-=======
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MapOutPut.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="TileManager.cpp" />
-    <ClCompile Include="Obj2d.cpp">
-      <Filter>UsshiFile</Filter>
-    </ClCompile>
-    <ClCompile Include="MakedMap.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="ColisionCheckButtan.cpp" />
-    <ClCompile Include="StatusTile.cpp">
-      <Filter>SuganoFile</Filter>
-=======
-    <ClCompile Include="ColisionCheckButtan.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClCompile>
-    <ClCompile Include="USS_Editor.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
->>>>>>> c3263a442e909608030cd6755a910df19fb6426a
-    </ClCompile>
-    <ClCompile Include="UI_Buttan.cpp">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClCompile>
+    <ClCompile Include="UI_Buttan.cpp" />
+    <ClCompile Include="USS_Editor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="MapOutPut.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="TileManager.h" />
-    <ClInclude Include="Obj2d.h">
-      <Filter>UsshiFile</Filter>
-    </ClInclude>
-    <ClInclude Include="MakedMap.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="ColisionCheckButtan.h" />
-    <ClInclude Include="StatusTile.h">
-      <Filter>SuganoFile</Filter>
-    </ClInclude>
-=======
-    <ClInclude Include="ColisionCheckButtan.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-    <ClInclude Include="USS_Editor.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="UI_Buttan.h">
-      <Filter>UsshiFile\NewClass</Filter>
-    </ClInclude>
-=======
->>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
->>>>>>> c3263a442e909608030cd6755a910df19fb6426a
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="LayerManager.h" />
     <ClInclude Include="MakedMap.h" />
     <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="Obj2d.h" />
@@ -93,12 +28,10 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
+    <ClInclude Include="UI_Buttan.h" />
     <ClInclude Include="USS_Editor.h" />
-    <ClInclude Include="LayerManager.h" />
->>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ResourceCompile Include="resource.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -106,32 +39,5 @@
     <Image Include="Resources\BackImage1.png" />
     <Image Include="Resources\TileFlame.png" />
     <Image Include="Resources\TileFlameRed.png" />
-=======
-    <Image Include="Resources\TileFlame.png" />
-    <Image Include="Resources\TileFlameRed.png" />
-    <Image Include="Resources\BackImage1.png">
-      <Filter>Resources</Filter>
-    </Image>
-    <Image Include="directx.ico">
-      <Filter>Resources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="UsshiFile">
-      <UniqueIdentifier>{e7a79686-f7ff-434d-ba59-0c117db94dea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UsshiFile\NewClass">
-      <UniqueIdentifier>{5af6c073-f969-48ba-8d06-ad28c7b42229}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{017760da-f188-4b83-957c-322ac57c7aff}</UniqueIdentifier>
-    </Filter>
-<<<<<<< HEAD
-    <Filter Include="SuganoFile">
-      <UniqueIdentifier>{e817554f-c3c7-4a4d-bbea-143df7e37961}</UniqueIdentifier>
-    </Filter>
-=======
->>>>>>> 513065bc716fd271b63f78c0ae4e2c08995a19f2
->>>>>>> c3263a442e909608030cd6755a910df19fb6426a
   </ItemGroup>
 </Project>
