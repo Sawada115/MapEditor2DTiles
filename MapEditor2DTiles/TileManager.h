@@ -44,9 +44,10 @@ public:
 	Tile* GetSelectTile();
 	// パレットタイルのスクロール
 	void TileScroll(int posX, int posY ,int scrollValue);
-
 	// 座標地点にあるタイルを取得
 	int GetHitTile(int posX, int posY);
+	// タイルの描画設定
+	void SetTilesVisible();
 private:
 	std::vector<Tile> m_palletTiles;			// パレット上のタイル
 	Obj2d m_grid;								// グリッド画像
