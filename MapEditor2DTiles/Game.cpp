@@ -42,12 +42,16 @@ void Game::Initialize(HWND window, int width, int height)
 	// obj2Dの静的変数の初期化(2D画像の初期化はここより下に書いてください)
 	Obj2d::staticInitialize(m_d3dContext, m_d3dDevice);
 
+	//初期化
+	m_spriteBatch = new SpriteBatch(m_d3dContext.Get());						// スプライト表示
+	m_spriteFont = new SpriteFont(m_d3dDevice.Get(), L"myfile.spritefont");		// フォント表示
+
 	m_map.resize(2);
 
 	// 左側の背景画像の初期化
 	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
 		(*itr).initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
-
+	m_map[0].setVisible(false);
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
@@ -60,7 +64,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
-	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(85.0f, 35.0f));
+	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
 	
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
     // e.g. for 60 FPS fixed timestep update logic, call:
@@ -165,6 +169,18 @@ void Game::Render()
 	m_backGround3.draw();
 	m_tileManager.Draw();
 	m_outputButton.draw();
+
+	// 文字描画
+	m_spriteBatch->Begin();
+
+	// タイル名取得
+	std::wstring ws_name = m_tileManager.GetSelectTile()->getName();
+	// wstring→wchar_tに変換
+	const wchar_t* wc_name = ws_name.c_str();
+
+	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(500, 85));
+	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(500, 200));
+	m_spriteBatch->End();
 
 Present();
 }

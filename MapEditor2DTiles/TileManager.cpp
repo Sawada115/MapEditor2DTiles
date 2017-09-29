@@ -16,7 +16,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // Ã“I•Ï”‚Ì‰Šú‰»
-const int TileManager::TILE_TYPE_NUM = 27;
+const int TileManager::TILE_TYPE_NUM = 72;
 const int TileManager::TILE_SIZE = 30;
 const int TileManager::PALLET_SIZE_X = 10;
 const int TileManager::PALLET_SIZE_Y = 8;
