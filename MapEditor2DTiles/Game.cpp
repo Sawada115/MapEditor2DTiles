@@ -134,6 +134,7 @@ void Game::Update(DX::StepTimer const& timer)
 		tile->initialize(0);
 
 		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+	
 	}
 
 }

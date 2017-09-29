@@ -16,6 +16,13 @@ public:
 	MakedMap();
 	virtual ~MakedMap();
 
+	// タイル一つ分のデータ
+	struct OneTileData
+	{
+		Obj2d glids;	// グリッド線画像
+		Tile* tile;		// タイル画像
+	};
+
 	// 初期化
 	void initialize(DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2(235.5f, 300.0f));
 	// 描画
@@ -30,23 +37,23 @@ public:
 	// マップサイズの取得
 	DirectX::SimpleMath::Vector2 GetMapSize();
 	
-
+	// マップサイズを変更する
+	void mapReSize(int sizeX,int sizeY);
 private:
 	// 選択したタイルを変更する
 	void changTile(int changeTileID[2],Tile* newTile);
-
-	// タイル一つ分のデータ
-	struct OneTileData
-	{
-		Obj2d glids;	// グリッド線画像
-		Tile* tile;		// タイル画像
-	};
-
 
 	int m_mapNum[2];	// マップのサイズ
 	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち
 
 	// 現在選択中のタイル
 	int m_choiceTile[2];
+
+	// マップの横一列分のサイズ変更
+	void mapReSizeOneLine(int changeLine,int size);
+	// マップの列単位でのサイズ変更
+	void mapReSizeSomeLine(int size);
+	// タイル一つ分のデータを作る
+	OneTileData createTileData(DirectX::SimpleMath::Vector2 pos);
 };
 

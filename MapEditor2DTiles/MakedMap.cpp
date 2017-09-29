@@ -39,8 +39,8 @@ void MakedMap::initialize(Vector2 pos)
 	Obj2d::initialize(L"Resources/BackImage1.png", pos);
 
 	// マップサイズの初期化
-	m_mapNum[0] = 17;
-	m_mapNum[1] = 14;
+	m_mapNum[0] = 14;
+	m_mapNum[1] = 17;
 
 	// マップ情報の初期化
 	m_tiles.resize(m_mapNum[1]);	// 縦の長さを設定
@@ -51,7 +51,7 @@ void MakedMap::initialize(Vector2 pos)
 		for (int j = 0; j < m_mapNum[0]; j++)
 		{
 			// 位置を設定
-			Vector2 glidPos = Vector2( (i*Tile::TILE_SIZE) - 195.0f,  (j*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+			Vector2 glidPos = Vector2( (j*Tile::TILE_SIZE) - 195.0f,  (i*Tile::TILE_SIZE) - 270.0f) + m_screenPos;
 
 			// グリッドとタイル画像の
 			m_tiles[i][j].glids.initialize(L"Resources/TileFlame.png", glidPos);
@@ -101,25 +101,25 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	int clickedTileID[2];
 
 	// クリックされた位置を探す(横)
-	int i = m_tiles.size();
+	int i = m_tiles[0].size();
 	while (beginPos.x < clickPos.x && beginPos.x + i*Tile::TILE_SIZE > clickPos.x)
 	{
-
 		i--;
 	}
-	if (i >= m_tiles.size() || i < 0)
+	// マップ外ならすぐ終わり、
+	if (i >= m_tiles[0].size() || i < 0)
 	{
 		return;
 	}
 	clickedTileID[0] = i;
 
 	// クリックされた位置を探す(縦)
-	i = m_tiles[0].size();
+	i = m_tiles.size();
 	while (beginPos.y < clickPos.y && beginPos.y + i*Tile::TILE_SIZE > clickPos.y)
 	{
 		i--;
 	}
-	if (i >= m_tiles[0].size() || i < 0)
+	if (i >= m_tiles.size() || i < 0)
 	{
 		return;
 	}
@@ -154,14 +154,13 @@ std::vector<Tile*> MakedMap::GetAllTileData()
 /// <summary>
 /// マップサイズの取得
 /// </summary>
-/// <returns></returns>
+/// <returns>マップサイズ</returns>
 DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
 {
 	// マップサイズの取得
-	Vector2 size((int)m_tiles.size(), (int)m_tiles[0].size());
+	Vector2 size((int)m_tiles[0].size(), (int)m_tiles.size());
 	return size;
 }
-
 
 /// <summary>
 /// 選択したタイルを変更する
@@ -170,8 +169,146 @@ DirectX::SimpleMath::Vector2 MakedMap::GetMapSize()
 /// <param name="newTile">新しいタイル</param>
 void MakedMap::changTile(int changeTileID[2], Tile* newTile)
 {
-	newTile->setPosition(m_tiles[changeTileID[0]][changeTileID[1]].tile->getPos());
+	newTile->setPosition(m_tiles[changeTileID[1]][changeTileID[0]].tile->getPos());
 
 	// 新しいタイルをセット
-	m_tiles[changeTileID[0]][changeTileID[1]].tile = newTile;
+	m_tiles[changeTileID[1]][changeTileID[0]].tile = newTile;
+}
+
+/// <summary>
+/// マップサイズを変更する
+/// </summary>
+/// <param name="sizeX">変更後のサイズ(横)</param>
+/// <param name="sizeY">変更後のサイズ(縦)</param>
+void MakedMap::mapReSize(int sizeX, int sizeY)
+{
+	// 縦サイズが小さくなる場合
+	if (m_mapNum[1] > sizeY)
+	{
+		// これ以上小さくならない場合はすぐ終わり
+		if (m_mapNum[1] <= 1)return;
+
+		for (m_mapNum[1]; m_mapNum[1] > sizeY; m_mapNum[1]--)
+		{
+			mapReSizeOneLine(m_mapNum[1]-1, 0);
+			m_tiles.pop_back();
+		}
+	}
+
+	// すべてのパターンの共通処理
+	{// もともとあった列の長さを変更
+		for (int i = 0; i < m_mapNum[1]; i++)
+		{
+			mapReSizeOneLine(i, sizeX);
+		}
+		m_mapNum[0] = sizeX;
+	}
+
+	// 縦サイズが大きくなる場合
+	if (m_mapNum[1] < sizeY)
+	{
+		mapReSizeSomeLine(sizeY);
+	}
+
+	m_mapNum[0] = sizeX; m_mapNum[1] = sizeY;
+}
+
+/// <summary>
+/// マップのサイズ変更(１列分)
+/// </summary>
+/// <param name="changeLine">サイズ変更する列番号</param>
+/// <param name="size">変更後のサイズ</param>
+void MakedMap::mapReSizeOneLine(int changeLine, int size)
+{
+	// 同じ数ならならすぐ終わり
+	if (m_mapNum[0] == size)return;
+
+	// 小さくなる場合
+	if (m_mapNum[0] > size)
+	{
+		// これ以上小さくならない場合はすぐ終わり
+		if (m_mapNum[0] <= 1)return;
+
+		for (int i = m_mapNum[0]; i > size; i--)
+		{
+			// 最後尾を削除
+			delete m_tiles[changeLine][i-1].tile;
+			m_tiles[changeLine].pop_back();
+		}
+	}
+
+	// 大きくなる場合
+	else
+	{
+		for (int i = m_mapNum[0]; i < size; i++)
+		{
+			// 位置を設定
+			Vector2 glidPos =
+				Vector2((i*Tile::TILE_SIZE) - 195.0f, (changeLine * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+			
+			// 増やす
+			m_tiles[changeLine].push_back(createTileData(glidPos));
+		}
+	}
+}
+
+/// <summary>
+/// マップを列単位でサイズ変更
+/// </summary>
+/// <param name="size">変更後のサイズ</param>
+void MakedMap::mapReSizeSomeLine(int size)
+{
+	// 変わらない場合はすぐ終わり
+	if (m_mapNum[1] == size)return;
+
+	// 小さくなる場合
+	if (m_mapNum[1] > size)
+	{
+
+	}
+
+	// 大きくなる場合
+	if (m_mapNum[1] < size)
+	{
+		// 追加する列
+		std::vector<OneTileData> newTileLine;
+
+		for ( m_mapNum[1]; m_mapNum[1] < size; m_mapNum[1]++)
+		{// 一列増やす
+			for (int i = 0; i < m_mapNum[0]; i++)
+			{
+				// 位置を設定
+				Vector2 glidPos =
+					Vector2((i*Tile::TILE_SIZE) - 195.0f, (m_mapNum[1] * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+
+				// 増やす
+				newTileLine.push_back(createTileData(glidPos));
+			}
+		}
+
+		// できた列を追加
+		m_tiles.push_back(newTileLine);
+	}
+}
+
+
+/// <summary>
+/// タイル一つ分のデータを作る
+/// </summary>
+/// <param name="pos">初期位置</param>
+/// <returns>作ったタイル</returns>
+MakedMap::OneTileData MakedMap::createTileData(DirectX::SimpleMath::Vector2 pos)
+{
+	// 増やすデータ
+	OneTileData oneTile;
+
+	// グリッド
+	oneTile.glids.initialize(L"Resources/TileFlame.png", pos);
+
+	// タイル
+	Tile* tile = new Tile;
+	tile->initialize(0, pos);
+	oneTile.tile = tile;
+
+	return oneTile;
 }
