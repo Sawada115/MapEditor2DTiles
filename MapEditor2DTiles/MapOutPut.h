@@ -39,8 +39,11 @@ public:
 	// 出力ボタン処理
 	bool isPressed(int posX, int posY);
 
+	// 保存先を設定
+	bool SetSaveFilePath();
+
 	// タイルデータを出力
-	void OutPutCsv(HWND hWnd,int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
+	void OutPutCsv(int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
 
 	struct TileData
 	{
@@ -54,8 +57,9 @@ public:
 private:
 	Obj2d m_outPutButton;			// 出力ボタン画像
 
-	//OPENFILENAME     ofn;
-	//TCHAR            szPath[MAX_PATH];
-	//TCHAR            szFile[MAX_PATH];
+	OPENFILENAME     m_ofn;						// ダイアログ用構造体
+	TCHAR            m_folderPath[MAX_PATH];	// 初期フォルダ位置
+	TCHAR            m_filePath[MAX_PATH];		// 選択したファイル位置
+	TCHAR            m_fileName[MAX_PATH];		// ファイル名
 };
 

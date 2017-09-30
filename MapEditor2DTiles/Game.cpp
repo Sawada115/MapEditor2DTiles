@@ -125,11 +125,13 @@ void Game::Update(DX::StepTimer const& timer)
 		// 出力ボタンを押した
 		if (m_outputButton.isPressed(m_mouse.x, m_mouse.y))
 		{
-			m_outputButton.OutPutCsv(m_window, 1, m_map[0].GetAllTileData(), m_map[0].GetMapSize());
-			/*for (int i = 0; i < (int)m_map.size(); i++)
+			if (m_outputButton.SetSaveFilePath())
 			{
-				m_outputButton.OutPutCsv(m_window, i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
-			}*/
+				for (int i = 0; i < (int)m_map.size(); i++)
+				{
+					m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
+				}
+			}
 		}
 
 		// コリジョンチェックボタンを押した
