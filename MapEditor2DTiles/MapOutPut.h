@@ -12,6 +12,8 @@
 #pragma once
 
 // ヘッダーファイルのインクルード==============================================
+#include <Windows.h>
+#include <Commdlg.h>
 #include "UI_Buttan.h"
 #include "MakedMap.h"
 
@@ -27,7 +29,7 @@ public:
 	MapOutPut();
 	// デストラクタ
 	~MapOutPut();
-
+	
 	// 初期化処理
 	void Initialize(DirectX::SimpleMath::Vector2 buttonPos);
 
@@ -38,7 +40,7 @@ public:
 	bool isPressed(int posX, int posY);
 
 	// タイルデータを出力
-	void OutPutCsv(int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
+	void OutPutCsv(HWND hWnd,int layerNum ,std::vector<Tile*> tileData, DirectX::SimpleMath::Vector2 mapSize);
 
 	struct TileData
 	{
@@ -51,5 +53,9 @@ public:
 
 private:
 	Obj2d m_outPutButton;			// 出力ボタン画像
+
+	//OPENFILENAME     ofn;
+	//TCHAR            szPath[MAX_PATH];
+	//TCHAR            szFile[MAX_PATH];
 };
 

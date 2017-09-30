@@ -86,36 +86,68 @@ void MapOutPut::toActivate()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSize)
+void MapOutPut::OutPutCsv(HWND hWnd,int layerNum,std::vector<Tile*> tileData,Vector2 mapSize)
 {
-	// ファイルを開く
-	string fileName = "MapDate";
-	string layerName = "Layer" + std::to_string(layerNum);
+	//HWND hWnd = NULL;
+	static OPENFILENAME     ofn;
+	static TCHAR            szPath[MAX_PATH];	// 初期フォルダ位置
+	static TCHAR            szFile[MAX_PATH];   // 選択したファイル名 Staticなので関数外でも生きているが，もっかい呼ぶと死ぬ。
+	static TCHAR            szFileName[MAX_PATH];	// 初期フォルダ位置
+	static char				szFname[MAX_PATH];  // 出力用のファイル名 charの方が扱いやすいことがある
 
-	ofstream ofs(fileName + layerName + ".csv");
-	
-	if (ofs)
-	{
-		// マップの縦幅・横幅を出力
-		ofs << mapSize.x << "," << mapSize.y << endl;
 
-		int count = 0;
-		for (auto itr = tileData.begin(); itr != tileData.end(); itr++)
-		{
-			count++;
-			// データをまとめる
-			int data = ((*itr)->getNum() + 1) * 10 + (int)(*itr)->getColision();
-			// データの書き出し
-			ofs << data << ",";
-			// 改行する
-			if (count >= mapSize.x)
-			{
-				count = 0;
-				ofs << endl;
-			}
-		}
+	if (szPath[0] == TEXT('\0')) {
+		GetCurrentDirectory(MAX_PATH, szPath);
 	}
-	return;
+	if (ofn.lStructSize == 0) {
+		ofn.lStructSize = sizeof(OPENFILENAME);
+		ofn.hwndOwner = NULL;
+		ofn.lpstrInitialDir = szPath;       // 初期フォルダ位置
+		ofn.lpstrFile = szFile;				// 選択ファイル格納
+		ofn.nMaxFile = MAX_PATH;
+		ofn.lpstrFilter =
+			TEXT("すべてのファイル(*.*)\0*.*\0");
+		ofn.lpstrTitle = TEXT("ファイルを選択します。");
+		ofn.Flags = OFN_FILEMUSTEXIST;
+		ofn.lpstrFileTitle = szFileName;
+		ofn.nMaxFileTitle = MAX_PATH;
+	}
+	if (GetSaveFileName(&ofn)) {
+		MessageBox(hWnd, szFileName, TEXT("ファイルを開く"), MB_OK);
+	}
+	else {
+		// cancelled
+		//return "saved_image.bmp";
+	}
+
+	//// ファイルを開く
+	//string fileName = "MapDate";
+	//string layerName = "Layer" + std::to_string(layerNum);
+
+	//ofstream ofs(fileName + layerName + ".csv");
+	//
+	//if (ofs)
+	//{
+	//	// マップの縦幅・横幅を出力
+	//	ofs << mapSize.x << "," << mapSize.y << endl;
+
+	//	int count = 0;
+	//	for (auto itr = tileData.begin(); itr != tileData.end(); itr++)
+	//	{
+	//		count++;
+	//		// データをまとめる
+	//		int data = ((*itr)->getNum() + 1) * 10 + (int)(*itr)->getColision();
+	//		// データの書き出し
+	//		ofs << data << ",";
+	//		// 改行する
+	//		if (count >= mapSize.x)
+	//		{
+	//			count = 0;
+	//			ofs << endl;
+	//		}
+	//	}
+	//}
+	//return;
 }
 
 
