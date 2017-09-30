@@ -6,6 +6,9 @@
 /* －－ ヘッダーのインクルード －－－－ */
 #pragma once
 #include "Obj2d.h"
+#include <functional>
+
+class Game;
 
 class UI_Buttan : public Obj2d
 {
@@ -18,7 +21,9 @@ public:
 
 /* ---- ボタンを押したときに ---- */
 // 一度に処理して行う場合
-	virtual void pressed(int posX, int posY,void(*func)());
+	virtual void pressed(int posX, int posY, void(*func)());
+	virtual void pressed(int posX, int posY, void(Game::*func)(),Game* Game);
+	void UI_Buttan::presse(int posX, int posY,const std::function<void(void)>& func);
 
 // 判定と処理で分ける場合
 	// ボタンが押されたかを、判定する

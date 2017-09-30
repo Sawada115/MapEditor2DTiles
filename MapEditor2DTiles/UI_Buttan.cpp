@@ -71,3 +71,39 @@ void UI_Buttan::pressed(int posX, int posY, void(*func)())
 	}
 	
 }
+
+/// <summary>
+/// ゲームクラスのメンバー関数を使う用の
+/// ボタンが押された際の処理
+/// </summary>
+/// <param name="posX">マウスの位置(横)</param>
+/// <param name="posY">マウスの位置(縦)</param>
+/// <param name="func">押されたときに呼ぶ処理</param>
+/// <param name="Game">ゲームクラスのアドレス</param>
+void UI_Buttan::pressed(int posX, int posY, void(Game::*func)(), Game* Game)
+{
+	// ボタンが押されたら
+	if (isPressed(posX, posY))
+	{
+		// 引数の関数を呼ぶ
+		(Game->*func)();
+	}
+}
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="posX"></param>
+/// <param name="posY"></param>
+/// <param name="func"></param>
+/// <param name="Game"></param>
+void UI_Buttan::presse(int posX, int posY, const std::function<void(void)>& func)
+{
+	// ボタンが押されたら
+	if (isPressed(posX, posY))
+	{
+		// 引数の関数を呼ぶ
+		func();
+	}
+
+}

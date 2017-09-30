@@ -9,7 +9,7 @@
 #include <Mouse.h>
 #include <SpriteFont.h>
 #include "MakedMap.h"
-#include "ColisionCheckButtan.h"
+#include "UI_Buttan.h"
 #include "Tile.h"
 #include "TileManager.h"
 #include "StatusTile.h"
@@ -41,6 +41,9 @@ public:
     // Properties
     void GetDefaultSize( int& width, int& height ) const;
 
+	// コリジョンチェックをするかどうかを入れ替える
+	void ChangeColisionCheck();
+
 private:
 
     void Update(DX::StepTimer const& timer);
@@ -53,6 +56,7 @@ private:
     void CreateResources();
 
     void OnDeviceLost();
+
 
     // Device resources.
     HWND                                            m_window;

@@ -57,7 +57,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
-	m_clisionCheckButtan.initialize(L"Resources/OutPutButton.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	m_clisionCheckButtan.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
 
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
@@ -131,8 +131,8 @@ void Game::Update(DX::StepTimer const& timer)
 			}
 		}
 
-		// コリジョンチェックボタンを押した
-		m_clisionCheckButtan.pressed(m_mouse.x, m_mouse.y, Tile::changheClisionCheck);
+		// コリジョンチェックボタンを押したら
+		m_clisionCheckButtan.presse(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
 	}
 
 	// 右クリックしたら
@@ -192,6 +192,16 @@ void Game::Render()
 
 Present();
 }
+
+/// <summary>
+/// コリジョンチェックボタンを押したときの処理
+/// </summary>
+void Game::ChangeColisionCheck()
+{
+	Tile::changheClisionCheck();
+}
+
+
 
 
 // Helper method to clear the back buffers.
@@ -488,3 +498,4 @@ void Game::OnDeviceLost()
 
     CreateResources();
 }
+

@@ -188,7 +188,6 @@ void TileManager::TileScroll(int posX, int posY, int scrollValue)
 }
 
 
-
 //----------------------------------------------------------------------
 //! @brief 座標地点にあるタイルを取得
 //!
