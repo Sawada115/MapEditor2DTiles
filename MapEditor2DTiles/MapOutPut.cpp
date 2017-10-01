@@ -107,13 +107,18 @@ void MapOutPut::toActivate()
 //----------------------------------------------------------------------
 void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSize)
 {
-	// ファイルを開く
-	TCHAR layeName[MAX_PATH] = { _T(".csv") };
+	// ファイル名の作成 (入力したファイル名＋Layer＋レイヤー番号＋.csv)
+	TCHAR layeNum[MAX_PATH];
 	TCHAR filePath[MAX_PATH];
+	wsprintf(layeNum, TEXT("%d"), layerNum);
 	memset(filePath, NULL, MAX_PATH);
-	wcscat(filePath, m_fileName);
-	wcscat(filePath, layeName);
 
+	wcscat(filePath, m_fileName);
+	wcscat(filePath, _T("Layer"));
+	wcscat(filePath, layeNum);
+	wcscat(filePath, _T(".csv"));
+
+	// ファイルを開く
 	ofstream ofs(filePath);
 	
 	if (ofs)
