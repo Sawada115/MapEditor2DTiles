@@ -36,7 +36,7 @@ const int MapOutPut::BUTTON_SIZE_Y = 25;
 //! @return ë∂ç›ÇµÇ»Ç¢
 //----------------------------------------------------------------------
 MapOutPut::MapOutPut()
-	:UI_Buttan(Vector2(150, 50))
+	:UI_Buttan(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
 {
 
 }

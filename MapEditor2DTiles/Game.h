@@ -16,6 +16,7 @@
 #include "MapOutPut.h"
 #include "LayerManager.h"
 #include "MapInPut.h"
+#include "ClearBotton.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -87,6 +88,8 @@ private:
 	UI_Buttan m_clisionCheckButtan;
 	// マップサイズ変更ボタン
 
+	//レイヤーの透過処理の変更ボタン
+	ClearBotton m_ClearBotton;
 
 	//右上の選択タイル
 	StatusTile m_status;
@@ -95,6 +98,7 @@ private:
 	MapOutPut m_outputButton;			// 出力ボタン
 	MapInPut m_inputButton;				// 読み込みボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
+
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
 

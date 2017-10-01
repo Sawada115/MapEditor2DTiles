@@ -16,7 +16,9 @@ public:
 	virtual ~StatusTile();
 
 	// 初期化
-	void initialize(DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2(630.0f, 150.0f));
+	void initialize(DirectX::SimpleMath::Vector2 BackImage_pos, 
+		DirectX::SimpleMath::Vector2 Tile_Pos, 
+		DirectX::SimpleMath::Vector2 Collision_Pos);
 
 	// タイルデータの取得
 	void TileChange(Tile* tile);		//選択中のタイルデータの取得
@@ -35,10 +37,8 @@ private:
 	Obj2d m_Collison_OFF;	//あたり判定の状態表示OFF
 
 	std::wstring tile_name;					//選択中のタイルの名前
-	DirectX::SimpleMath::Vector2 Tile_Pos;	//選択中のタイルの名前の表示座標
 
 	Tile m_Tile;							//選択中のタイル
 	DirectX::SimpleMath::Vector2 name_Pos;	//選択中のタイルの名前の表示座標
 
-	DirectX::SimpleMath::Vector2 Collision_Pos;	//あたり判定の表示座標
 };

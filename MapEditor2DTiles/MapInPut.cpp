@@ -36,7 +36,7 @@ const int MapInPut::BUTTON_SIZE_Y = 25;
 //! @return 存在しない
 //----------------------------------------------------------------------
 MapInPut::MapInPut()
-	:UI_Buttan(Vector2(150, 50))
+	:UI_Buttan(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
 {
 
 }
@@ -79,7 +79,7 @@ void MapInPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 	m_ofn.lpstrFile = m_filePath;				// 選択ファイル格納
 	m_ofn.nMaxFile = MAX_PATH;
 	m_ofn.lpstrFilter = TEXT("CSV(カンマ区切り)(*.csv)\0*.csv");
-	m_ofn.lpstrTitle = TEXT("名前を付けて保存");
+	m_ofn.lpstrTitle = TEXT("ファイルを開く");
 	m_ofn.Flags = OFN_FILEMUSTEXIST;
 	m_ofn.lpstrFileTitle = m_fileName;			// 入力ファイル名
 	m_ofn.nMaxFileTitle = MAX_PATH;

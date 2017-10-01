@@ -16,7 +16,11 @@
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="UI_Buttan.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="MapInPut.cpp" />
+=======
+    <ClCompile Include="ClearBotton.cpp" />
+>>>>>>> c2ceee456e2332977926e83cf9c5a737c3509ae7
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -31,7 +35,11 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="UI_Buttan.h" />
     <ClInclude Include="USS_Editor.h" />
+<<<<<<< HEAD
     <ClInclude Include="MapInPut.h" />
+=======
+    <ClInclude Include="ClearBotton.h" />
+>>>>>>> c2ceee456e2332977926e83cf9c5a737c3509ae7
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
