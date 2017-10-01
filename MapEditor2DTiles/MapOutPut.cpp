@@ -34,7 +34,7 @@ const int MapOutPut::BUTTON_SIZE_Y = 25;
 //! @return ë∂ç›ÇµÇ»Ç¢
 //----------------------------------------------------------------------
 MapOutPut::MapOutPut()
-	:UI_Buttan(Vector2(150, 50))
+	:UI_Button(Vector2(150, 50))
 {
 
 }
@@ -63,7 +63,7 @@ MapOutPut::~MapOutPut()
 //----------------------------------------------------------------------
 void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	UI_Buttan::initialize(L"Resources/OutPutButton.png",buttonPos);
+	UI_Button::initialize(L"Resources/OutPutButton.png",buttonPos);
 }
 
 /// <summary>
@@ -170,7 +170,7 @@ vector<MapOutPut::TileData> MapOutPut::InPutCsv(std::string fileName)
 //----------------------------------------------------------------------
 bool MapOutPut::isPressed(int posX, int posY )
 {
-	if (UI_Buttan::isPressed(posX, posY))
+	if (UI_Button::isPressed(posX, posY))
 	{
 		return true;
 	}

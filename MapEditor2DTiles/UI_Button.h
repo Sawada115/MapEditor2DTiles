@@ -7,23 +7,29 @@
 #pragma once
 #include "Obj2d.h"
 #include <functional>
+#include <Mouse.h>
 
 class Game;
 
-class UI_Buttan : public Obj2d
+class UI_Button : public Obj2d
 {
 public:
-	UI_Buttan(DirectX::SimpleMath::Vector2 size);
-	virtual ~UI_Buttan();
+	UI_Button(DirectX::SimpleMath::Vector2 size);
+	virtual ~UI_Button();
 
 	// 初期化処理
-	virtual void initialize(const wchar_t* imageFileName, DirectX::SimpleMath::Vector2 buttonPos);
+	virtual void initialize(const wchar_t* imageFileName, DirectX::SimpleMath::Vector2 buttonPos, const wchar_t* pressedImageFileName = nullptr);
+
+	// 更新処理
+	virtual void upDate(DirectX::Mouse::State m_mouse);
+
+	// 描画
+	virtual void draw();
 
 /* ---- ボタンを押したときに ---- */
 // 一度に処理して行う場合
 	virtual void pressed(int posX, int posY, void(*func)());
-	virtual void pressed(int posX, int posY, void(Game::*func)(),Game* Game);
-	void UI_Buttan::presse(int posX, int posY,const std::function<void(void)>& func);
+	void UI_Button::pressed(int posX, int posY,const std::function<void(void)>& func);
 
 // 判定と処理で分ける場合
 	// ボタンが押されたかを、判定する
@@ -34,5 +40,12 @@ public:
 private:
 	const int BUTTON_SIZE_X;		// ボタンの横幅
 	const int BUTTON_SIZE_Y;		// ボタンの縦幅
+
+	// 押されている状態かどうか
+	bool m_isPressed;
+
+	// マウスの情報
+	DirectX::Mouse::State m_mouse;
+	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 };
 

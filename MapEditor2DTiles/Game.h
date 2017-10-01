@@ -9,7 +9,7 @@
 #include <Mouse.h>
 #include <SpriteFont.h>
 #include "MakedMap.h"
-#include "UI_Buttan.h"
+#include "UI_Button.h"
 #include "Tile.h"
 #include "TileManager.h"
 #include "StatusTile.h"
@@ -87,7 +87,7 @@ private:
 	// 左側のマップ
 	std::vector<MakedMap> m_map;
 	// コリジョンチェックボタン
-	UI_Buttan m_clisionCheckButtan;
+	UI_Button m_collisionCheckButtan;
 	// マップサイズ変更ボタン
 
 

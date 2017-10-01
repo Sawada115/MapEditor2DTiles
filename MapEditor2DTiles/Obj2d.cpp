@@ -65,24 +65,8 @@ void Obj2d::initialize(const wchar_t* imageFileName, DirectX::SimpleMath::Vector
 	// スタティックイニシャライズを終えていなければ、止まる
 	assert(CompletedInitialize);
 
-	DX::ThrowIfFailed(
-		CreateWICTextureFromFile(m_d3dDevice.Get(), imageFileName, nullptr,
-			m_texture.ReleaseAndGetAddressOf()));
-
-	ComPtr<ID3D11Resource> resource;
-	DX::ThrowIfFailed(
-		CreateWICTextureFromFile(m_d3dDevice.Get(), imageFileName,
-			resource.GetAddressOf(),
-			m_texture.ReleaseAndGetAddressOf()));
-
-	ComPtr<ID3D11Texture2D> texture;
-	DX::ThrowIfFailed(resource.As(&texture));
-
-	CD3D11_TEXTURE2D_DESC textureDesc;
-	texture->GetDesc(&textureDesc);
-
-	m_origin.x = float(textureDesc.Width / 2);
-	m_origin.y = float(textureDesc.Height / 2);
+	// 画像をセット
+	setTexture(imageFileName);
 
 	// 表示座標の設定
 	m_screenPos = pos;
@@ -125,6 +109,32 @@ void Obj2d::draw(DirectX::XMFLOAT2 scale)
 		0.f, m_origin, scale);
 
 	m_spriteBatch->End();
+}
+
+/// <summary>
+/// 画像をセットする
+/// </summary>
+/// <param name="imageFileName">読み込む画像のファイル名</param>
+void Obj2d::setTexture(const wchar_t * imageFileName)
+{
+	DX::ThrowIfFailed(
+		CreateWICTextureFromFile(m_d3dDevice.Get(), imageFileName, nullptr,
+			m_texture.ReleaseAndGetAddressOf()));
+
+	ComPtr<ID3D11Resource> resource;
+	DX::ThrowIfFailed(
+		CreateWICTextureFromFile(m_d3dDevice.Get(), imageFileName,
+			resource.GetAddressOf(),
+			m_texture.ReleaseAndGetAddressOf()));
+
+	ComPtr<ID3D11Texture2D> texture;
+	DX::ThrowIfFailed(resource.As(&texture));
+
+	CD3D11_TEXTURE2D_DESC textureDesc;
+	texture->GetDesc(&textureDesc);
+
+	m_origin.x = float(textureDesc.Width / 2);
+	m_origin.y = float(textureDesc.Height / 2);
 }
 
 

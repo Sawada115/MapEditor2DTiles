@@ -157,7 +157,7 @@ void Tile::draw()
 }
 
 
-void Tile::changheClisionCheck()
+void Tile::changeCollisionCheck()
 {
 	if (m_isCheckedColision)
 	{
