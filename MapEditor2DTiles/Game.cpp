@@ -22,9 +22,24 @@ Game::Game() :
     m_outputHeight(600),
     m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
-	m_collisionCheckButtan(Vector2(150, 50))
+	m_collisionCheckButton(Vector2(150, 50))
 {
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i] = nullptr;
+	}
+}
 
+Game::~Game()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_mapSizeChageButton[i] != nullptr)
+		{
+			delete m_mapSizeChageButton[i];
+		}	
+	}
+	
 }
 
 // Initialize the Direct3D resources required to run.
@@ -57,8 +72,12 @@ void Game::Initialize(HWND window, int width, int height)
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
-	m_collisionCheckButtan.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
-	//m_collisionCheckButtan.setFunction([this]() {Game::ChangeColisionCheck(); })
+	m_collisionCheckButton.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	// マップサイズ変更ボタン
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i] = new UI_Button(Vector2(200 + 20*i, 50 +20*i));
+	}
 
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
@@ -102,7 +121,7 @@ void Game::Update(DX::StepTimer const& timer)
 	m_mouse = s_mouse->GetState();
 	m_mouseTracker->Update(m_mouse);
 
-	m_collisionCheckButtan.upDate(m_mouse);
+	m_collisionCheckButton.upDate(m_mouse);
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -135,7 +154,7 @@ void Game::Update(DX::StepTimer const& timer)
 		}
 
 		// コリジョンチェックボタンを押したら
-		m_collisionCheckButtan.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
+		m_collisionCheckButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
 	}
 
 	// 右クリックしたら
@@ -175,7 +194,7 @@ void Game::Render()
 	m_layerManager.Draw();
 
 	// コリジョンチェックボタン
-	m_collisionCheckButtan.draw();
+	m_collisionCheckButton.draw();
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();

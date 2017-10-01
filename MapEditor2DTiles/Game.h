@@ -24,6 +24,7 @@ class Game
 public:
 
     Game();
+	~Game();
 
     // Initialization and management
     void Initialize(HWND window, int width, int height);
@@ -87,9 +88,9 @@ private:
 	// 左側のマップ
 	std::vector<MakedMap> m_map;
 	// コリジョンチェックボタン
-	UI_Button m_collisionCheckButtan;
+	UI_Button m_collisionCheckButton;
 	// マップサイズ変更ボタン
-
+	UI_Button* m_mapSizeChageButton[4];
 
 	//右上の選択タイル
 	StatusTile m_status;
