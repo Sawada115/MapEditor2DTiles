@@ -17,11 +17,12 @@ using Microsoft::WRL::ComPtr;
 static std::unique_ptr<Mouse> s_mouse(new Mouse);
 
 Game::Game() :
-    m_window(0),
-    m_outputWidth(800),
-    m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+	m_window(0),
+	m_outputWidth(800),
+	m_outputHeight(600),
+	m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
+	m_inputButton(),
 	m_clisionCheckButtan(Vector2(150, 50))
 {
 
@@ -67,7 +68,8 @@ void Game::Initialize(HWND window, int width, int height)
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
 	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
-	
+	m_inputButton.Initialize(DirectX::SimpleMath::Vector2(150.0f, 30.0f));
+
 	m_oldScrollWheelValue = 0;
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
@@ -128,9 +130,17 @@ void Game::Update(DX::StepTimer const& timer)
 			if (m_outputButton.SetSaveFilePath())
 			{
 				for (int i = 0; i < (int)m_map.size(); i++)
-				{
 					m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
-				}
+			}
+		}
+
+		// “Ç‚Ýž‚Ýƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½
+		if (m_inputButton.isPressed(m_mouse.x, m_mouse.y))
+		{
+			if (m_inputButton.SetOpenFilePath())
+			{
+				Tile* tile = new Tile();
+				m_inputButton.InPutCsv(&m_map[m_layerManager.GetSelectLayer()]);
 			}
 		}
 
@@ -180,6 +190,7 @@ void Game::Render()
 	m_backGround3.draw();
 	m_tileManager.Draw();
 	m_outputButton.draw();
+	m_inputButton.draw();
 
 	// •¶Žš•`‰æ
 	m_spriteBatch->Begin();

@@ -1,7 +1,7 @@
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
-//! @file   MapOutOut.cpp
+//! @file   MapInPut.cpp
 //!
-//! @brief  マップ出力クラス
+//! @brief  マップ読み込みクラス
 //!
 //! @date   日付　2017/10/01
 //!
@@ -10,7 +10,7 @@
 
 // ヘッダーファイルのインクルード==============================================
 #include "pch.h"
-#include "MapOutPut.h"
+#include "MapInPut.h"
 #include <iostream> 
 #include <string>
 #include <fstream>  
@@ -23,8 +23,8 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // 静的変数の初期化
-const int MapOutPut::BUTTON_SIZE_X = 75;
-const int MapOutPut::BUTTON_SIZE_Y = 25;
+const int MapInPut::BUTTON_SIZE_X = 75;
+const int MapInPut::BUTTON_SIZE_Y = 25;
 
 
 
@@ -35,7 +35,7 @@ const int MapOutPut::BUTTON_SIZE_Y = 25;
 //!
 //! @return 存在しない
 //----------------------------------------------------------------------
-MapOutPut::MapOutPut()
+MapInPut::MapInPut()
 	:UI_Buttan(Vector2(150, 50))
 {
 
@@ -50,7 +50,7 @@ MapOutPut::MapOutPut()
 //!
 //! @return 存在しない
 //----------------------------------------------------------------------
-MapOutPut::~MapOutPut()
+MapInPut::~MapInPut()
 {
 }
 
@@ -63,14 +63,14 @@ MapOutPut::~MapOutPut()
 //!
 //! @return なし
 //----------------------------------------------------------------------
-void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
+void MapInPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	UI_Buttan::initialize(L"Resources/OutPutButton.png", buttonPos);
+	UI_Buttan::initialize(L"Resources/InPutButton.png", buttonPos);
 
 	// ダイアログ設定
 	GetCurrentDirectory(MAX_PATH, m_folderPath);
 	memset(&m_ofn, 0, sizeof(OPENFILENAME));
-	memset(m_filePath,NULL, MAX_PATH);
+	memset(m_filePath, NULL, MAX_PATH);
 	memset(m_fileName, NULL, MAX_PATH);
 
 	m_ofn.lStructSize = sizeof(OPENFILENAME);
@@ -88,61 +88,70 @@ void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 /// <summary>
 /// ボタンを押したときの処理
 /// </summary>
-void MapOutPut::toActivate()
+void MapInPut::toActivate()
 {
 
 }
 
 
 
-
-
-
 //----------------------------------------------------------------------
-//! @brief タイルデータを出力
+//! @brief マップを読み込む
 //!
-//! @param[in] レイヤー番号 出力データ マップの横幅
+//! @param[in] 読み込んだデータを受け取る変数
 //!
-//! @return なし
+//! @return 設定できたか
 //----------------------------------------------------------------------
-void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSize)
+void MapInPut::InPutCsv(MakedMap* map)
 {
-	// ファイル名の作成 (入力したファイル名＋Layer＋レイヤー番号＋.csv)
-	TCHAR layeNum[MAX_PATH];
-	TCHAR filePath[MAX_PATH];
-	wsprintf(layeNum, TEXT("%d"), layerNum);
-	memset(filePath, NULL, MAX_PATH);
-
-	wcscat(filePath, m_filePath);
-	wcscat(filePath, _T("Layer"));
-	wcscat(filePath, layeNum);
-	wcscat(filePath, _T(".csv"));
-
 	// ファイルを開く
-	ofstream ofs(filePath);
-	
-	if (ofs)
-	{
-		// マップの縦幅・横幅を出力
-		ofs << mapSize.x << "," << mapSize.y << endl;
+	m_ofn;
+	ifstream ifs(m_ofn.lpstrFile);
+	string str;
+	int i = 0;
 
-		int count = 0;
-		for (auto itr = tileData.begin(); itr != tileData.end(); itr++)
+	Vector2 mapSize;
+
+	if (ifs)
+	{
+		string token;
+
+		// マップサイズの読み込み
+		if (getline(ifs, str))
 		{
-			count++;
-			// データをまとめる
-			int data = ((*itr)->getNum() + 1) * 10 + (int)(*itr)->getColision();
-			// データの書き出し
-			ofs << data << ",";
-			// 改行する
-			if (count >= mapSize.y)
+			istringstream stream(str);
+			getline(stream, token, ',');
+			mapSize.x = atoi(token.c_str());
+			getline(stream, token, ',');
+			mapSize.y = atoi(token.c_str());
+			map->mapReSize(mapSize.x, mapSize.y);
+		}
+
+		vector<TileData> tileData;
+		tileData.resize(mapSize.x*mapSize.y);
+
+		// タイルデータの読み込み
+		while (getline(ifs, str))
+		{
+			istringstream stream(str);
+			while (getline(stream, token, ','))
 			{
-				count = 0;
-				ofs << endl;
+				int num = atoi(token.c_str());
+				tileData[i].imageType = num / 10 - 1;
+				tileData[i].isColision = num % 10;
+				i++;
 			}
 		}
+
+		for (int i = 0; i < (int)tileData.size(); i++)
+		{
+			int tileID[2] = { i / mapSize.y,i % (int)mapSize.y };
+			Tile* tile = new Tile();
+			tile->initialize(tileData[i].imageType);
+			tile->setColision(tileData[i].isColision);
+			map->changTile(tileID, tile);
+		}
 	}
-	return;
 }
 
 
@@ -154,7 +163,7 @@ void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSi
 //!
 //! @return なし
 //----------------------------------------------------------------------
-bool MapOutPut::isPressed(int posX, int posY )
+bool MapInPut::isPressed(int posX, int posY)
 {
 	if (UI_Buttan::isPressed(posX, posY))
 	{
@@ -166,16 +175,17 @@ bool MapOutPut::isPressed(int posX, int posY )
 
 
 //----------------------------------------------------------------------
-//! @brief 保存先を設定
+//! @brief 開くファイル設定
 //!
 //! @param[in] なし
 //!
 //! @return 設定できたか
 //----------------------------------------------------------------------
-bool MapOutPut::SetSaveFilePath()
-{	
+bool MapInPut::SetOpenFilePath()
+{
 	// ダイアログを開く
-	bool result = GetSaveFileName(&m_ofn);
+	bool result = GetOpenFileName(&m_ofn);
+	
 	// フォルダ位置を元に戻す
 	SetCurrentDirectory(m_folderPath);
 	return result;

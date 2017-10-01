@@ -140,13 +140,13 @@ std::vector<Tile*> MakedMap::GetAllTileData()
 	std::vector<Tile*> tileData;
 
 	// マップサイズの取得
-	Vector2 size((int)m_tiles.size(), (int)m_tiles[0].size());
+	Vector2 size((int)m_tiles[0].size(), (int)m_tiles.size());
 	int dataNum = size.x * size.y;
 
 	// タイルデータを取り出す
 	tileData.resize(dataNum);
 	for (int i = 0; i < dataNum; i++)
-		tileData[i] = m_tiles[i % (int)size.x][i / (int)size.x].tile;
+		tileData[i] = m_tiles[i % (int)size.y][i / (int)size.y].tile;
 
 	return tileData;
 }

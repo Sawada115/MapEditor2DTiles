@@ -15,6 +15,7 @@
 #include "StatusTile.h"
 #include "MapOutPut.h"
 #include "LayerManager.h"
+#include "MapInPut.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -92,6 +93,7 @@ private:
 
 	TileManager m_tileManager;			// タイルマネージャー
 	MapOutPut m_outputButton;			// 出力ボタン
+	MapInPut m_inputButton;				// 読み込みボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値

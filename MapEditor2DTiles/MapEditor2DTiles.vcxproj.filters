@@ -16,6 +16,7 @@
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="UI_Buttan.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
+    <ClCompile Include="MapInPut.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -30,6 +31,7 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="UI_Buttan.h" />
     <ClInclude Include="USS_Editor.h" />
+    <ClInclude Include="MapInPut.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
