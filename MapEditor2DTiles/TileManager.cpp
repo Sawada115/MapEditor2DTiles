@@ -16,7 +16,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 // ê√ìIïœêîÇÃèâä˙âª
-const int TileManager::TILE_TYPE_NUM = 72;
+const int TileManager::TILE_TYPE_NUM = 180;
 const int TileManager::TILE_SIZE = 30;
 const int TileManager::PALLET_SIZE_X = 10;
 const int TileManager::PALLET_SIZE_Y = 8;
@@ -69,6 +69,8 @@ void TileManager::Initialize(Vector2 tilePos)
 	m_selectGrid.initialize(L"Resources/TileFlameRed.png");
 	m_selectTile = 0;
 	m_drawStartTile = 0;
+
+	SetTilesVisible();
 }
 
 
@@ -177,12 +179,8 @@ void TileManager::TileScroll(int posX, int posY, int scrollValue)
 			{
 				Vector2 pos = m_palletTiles[i].getPos();
 				m_palletTiles[i].setPosition(Vector2(pos.x, pos.y + TILE_SIZE * move));
-
-				if (m_drawStartTile > i)
-					m_palletTiles[i].setVisible(false);
-				else
-					m_palletTiles[i].setVisible(true);
 			}
+			SetTilesVisible();
 		}
 	}
 }
@@ -215,4 +213,24 @@ int TileManager::GetHitTile(int posX, int posY)
 		}
 	}
 	return -1;
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief É^ÉCÉãÇÃï`âÊê›íË
+//!
+//! @param[in] Ç»Çµ
+//!
+//! @return Ç»Çµ
+//----------------------------------------------------------------------
+void TileManager::SetTilesVisible()
+{
+	for (int i = 0; i < (int)m_palletTiles.size(); i++)
+	{
+		if (m_drawStartTile > i || i - m_drawStartTile >= PALLET_SIZE_X * PALLET_SIZE_Y)
+			m_palletTiles[i].setVisible(false);
+		else
+			m_palletTiles[i].setVisible(true);
+	}
 }

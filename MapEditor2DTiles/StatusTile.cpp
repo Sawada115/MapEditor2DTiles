@@ -22,14 +22,11 @@ StatusTile::~StatusTile()
 /// èâä˙âª
 /// </summary>
 /// <param name="pos">èâä˙à íu</param>
-void StatusTile::initialize(Vector2 pos)
+void StatusTile::initialize(Vector2 BackImage_pos, Vector2 Tile_Pos, Vector2 Collision_Pos)
 {
-	Obj2d::initialize(L"Resources/BackImage2.png", pos);
+	Obj2d::initialize(L"Resources/BackImage2.png", BackImage_pos);
 
-	m_Tile.initialize(0, Vector2(600.0f, 100.0f));
-
-	
-	Collision_Pos = Vector2(725.0, 215.0);
+	m_Tile.initialize(0, Tile_Pos);
 
 	m_Collison_ON.initialize(L"Resources/ON.png", Collision_Pos);
 	m_Collison_OFF.initialize(L"Resources/OFF.png", Collision_Pos);

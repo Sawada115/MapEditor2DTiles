@@ -39,9 +39,10 @@ public:
 	
 	// マップサイズを変更する
 	void mapReSize(int sizeX,int sizeY);
-private:
+
 	// 選択したタイルを変更する
 	void changTile(int changeTileID[2],Tile* newTile);
+private:
 
 	int m_mapNum[2];	// マップのサイズ
 	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち

@@ -17,12 +17,13 @@ using Microsoft::WRL::ComPtr;
 static std::unique_ptr<Mouse> s_mouse(new Mouse);
 
 Game::Game() :
-    m_window(0),
-    m_outputWidth(800),
-    m_outputHeight(600),
-    m_featureLevel(D3D_FEATURE_LEVEL_9_1),
+	m_window(0),
+	m_outputWidth(800),
+	m_outputHeight(600),
+	m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
-	m_collisionCheckButton(Vector2(150, 50))
+	m_collisionCheckButton(Vector2(150, 50)),
+	m_inputButton()
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -79,15 +80,22 @@ void Game::Initialize(HWND window, int width, int height)
 		m_mapSizeChageButton[i] = new UI_Button(Vector2(200 + 20*i, 50 +20*i));
 	}
 
+	// クリアーボタン
+	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
+
+
 	//　右上の背景画像の初期化
-	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f));
+	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f),
+						DirectX::SimpleMath::Vector2(600.0f, 100.0f),
+						DirectX::SimpleMath::Vector2(725.0f, 215.0f));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
 	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
-	
+	m_inputButton.Initialize(DirectX::SimpleMath::Vector2(150.0f, 30.0f));
+
 	m_oldScrollWheelValue = 0;
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
@@ -140,6 +148,19 @@ void Game::Update(DX::StepTimer const& timer)
 		m_status.CollisionChange(m_mouse.x, m_mouse.y);*/
 		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
 
+		//クリアーボタン処理
+		if (m_ClearBotton.PressedButton(m_mouse.x, m_mouse.y))
+		{
+			if (m_ClearBotton.Get_ClearFlag())
+			{
+				m_map[0].setVisible(false);
+			}
+			else
+			{
+				m_map[0].setVisible(true);
+			}
+		}
+	
 
 		m_status.TileChange(m_tileManager.CopySelectTile());
 		m_status.CollisionChange(m_mouse.x, m_mouse.y, m_tileManager.GetSelectTile());
@@ -147,9 +168,20 @@ void Game::Update(DX::StepTimer const& timer)
 		// 出力ボタンを押した
 		if (m_outputButton.isPressed(m_mouse.x, m_mouse.y))
 		{
-			for (int i = 0; i < (int)m_map.size(); i++)
+			if (m_outputButton.SetSaveFilePath())
 			{
-				m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
+				for (int i = 0; i < (int)m_map.size(); i++)
+					m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
+			}
+		}
+
+		// 読み込みボタンを押した
+		if (m_inputButton.isPressed(m_mouse.x, m_mouse.y))
+		{
+			if (m_inputButton.SetOpenFilePath())
+			{
+				Tile* tile = new Tile();
+				m_inputButton.InPutCsv(&m_map[m_layerManager.GetSelectLayer()]);
 			}
 		}
 
@@ -189,16 +221,22 @@ void Game::Render()
 	//backImage1.draw();
 
 	// レイヤーの描画
+
 	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-		m_map[i - 1].draw();
+			m_map[i - 1].draw();
 	m_layerManager.Draw();
 
 	// コリジョンチェックボタン
 	m_collisionCheckButton.draw();
+
+	// クリアーボタン
+	m_ClearBotton.Draw();
+
 	m_status.draw();
 	m_backGround3.draw();
 	m_tileManager.Draw();
 	m_outputButton.draw();
+	m_inputButton.draw();
 
 	// 文字描画
 	m_spriteBatch->Begin();
