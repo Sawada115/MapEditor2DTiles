@@ -4,31 +4,28 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClearBotton.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MakedMap.cpp" />
+    <ClCompile Include="MapInPut.cpp" />
     <ClCompile Include="MapOutPut.cpp" />
     <ClCompile Include="Obj2d.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="StatusTile.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
-    <ClCompile Include="USS_Editor.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="UI_Button.cpp" />
-=======
-<<<<<<< HEAD
-    <ClCompile Include="MapInPut.cpp" />
-=======
-    <ClCompile Include="ClearBotton.cpp" />
->>>>>>> c2ceee456e2332977926e83cf9c5a737c3509ae7
->>>>>>> 61991b0ae164002f488740af091f00b80e699649
+    <ClCompile Include="USS_Editor.cpp" />
+    <ClCompile Include="MapResetButton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClearBotton.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LayerManager.h" />
     <ClInclude Include="MakedMap.h" />
+    <ClInclude Include="MapInPut.h" />
     <ClInclude Include="MapOutPut.h" />
     <ClInclude Include="Obj2d.h" />
     <ClInclude Include="pch.h" />
@@ -36,16 +33,9 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
-    <ClInclude Include="USS_Editor.h" />
-<<<<<<< HEAD
     <ClInclude Include="UI_Button.h" />
-=======
-<<<<<<< HEAD
-    <ClInclude Include="MapInPut.h" />
-=======
-    <ClInclude Include="ClearBotton.h" />
->>>>>>> c2ceee456e2332977926e83cf9c5a737c3509ae7
->>>>>>> 61991b0ae164002f488740af091f00b80e699649
+    <ClInclude Include="USS_Editor.h" />
+    <ClInclude Include="MapResetButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

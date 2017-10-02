@@ -22,8 +22,9 @@ Game::Game() :
 	m_outputHeight(600),
 	m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
-	m_collisionCheckButton(Vector2(150, 50)),
-	m_inputButton()
+	m_collisionCheckButton(Vector2(75, 25)),
+	m_inputButton(),
+	m_mapResetButton(Vector2(75, 25))
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -85,9 +86,9 @@ void Game::Initialize(HWND window, int width, int height)
 
 
 	//　右上の背景画像の初期化
-	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f),
-						DirectX::SimpleMath::Vector2(600.0f, 100.0f),
-						DirectX::SimpleMath::Vector2(725.0f, 215.0f));
+	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 183.0f),
+						DirectX::SimpleMath::Vector2(680.0f, 185.0f),
+						DirectX::SimpleMath::Vector2(680.0f, 235.0f));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
@@ -95,6 +96,7 @@ void Game::Initialize(HWND window, int width, int height)
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
 	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
 	m_inputButton.Initialize(DirectX::SimpleMath::Vector2(150.0f, 30.0f));
+	m_mapResetButton.initialize(L"Resources/MapResetButton.png", DirectX::SimpleMath::Vector2(500.0f, 35.0f));
 
 	m_oldScrollWheelValue = 0;
 
@@ -130,6 +132,7 @@ void Game::Update(DX::StepTimer const& timer)
 	m_mouseTracker->Update(m_mouse);
 
 	m_collisionCheckButton.upDate(m_mouse);
+	m_mapResetButton.upDate(m_mouse);
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -185,6 +188,9 @@ void Game::Update(DX::StepTimer const& timer)
 			}
 		}
 
+		// マップ全削除ボタンを押した
+		m_mapResetButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
+
 		// コリジョンチェックボタンを押したら
 		m_collisionCheckButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
 	}
@@ -229,6 +235,9 @@ void Game::Render()
 	// コリジョンチェックボタン
 	m_collisionCheckButton.draw();
 
+	// コリジョンチェックボタン
+	m_mapResetButton.draw();
+
 	// クリアーボタン
 	m_ClearBotton.Draw();
 
@@ -237,6 +246,7 @@ void Game::Render()
 	m_tileManager.Draw();
 	m_outputButton.draw();
 	m_inputButton.draw();
+	m_mapResetButton.draw();
 
 	// 文字描画
 	m_spriteBatch->Begin();
@@ -246,8 +256,10 @@ void Game::Render()
 	// wstring→wchar_tに変換
 	const wchar_t* wc_name = ws_name.c_str();
 
-	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(500, 85));
-	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(500, 200));
+	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(630, 120.0f));
+	m_spriteFont->DrawString(m_spriteBatch, L"TileName", XMFLOAT2(480, 120.0f));
+	m_spriteFont->DrawString(m_spriteBatch, L"TileImage", XMFLOAT2(480, 170.0f));
+	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(480, 220.0f));
 	m_spriteBatch->End();
 
 Present();

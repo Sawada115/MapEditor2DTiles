@@ -95,6 +95,8 @@ private:
 	UI_Button* m_mapSizeChageButton[4];
 	//レイヤーの透過処理の変更ボタン
 	ClearBotton m_ClearBotton;
+	// マップ全削除ボタン
+	UI_Button m_mapResetButton;
 
 	//右上の選択タイル
 	StatusTile m_status;
@@ -103,7 +105,6 @@ private:
 	MapOutPut m_outputButton;			// 出力ボタン
 	MapInPut m_inputButton;				// 読み込みボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
-
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
 
