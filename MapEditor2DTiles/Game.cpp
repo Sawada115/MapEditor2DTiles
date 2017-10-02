@@ -25,21 +25,41 @@ Game::Game() :
 	m_collisionCheckButton(Vector2(150, 50)),
 	m_inputButton()
 {
+	// マップサイズ変更ボタン
 	for (int i = 0; i < 4; i++)
 	{
 		m_mapSizeChageButton[i] = nullptr;
+	}
+
+	// マップのスクロールバー
+	for (int i = 0; i < 2; i++)
+	{
+		m_mapScrollBar[i] = nullptr;
 	}
 }
 
 Game::~Game()
 {
+	// マップサイズ変更ボタンのリリース
 	for (int i = 0; i < 4; i++)
 	{
 		if (m_mapSizeChageButton[i] != nullptr)
 		{
 			delete m_mapSizeChageButton[i];
+			m_mapSizeChageButton[i] = nullptr;
 		}	
 	}
+
+	// スクロールバーのリリース
+	for (int i = 0; i < 2; i++)
+	{
+		if (m_mapScrollBar[i] != nullptr)
+		{
+			delete m_mapScrollBar[i];
+			m_mapScrollBar[i] = nullptr;
+		}
+	}
+
 	
 }
 
@@ -78,12 +98,22 @@ void Game::Initialize(HWND window, int width, int height)
 	for (int i = 0; i < 4; i++)
 	{
 		m_mapSizeChageButton[i] = new UI_Button(Vector2(20,20));
-	}
+	} 
 
-	m_mapSizeChageButton[0]->initialize(L"Resources/MapSizePlus.png", Vector2(460.0f, 65.0f));
-	m_mapSizeChageButton[1]->initialize(L"Resources/MapSizeMinus.png", Vector2(440.0f, 65.0f));
-	m_mapSizeChageButton[2]->initialize(L"Resources/MapSizePlus.png", Vector2(15.0f, 590.0f));
-	m_mapSizeChageButton[3]->initialize(L"Resources/MapSizeMinus.png", Vector2(15.0f, 570.0f));
+	m_mapSizeChageButton[0]->initialize(L"Resources/MapSizePlus.png", Vector2(435.0f, 65.0f));
+	m_mapSizeChageButton[1]->initialize(L"Resources/MapSizeMinus.png", Vector2(415.0f, 65.0f));
+	m_mapSizeChageButton[2]->initialize(L"Resources/MapSizePlus.png", Vector2(15.0f, 580.0f));
+	m_mapSizeChageButton[3]->initialize(L"Resources/MapSizeMinus.png", Vector2(15.0f, 560.0f));
+
+	// マップのスクロールバー
+	// 横
+	m_mapScrollBar[0] = new UI_ScrollBar;
+	m_mapScrollBar[0]->initialize(L"Resources/ScrollBar.png", L"Resources/ScrollBarBack.png",false, Vector2(220.0f, 580.0f));
+	m_mapScrollBar[0]->setScale(XMFLOAT2(19.5f, 1.0f));
+	// 縦
+	m_mapScrollBar[1] = new UI_ScrollBar;
+	m_mapScrollBar[1]->initialize(L"Resources/ScrollBar.png", L"Resources/ScrollBarBack.png", true, Vector2(435.0f, 315.0f));
+	m_mapScrollBar[1]->setScale(XMFLOAT2(1.0f, 24.0f));
 
 	// クリアーボタン
 	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
@@ -133,12 +163,18 @@ void Game::Update(DX::StepTimer const& timer)
 	m_mouse = s_mouse->GetState();
 	m_mouseTracker->Update(m_mouse);
 
-	// ボタンのアップデート
+	// ボタンの更新
 	m_collisionCheckButton.upDate(m_mouse);
 	for (int i = 0; i < 4; i++)
 	{
 		m_mapSizeChageButton[i]->upDate(m_mouse);
 	}
+	// スクロールバーの更新
+	for (int i = 0; i < 2; i++)
+	{
+		m_mapScrollBar[i]->upDate(m_mouse);
+	}
+	m_map[0].TileScroll(m_mapScrollBar[0]->getStageNow(), m_mapScrollBar[1]->getStageNow());
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -243,8 +279,6 @@ void Game::Render()
 
     // TODO: Add your rendering code here.
 
-	//backImage1.draw();
-
 	// レイヤーの描画
 
 	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
@@ -259,6 +293,10 @@ void Game::Render()
 	{
 		m_mapSizeChageButton[i]->draw();
 	}
+
+	// スクロールバー
+	m_mapScrollBar[0]->draw();
+	m_mapScrollBar[1]->draw();
 
 	// クリアーボタン
 	m_ClearBotton.Draw();
@@ -297,6 +335,16 @@ void Game::MapSizeChange(int ChangeX, int ChangeY)
 
 	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
 		m_map[i - 1].mapReSize(m_map[i - 1].GetMapSize().x + ChangeX, m_map[i - 1].GetMapSize().y + ChangeY);
+
+	// スクロールの段階を決定(横)
+	int scrollStageX = m_map[0].GetMapSize().x - MakedMap::DRAW_TILE_NUM_X + 1;
+	if (scrollStageX < 1)scrollStageX = 1;
+	m_mapScrollBar[0]->setStage(scrollStageX);
+
+	// スクロールの段階を決定(横)
+	int scrollStageY = m_map[0].GetMapSize().y - MakedMap::DRAW_TILE_NUM_Y + 1;
+	if (scrollStageY < 1)scrollStageY = 1;
+	m_mapScrollBar[1]->setStage(scrollStageY);
 }
 
 

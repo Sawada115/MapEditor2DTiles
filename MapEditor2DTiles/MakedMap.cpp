@@ -10,8 +10,8 @@
 using namespace DirectX::SimpleMath;
 
 // 描画するタイルの数
-const int MakedMap::DRAW_TILE_NUM_X = 14;
-const int MakedMap::DRAW_TILE_NUM_Y = 17;
+const int MakedMap::DRAW_TILE_NUM_X = 13;
+const int MakedMap::DRAW_TILE_NUM_Y = 16;
 
 // 背景画像のサイズ
 const DirectX::SimpleMath::Vector2 MakedMap::BACK_SIZE = {445.0f,580.0f};
@@ -132,7 +132,6 @@ void MakedMap::beClicked(Tile* newTile, DirectX::SimpleMath::Vector2 clickPos)
 	clickedTileID[0] = i + m_drawBeginTile[0];
 
 	// クリックされた位置を探す(縦)
-	//i = m_tiles.size();
 	i = DRAW_TILE_NUM_Y;
 	while (beginPos.y < clickPos.y && beginPos.y + i*Tile::TILE_SIZE > clickPos.y)
 	{
@@ -239,6 +238,68 @@ void MakedMap::TileScroll(int posX, int posY,int scrollValue)
 			}
 		}
 	}
+}
+
+/// <summary>
+/// スクロール
+/// </summary>
+/// <param name="beginX">開始タイルX</param>
+/// <param name="beginY">開始タイルY</param>
+void MakedMap::TileScroll(int beginX, int beginY)
+{
+	int move[2] = {  beginX - m_drawBeginTile[0]
+					,beginY - m_drawBeginTile[1] };
+
+	if (move[0] == 0 && move[1] == 0)return;// 変化しないならすぐ終わり
+
+	// スクロール可能(横)
+	if (m_drawBeginTile[0] + move[0] >= 0 && 
+		m_drawBeginTile[0] + move[0] < m_mapNum[1] &&
+		move[0] != 0)
+	{
+		// 描画開始位置をずらす  
+		m_drawBeginTile[0] += move[0];
+
+		// 情報の更新
+		std::vector<std::vector<OneTileData>>::iterator it1;
+		for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
+		{
+			std::vector<OneTileData> ::iterator it2;
+			for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
+			{
+				// タイルをずらす
+				Vector2 pos = (*it2).tile->getPos();
+				(*it2).tile->setPosition(Vector2(pos.x - Tile::TILE_SIZE * move[0], pos.y));
+				(*it2).glids.setPosition(Vector2(pos.x - Tile::TILE_SIZE * move[0], pos.y ));
+			}
+		}
+
+	}
+
+
+	// スクロール可能(縦)
+	if (m_drawBeginTile[1] + move[1] >= 0 && 
+		m_drawBeginTile[1] + move[1] < m_mapNum[0] &&
+		move[1] != 0)
+	{
+		m_drawBeginTile[1] += move[1];
+
+		// 情報の更新
+		std::vector<std::vector<OneTileData>>::iterator it1;
+		for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
+		{
+			std::vector<OneTileData> ::iterator it2;
+			for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
+			{
+				// タイルをずらす
+				Vector2 pos = (*it2).tile->getPos();
+				(*it2).tile->setPosition(Vector2(pos.x, pos.y - Tile::TILE_SIZE * move[1]));
+				(*it2).glids.setPosition(Vector2(pos.x, pos.y - Tile::TILE_SIZE * move[1]));
+
+			}
+		}
+	}
+
 }
 
 /// <summary>

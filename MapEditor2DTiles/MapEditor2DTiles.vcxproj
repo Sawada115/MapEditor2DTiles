@@ -172,6 +172,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="UI_Button.h" />
+    <ClInclude Include="UI_ScrollBar.h" />
     <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +194,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="UI_Button.cpp" />
+    <ClCompile Include="UI_ScrollBar.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
   </ItemGroup>
   <ItemGroup>

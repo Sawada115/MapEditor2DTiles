@@ -37,9 +37,9 @@ public:
 	// ボタンが押されたら呼ぶ処理
 	virtual void toActivate() { /*(内容は継承先で定義)*/};
 
-private:
-	const int BUTTON_SIZE_X;		// ボタンの横幅
-	const int BUTTON_SIZE_Y;		// ボタンの縦幅
+protected:
+	int BUTTON_SIZE_X;		// ボタンの横幅
+	int BUTTON_SIZE_Y;		// ボタンの縦幅
 
 	// 押されている状態かどうか
 	bool m_isPressed;
