@@ -236,7 +236,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 		// マップのスクロール
 		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-			m_map[i - 1]->TileScroll(m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+			m_map[i - 1]->TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
 	}
 	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
 
