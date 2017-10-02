@@ -165,7 +165,7 @@ void Game::Update(DX::StepTimer const& timer)
 		{
 			MakedMap* map = new MakedMap();
 			map->initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
-			map->mapReSize(map[0].GetMapSize().x, map[0].GetMapSize().y);
+			map->mapReSize(m_map[0]->GetMapSize().x, m_map[0]->GetMapSize().y);
 			m_map.push_back(map);
 		}
 
