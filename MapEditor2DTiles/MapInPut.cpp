@@ -100,7 +100,7 @@ void MapInPut::toActivate()
 //!
 //! @param[in] 読み込んだデータを受け取る変数
 //!
-//! @return 設定できたか
+//! @return なし
 //----------------------------------------------------------------------
 void MapInPut::InPutCsv(MakedMap* map)
 {
@@ -161,7 +161,7 @@ void MapInPut::InPutCsv(MakedMap* map)
 //!
 //! @param[in] 座標X 座標Y
 //!
-//! @return なし
+//! @return ボタンに触れているか
 //----------------------------------------------------------------------
 bool MapInPut::isPressed(int posX, int posY)
 {
