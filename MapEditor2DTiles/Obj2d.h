@@ -19,7 +19,7 @@ protected:
 	static std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 	static std::unique_ptr<DirectX::CommonStates> m_states;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture;	// 画像データ
-	DirectX::XMVECTOR m_coler;									// 画像の色合い
+	DirectX::SimpleMath::Vector4 m_coler;						// 画像の色合い
 	bool m_isVisible;											// 見えるかどうか
 
 
@@ -46,7 +46,7 @@ public:
 	// 描画
 	virtual void draw();
 	virtual void draw(DirectX::XMFLOAT2 scale);
-	virtual void setColer(DirectX::XMVECTOR coler) { m_coler = coler; };				// 色を変える
+	virtual void setColer(DirectX::FXMVECTOR coler) { m_coler = coler; };				// 色を変える
 	virtual void setVisible(bool visible) { m_isVisible = visible; };					// 見えるかどうか
 
 	// セッター
