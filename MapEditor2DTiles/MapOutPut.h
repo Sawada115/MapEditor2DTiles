@@ -12,13 +12,13 @@
 #pragma once
 
 // ヘッダーファイルのインクルード==============================================
+#include "UI_Button.h"
 #include <Windows.h>
 #include <Commdlg.h>
-#include "UI_Buttan.h"
 #include "MakedMap.h"
 
 // クラスの宣言
-class MapOutPut:public UI_Buttan
+class MapOutPut:public UI_Button
 {
 	// 静的変数の宣言
 private:

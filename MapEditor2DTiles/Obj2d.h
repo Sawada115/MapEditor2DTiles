@@ -50,8 +50,10 @@ public:
 	virtual void setVisible(bool visible) { m_isVisible = visible; };					// 見えるかどうか
 
 	// セッター
+			void setTexture(const wchar_t* imageFileName);
 	virtual void setPosition(DirectX::SimpleMath::Vector2 pos) {m_screenPos = pos;};	// 表示位置
-			void setScale(DirectX::XMFLOAT2 scale) {m_scale = scale;};						// スケーリング
+			void setScale(DirectX::XMFLOAT2 scale) {m_scale = scale;};					// スケーリング
+
 
 	// ゲッター
 	DirectX::SimpleMath::Vector2 getPos() { return m_screenPos; };

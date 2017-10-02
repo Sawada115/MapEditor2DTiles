@@ -9,7 +9,7 @@
 #include <Mouse.h>
 #include <SpriteFont.h>
 #include "MakedMap.h"
-#include "ColisionCheckButtan.h"
+#include "UI_Button.h"
 #include "Tile.h"
 #include "TileManager.h"
 #include "StatusTile.h"
@@ -26,6 +26,7 @@ class Game
 public:
 
     Game();
+	~Game();
 
     // Initialization and management
     void Initialize(HWND window, int width, int height);
@@ -43,6 +44,9 @@ public:
     // Properties
     void GetDefaultSize( int& width, int& height ) const;
 
+	// コリジョンチェックをするかどうかを入れ替える
+	void ChangeColisionCheck();
+
 private:
 
     void Update(DX::StepTimer const& timer);
@@ -55,6 +59,7 @@ private:
     void CreateResources();
 
     void OnDeviceLost();
+
 
     // Device resources.
     HWND                                            m_window;
@@ -85,9 +90,9 @@ private:
 	// 左側のマップ
 	std::vector<MakedMap> m_map;
 	// コリジョンチェックボタン
-	UI_Buttan m_clisionCheckButtan;
+	UI_Button m_collisionCheckButton;
 	// マップサイズ変更ボタン
-
+	UI_Button* m_mapSizeChageButton[4];
 	//レイヤーの透過処理の変更ボタン
 	ClearBotton m_ClearBotton;
 

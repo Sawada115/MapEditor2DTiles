@@ -14,11 +14,11 @@
 // ヘッダーファイルのインクルード==============================================
 #include <Windows.h>
 #include <Commdlg.h>
-#include "UI_Buttan.h"
+#include "UI_Button.h"
 #include "MakedMap.h"
 
 // クラスの宣言
-class MapInPut :public UI_Buttan
+class MapInPut :public UI_Button
 {
 	// 静的変数の宣言
 private:

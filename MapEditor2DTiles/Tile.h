@@ -70,8 +70,8 @@ public:
 	void setName(std::wstring newName) { m_name = newName; };	// 前
 
 	// コリジョンチェックフラグをセットする
-	static void setClisionCheck(bool check) { m_isCheckedColision = check; };
-	static void changheClisionCheck();
+	static void setCollisionCheck(bool check) { m_isCheckedColision = check; };
+	static void changeCollisionCheck();
 
 
 private:

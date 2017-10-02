@@ -22,10 +22,25 @@ Game::Game() :
 	m_outputHeight(600),
 	m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
-	m_inputButton(),
-	m_clisionCheckButtan(Vector2(150, 50))
+	m_collisionCheckButton(Vector2(150, 50)),
+	m_inputButton()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i] = nullptr;
+	}
+}
 
+Game::~Game()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_mapSizeChageButton[i] != nullptr)
+		{
+			delete m_mapSizeChageButton[i];
+		}	
+	}
+	
 }
 
 // Initialize the Direct3D resources required to run.
@@ -58,7 +73,12 @@ void Game::Initialize(HWND window, int width, int height)
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
-	m_clisionCheckButtan.initialize(L"Resources/OutPutButton.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	m_collisionCheckButton.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	// マップサイズ変更ボタン
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i] = new UI_Button(Vector2(200 + 20*i, 50 +20*i));
+	}
 
 	// クリアーボタン
 	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
@@ -108,6 +128,8 @@ void Game::Update(DX::StepTimer const& timer)
 	// マウス情報を取得
 	m_mouse = s_mouse->GetState();
 	m_mouseTracker->Update(m_mouse);
+
+	m_collisionCheckButton.upDate(m_mouse);
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -163,8 +185,8 @@ void Game::Update(DX::StepTimer const& timer)
 			}
 		}
 
-		// コリジョンチェックボタンを押した
-		m_clisionCheckButtan.pressed(m_mouse.x, m_mouse.y, Tile::changheClisionCheck);
+		// コリジョンチェックボタンを押したら
+		m_collisionCheckButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
 	}
 
 	// 右クリックしたら
@@ -205,7 +227,7 @@ void Game::Render()
 	m_layerManager.Draw();
 
 	// コリジョンチェックボタン
-	m_clisionCheckButtan.draw();
+	m_collisionCheckButton.draw();
 
 	// クリアーボタン
 	m_ClearBotton.Draw();
@@ -230,6 +252,16 @@ void Game::Render()
 
 Present();
 }
+
+/// <summary>
+/// コリジョンチェックボタンを押したときの処理
+/// </summary>
+void Game::ChangeColisionCheck()
+{
+	Tile::changeCollisionCheck();
+}
+
+
 
 
 // Helper method to clear the back buffers.
@@ -526,3 +558,4 @@ void Game::OnDeviceLost()
 
     CreateResources();
 }
+

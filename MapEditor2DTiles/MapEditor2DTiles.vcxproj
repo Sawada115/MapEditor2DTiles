@@ -171,7 +171,7 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
-    <ClInclude Include="UI_Buttan.h" />
+    <ClInclude Include="UI_Button.h" />
     <ClInclude Include="USS_Editor.h" />
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +192,7 @@
     <ClCompile Include="StatusTile.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManager.cpp" />
-    <ClCompile Include="UI_Buttan.cpp" />
+    <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
   </ItemGroup>
   <ItemGroup>

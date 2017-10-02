@@ -36,7 +36,7 @@ const int MapInPut::BUTTON_SIZE_Y = 25;
 //! @return 存在しない
 //----------------------------------------------------------------------
 MapInPut::MapInPut()
-	:UI_Buttan(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
+	:UI_Button(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
 {
 
 }
@@ -65,7 +65,7 @@ MapInPut::~MapInPut()
 //----------------------------------------------------------------------
 void MapInPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	UI_Buttan::initialize(L"Resources/InPutButton.png", buttonPos);
+	UI_Button::initialize(L"Resources/InPutButton.png", buttonPos);
 
 	// ダイアログ設定
 	GetCurrentDirectory(MAX_PATH, m_folderPath);
@@ -165,7 +165,7 @@ void MapInPut::InPutCsv(MakedMap* map)
 //----------------------------------------------------------------------
 bool MapInPut::isPressed(int posX, int posY)
 {
-	if (UI_Buttan::isPressed(posX, posY))
+	if (UI_Button::isPressed(posX, posY))
 	{
 		return true;
 	}

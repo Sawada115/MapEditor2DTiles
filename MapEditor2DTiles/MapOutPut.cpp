@@ -36,7 +36,7 @@ const int MapOutPut::BUTTON_SIZE_Y = 25;
 //! @return 存在しない
 //----------------------------------------------------------------------
 MapOutPut::MapOutPut()
-	:UI_Buttan(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
+	:UI_Button(Vector2(BUTTON_SIZE_X, BUTTON_SIZE_Y))
 {
 
 }
@@ -65,7 +65,7 @@ MapOutPut::~MapOutPut()
 //----------------------------------------------------------------------
 void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	UI_Buttan::initialize(L"Resources/OutPutButton.png", buttonPos);
+	UI_Button::initialize(L"Resources/OutPutButton.png",buttonPos);
 
 	// ダイアログ設定
 	GetCurrentDirectory(MAX_PATH, m_folderPath);
@@ -156,7 +156,7 @@ void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSi
 //----------------------------------------------------------------------
 bool MapOutPut::isPressed(int posX, int posY )
 {
-	if (UI_Buttan::isPressed(posX, posY))
+	if (UI_Button::isPressed(posX, posY))
 	{
 		return true;
 	}
