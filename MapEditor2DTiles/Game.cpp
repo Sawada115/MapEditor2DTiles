@@ -88,7 +88,6 @@ void Game::Initialize(HWND window, int width, int height)
 	// クリアーボタン
 	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
 
-
 	//　右上の背景画像の初期化
 	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f),
 						DirectX::SimpleMath::Vector2(600.0f, 100.0f),
@@ -225,7 +224,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 		// マップのスクロール
 		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-			m_map[i - 1].TileScroll(m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+			m_map[i - 1].TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
 	}
 	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
 
