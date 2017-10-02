@@ -22,7 +22,7 @@ class LayerManager
 private:
 	static const int BUTTON_SIZE_X;		// ボタンの横幅
 	static const int BUTTON_SIZE_Y;		// ボタンの縦幅
-	static const int LAYER_NUM;			// レイヤーの数
+	static const int LAYER_MAX_NUM;			// レイヤーの数
 public:
 	// コンストラクタ
 	LayerManager();
@@ -37,7 +37,10 @@ public:
 	// ボタン処理
 	bool PressedButton(int posX, int posY);
 	int GetSelectLayer() { return m_selectLayer; }
+
+	void LayerDelete();
 private:
 	std::vector<Obj2d> m_layerButton;			// レイヤーボタン画像
+	int m_layerNum;								// レイヤーの数
 	int m_selectLayer;							// 選択中のレイヤー番号
 };

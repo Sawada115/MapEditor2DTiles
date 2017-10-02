@@ -42,10 +42,22 @@ public:
 
 	// 選択したタイルを変更する
 	void changTile(int changeTileID[2],Tile* newTile);
+
+	// スクロール
+	void TileScroll(int scrollValue);
+
+	// マップをリセット
+	void mapReset();
+
 private:
 
 	int m_mapNum[2];	// マップのサイズ
 	std::vector<std::vector<OneTileData>> m_tiles;// タイルたち
+
+	// 描画するタイルの一番左上
+	int m_drawBeginTile[2];
+	static const int DRAW_TILE_NUM_X;
+	static const int DRAW_TILE_NUM_Y;
 
 	// 現在選択中のタイル
 	int m_choiceTile[2];

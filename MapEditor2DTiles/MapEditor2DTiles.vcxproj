@@ -165,7 +165,6 @@
     <ClInclude Include="MakedMap.h" />
     <ClInclude Include="MapInPut.h" />
     <ClInclude Include="MapOutPut.h" />
-    <ClInclude Include="MapResetButton.h" />
     <ClInclude Include="Obj2d.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StatusTile.h" />
@@ -183,7 +182,6 @@
     <ClCompile Include="MakedMap.cpp" />
     <ClCompile Include="MapInPut.cpp" />
     <ClCompile Include="MapOutPut.cpp" />
-    <ClCompile Include="MapResetButton.cpp" />
     <ClCompile Include="Obj2d.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

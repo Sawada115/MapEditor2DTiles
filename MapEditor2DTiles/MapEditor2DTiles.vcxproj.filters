@@ -18,7 +18,6 @@
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
-    <ClCompile Include="MapResetButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClearBotton.h" />
@@ -35,7 +34,6 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="USS_Editor.h" />
-    <ClInclude Include="MapResetButton.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

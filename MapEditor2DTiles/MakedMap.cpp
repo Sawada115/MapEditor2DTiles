@@ -9,6 +9,11 @@
 
 using namespace DirectX::SimpleMath;
 
+// 描画するタイルの数
+const int MakedMap::DRAW_TILE_NUM_X = 14;
+const int MakedMap::DRAW_TILE_NUM_Y = 17;
+
+
 MakedMap::MakedMap()
 {
 }
@@ -39,8 +44,12 @@ void MakedMap::initialize(Vector2 pos)
 	Obj2d::initialize(L"Resources/BackImage1.png", pos);
 
 	// マップサイズの初期化
-	m_mapNum[0] = 14;
-	m_mapNum[1] = 17;
+	m_mapNum[0] = DRAW_TILE_NUM_X;
+	m_mapNum[1] = DRAW_TILE_NUM_Y;
+
+	// 描画の左上のタイル
+	m_drawBeginTile[0] = 0;
+	m_drawBeginTile[1] = 0;
 
 	// マップ情報の初期化
 	m_tiles.resize(m_mapNum[1]);	// 縦の長さを設定
@@ -73,16 +82,34 @@ void MakedMap::draw()
 	// 背景画像
 	Obj2d::draw();
 
-	std::vector<std::vector<OneTileData>>::iterator it1;
-	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
+	//std::vector<std::vector<OneTileData>>::iterator it1;
+	//for (it1 = m_tiles.begin() + m_drawBeginTile[0]; it1 != m_tiles.end() + DRAW_TILE_NUM_X; it1++)
+	//{
+	//	std::vector<OneTileData> ::iterator it2;
+	//	for (it2 = (*it1).begin() + m_drawBeginTile[0]; it2 != (*it1).end() + DRAW_TILE_NUM_Y; it2++)
+	//	{
+	//		// タイル画像
+	//		(*it2).tile->draw();
+	//		// グリッド
+	//		(*it2).glids.draw();
+	//	}
+	//}
+
+	// 縦ループ
+	for (int i = m_drawBeginTile[1]; i < m_drawBeginTile[0] + DRAW_TILE_NUM_Y; i++)
 	{
-		std::vector<OneTileData> ::iterator it2;
-		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
+		// サイズが小さい場合は途中でループを抜ける
+		if (i >= m_tiles.size())break;
+
+		// 横ループ
+		for (int j = m_drawBeginTile[0]; j < m_drawBeginTile[1] + DRAW_TILE_NUM_X; j++)
 		{
-			// タイル画像
-			(*it2).tile->draw();
-			// グリッド
-			(*it2).glids.draw();
+			// サイズが小さい場合は途中でループを抜ける
+			if (j >= m_tiles[i].size())break;
+
+			// 描画する
+			m_tiles[i][j].tile->draw();
+			m_tiles[i][j].glids.draw();
 		}
 	}
 }
@@ -175,6 +202,54 @@ void MakedMap::changTile(int changeTileID[2], Tile* newTile)
 	m_tiles[changeTileID[1]][changeTileID[0]].tile = newTile;
 }
 
+void MakedMap::TileScroll(int scrollValue)
+{
+	int tileHalfSize = Tile::TILE_SIZE / 2;
+	int move = scrollValue / 120;
+
+	// スクロール可能
+	if (m_drawBeginTile[1] + -move >= 0 && m_drawBeginTile[1] + -move < DRAW_TILE_NUM_Y)
+	{
+		m_drawBeginTile[1] += -move;
+
+		// 情報の更新
+		std::vector<std::vector<OneTileData>>::iterator it1;
+		for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
+		{
+			std::vector<OneTileData> ::iterator it2;
+			for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
+			{
+				// タイルをずらす
+				Vector2 pos = (*it2).tile->getPos();
+				(*it2).tile->setPosition(Vector2(pos.x, pos.y + Tile::TILE_SIZE * move));
+				(*it2).glids.setPosition(Vector2(pos.x, pos.y + Tile::TILE_SIZE * move));
+
+			}
+		}
+	}
+}
+
+/// <summary>
+/// マップのリセット
+/// </summary>
+void MakedMap::mapReset()
+{
+	std::vector<std::vector<OneTileData>>::iterator it1;
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
+	{
+		std::vector<OneTileData> ::iterator it2;
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
+		{
+			if ((*it2).tile->getNum() != 0 || (*it2).tile->getColision() != false)
+			{
+				Vector2 pos = (*it2).tile->getPos();
+				(*it2).tile->initialize(0, pos);
+				(*it2).tile->setColision(false);
+			}
+		}
+	}
+}
+
 /// <summary>
 /// マップサイズを変更する
 /// </summary>
@@ -244,7 +319,7 @@ void MakedMap::mapReSizeOneLine(int changeLine, int size)
 		{
 			// 位置を設定
 			Vector2 glidPos =
-				Vector2((i*Tile::TILE_SIZE) - 195.0f, (changeLine * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+				Vector2((i*Tile::TILE_SIZE) - 195.0f, ((changeLine - m_drawBeginTile[1]) * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
 			
 			// 増やす
 			m_tiles[changeLine].push_back(createTileData(glidPos));
@@ -279,7 +354,7 @@ void MakedMap::mapReSizeSomeLine(int size)
 			{
 				// 位置を設定
 				Vector2 glidPos =
-					Vector2((i*Tile::TILE_SIZE) - 195.0f, (m_mapNum[1] * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+					Vector2((i*Tile::TILE_SIZE) - 195.0f, ((m_mapNum[1] - m_drawBeginTile[1]) * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
 
 				// 増やす
 				newTileLine.push_back(createTileData(glidPos));
