@@ -47,6 +47,8 @@ public:
 	// コリジョンチェックをするかどうかを入れ替える
 	void ChangeColisionCheck();
 
+	void MapSizeChange(int ChangeX, int ChangeY);
+
 private:
 
     void Update(DX::StepTimer const& timer);

@@ -77,8 +77,13 @@ void Game::Initialize(HWND window, int width, int height)
 	// マップサイズ変更ボタン
 	for (int i = 0; i < 4; i++)
 	{
-		m_mapSizeChageButton[i] = new UI_Button(Vector2(200 + 20*i, 50 +20*i));
+		m_mapSizeChageButton[i] = new UI_Button(Vector2(20,20));
 	}
+
+	m_mapSizeChageButton[0]->initialize(L"Resources/MapSizePlus.png", Vector2(460.0f, 65.0f));
+	m_mapSizeChageButton[1]->initialize(L"Resources/MapSizeMinus.png", Vector2(440.0f, 65.0f));
+	m_mapSizeChageButton[2]->initialize(L"Resources/MapSizePlus.png", Vector2(15.0f, 590.0f));
+	m_mapSizeChageButton[3]->initialize(L"Resources/MapSizeMinus.png", Vector2(15.0f, 570.0f));
 
 	// クリアーボタン
 	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
@@ -129,7 +134,12 @@ void Game::Update(DX::StepTimer const& timer)
 	m_mouse = s_mouse->GetState();
 	m_mouseTracker->Update(m_mouse);
 
+	// ボタンのアップデート
 	m_collisionCheckButton.upDate(m_mouse);
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i]->upDate(m_mouse);
+	}
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -187,6 +197,14 @@ void Game::Update(DX::StepTimer const& timer)
 
 		// コリジョンチェックボタンを押したら
 		m_collisionCheckButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
+
+		// マップサイズの変更
+		m_mapSizeChageButton[0]->pressed(m_mouse.x, m_mouse.y, [this]() {Game::MapSizeChange( 1,  0); });
+		m_mapSizeChageButton[1]->pressed(m_mouse.x, m_mouse.y, [this]() {Game::MapSizeChange(-1,  0); });
+		m_mapSizeChageButton[2]->pressed(m_mouse.x, m_mouse.y, [this]() {Game::MapSizeChange( 0,  1); });
+		m_mapSizeChageButton[3]->pressed(m_mouse.x, m_mouse.y, [this]() {Game::MapSizeChange( 0, -1); });
+
+
 	}
 
 	// 右クリックしたら
@@ -201,8 +219,16 @@ void Game::Update(DX::StepTimer const& timer)
 
 	// マウスホイール
 	if (m_mouse.scrollWheelValue != m_oldScrollWheelValue)
+	{
+		// パレットのスクロール
 		m_tileManager.TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+
+		// マップのスクロール
+		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
+			m_map[i - 1].TileScroll(m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+	}
 	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
+
 }
 
 // Draws the scene.
@@ -228,6 +254,12 @@ void Game::Render()
 
 	// コリジョンチェックボタン
 	m_collisionCheckButton.draw();
+
+	// マップサイズ変更ボタン
+	for (int i = 0; i < 4; i++)
+	{
+		m_mapSizeChageButton[i]->draw();
+	}
 
 	// クリアーボタン
 	m_ClearBotton.Draw();
@@ -259,6 +291,13 @@ Present();
 void Game::ChangeColisionCheck()
 {
 	Tile::changeCollisionCheck();
+}
+
+void Game::MapSizeChange(int ChangeX, int ChangeY)
+{
+
+	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
+		m_map[i - 1].mapReSize(m_map[i - 1].GetMapSize().x + ChangeX, m_map[i - 1].GetMapSize().y + ChangeY);
 }
 
 
