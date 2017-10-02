@@ -19,7 +19,7 @@ using namespace DirectX::SimpleMath;
 // 静的変数の初期化
 const int LayerManager::BUTTON_SIZE_X = 75;
 const int LayerManager::BUTTON_SIZE_Y = 25;
-const int LayerManager::LAYER_NUM = 2;
+const int LayerManager::LAYER_MAX_NUM = 5;
 
 
 //----------------------------------------------------------------------
@@ -57,10 +57,11 @@ LayerManager::~LayerManager()
 //----------------------------------------------------------------------
 void LayerManager::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 {
-	m_layerButton.resize(LAYER_NUM);
+	m_layerNum = 1;
+	m_layerButton.resize(LAYER_MAX_NUM);
 
-	m_layerButton[0].initialize(L"Resources/Layer1Button.png", buttonPos);
-	m_layerButton[1].initialize(L"Resources/Layer2Button.png", buttonPos + Vector2(BUTTON_SIZE_X, 0));
+	for (int i = 0; i < (int)m_layerButton.size(); i++)
+		m_layerButton[i].initialize(L"Resources/LayerButton.png", buttonPos + Vector2(BUTTON_SIZE_X * i, 0));
 
 	m_selectLayer = 0;
 }
@@ -76,13 +77,20 @@ void LayerManager::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 //----------------------------------------------------------------------
 void LayerManager::Draw()
 {
-	for (int i = 0; i < m_layerButton.size(); i++)
+	int i;
+	// レイヤー切り替えボタンの描画
+	for (i = 0; i < m_layerNum; i++)
 	{ 
 		if (i == m_selectLayer)
 			m_layerButton[i].setColer(Colors::White);
 		else
 			m_layerButton[i].setColer(Colors::Gray);
-
+		m_layerButton[i].draw();
+	}
+	// レイヤー追加ボタンの描画
+	if (i < LAYER_MAX_NUM)
+	{
+		m_layerButton[i].setColer(Colors::Gray);
 		m_layerButton[i].draw();
 	}
 }
@@ -109,9 +117,34 @@ bool LayerManager::PressedButton(int posX, int posY)
 			buttonPos.y + buttonHalfSize.y >= posY &&
 			buttonPos.y - buttonHalfSize.y <= posY)
 		{
-			m_selectLayer = i;
-			return true;
+			if (m_layerNum >= i)
+			{
+				m_selectLayer = i;
+			}
+			if (m_layerNum == i && m_layerNum < LAYER_MAX_NUM)
+			{
+				m_layerNum++;
+				return true;
+			}
+			return false;
 		}
 	}
 	return false;
+}
+
+
+
+//----------------------------------------------------------------------
+//! @brief レイヤーの削除
+//!
+//! @param[in] なし
+//!
+//! @return なし
+//----------------------------------------------------------------------
+void LayerManager::LayerDelete()
+{
+	if (m_selectLayer)
+		m_selectLayer--;
+
+	m_layerNum--;
 }

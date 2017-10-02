@@ -18,7 +18,10 @@
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="UI_Button.cpp" />
     <ClCompile Include="USS_Editor.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="UI_ScrollBar.cpp" />
+=======
+>>>>>>> c32b02f5f61198ae36e92450333364014e45535a
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClearBotton.h" />
@@ -35,7 +38,10 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="UI_Button.h" />
     <ClInclude Include="USS_Editor.h" />
+<<<<<<< HEAD
     <ClInclude Include="UI_ScrollBar.h" />
+=======
+>>>>>>> c32b02f5f61198ae36e92450333364014e45535a
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

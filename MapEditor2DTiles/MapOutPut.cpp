@@ -152,7 +152,7 @@ void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSi
 //!
 //! @param[in] 座標X 座標Y
 //!
-//! @return なし
+//! @return ボタンに触れているか
 //----------------------------------------------------------------------
 bool MapOutPut::isPressed(int posX, int posY )
 {

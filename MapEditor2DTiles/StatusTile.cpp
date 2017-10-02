@@ -79,8 +79,10 @@ void StatusTile::GetCollision(Tile* tile)
 
 void StatusTile::CollisionChange(int posX, int posY, Tile* tile)
 {
-	if (680.0f < posX && posX < 770.0f && 
-		198.0f < posY && posY< 230.0f)
+	Vector2 pos = m_Collison_ON.getPos();
+
+	if (pos.x - 45 < posX && posX < pos.x + 45 &&
+		pos.y - 15 < posY && posY < pos.y + 15)
 	{
 		if (m_Tile.getColision() == true)
 		{

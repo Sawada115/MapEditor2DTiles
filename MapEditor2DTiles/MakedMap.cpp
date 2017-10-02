@@ -295,7 +295,6 @@ void MakedMap::TileScroll(int beginX, int beginY)
 				Vector2 pos = (*it2).tile->getPos();
 				(*it2).tile->setPosition(Vector2(pos.x, pos.y - Tile::TILE_SIZE * move[1]));
 				(*it2).glids.setPosition(Vector2(pos.x, pos.y - Tile::TILE_SIZE * move[1]));
-
 			}
 		}
 	}

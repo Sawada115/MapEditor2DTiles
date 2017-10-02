@@ -50,6 +50,9 @@ public:
 
 	void MapSizeChange(int ChangeX, int ChangeY);
 
+	void MapReset();
+
+	void LayerDelete();
 private:
 
     void Update(DX::StepTimer const& timer);
@@ -91,7 +94,7 @@ private:
 	std::unique_ptr<DirectX::Mouse::ButtonStateTracker> m_mouseTracker;
 
 	// 左側のマップ
-	std::vector<MakedMap> m_map;
+	std::vector<MakedMap*> m_map;
 	// コリジョンチェックボタン
 	UI_Button m_collisionCheckButton;
 	// マップサイズ変更ボタン
@@ -100,6 +103,10 @@ private:
 	UI_ScrollBar* m_mapScrollBar[2];
 	//レイヤーの透過処理の変更ボタン
 	ClearBotton m_ClearBotton;
+	// マップ全削除ボタン
+	UI_Button m_mapResetButton;
+	// レイヤー削除ボタン
+	UI_Button m_layerDeleteButton;
 
 	//右上の選択タイル
 	StatusTile m_status;
@@ -108,7 +115,6 @@ private:
 	MapOutPut m_outputButton;			// 出力ボタン
 	MapInPut m_inputButton;				// 読み込みボタン
 	LayerManager m_layerManager;		// レイヤーマネージャー
-
 
 	int m_oldScrollWheelValue;			// 前フレームマウスホイール値
 

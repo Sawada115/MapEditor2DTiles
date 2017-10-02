@@ -22,8 +22,10 @@ Game::Game() :
 	m_outputHeight(600),
 	m_featureLevel(D3D_FEATURE_LEVEL_9_1),
 	m_outputButton(),
-	m_collisionCheckButton(Vector2(150, 50)),
-	m_inputButton()
+	m_collisionCheckButton(Vector2(75, 25)),
+	m_inputButton(),
+	m_mapResetButton(Vector2(75, 25)),
+	m_layerDeleteButton(Vector2(75, 25))
 {
 	// マップサイズ変更ボタン
 	for (int i = 0; i < 4; i++)
@@ -84,16 +86,15 @@ void Game::Initialize(HWND window, int width, int height)
 	m_spriteBatch = new SpriteBatch(m_d3dContext.Get());						// スプライト表示
 	m_spriteFont = new SpriteFont(m_d3dDevice.Get(), L"myfile.spritefont");		// フォント表示
 
-	m_map.resize(2);
 
-	// 左側の背景画像の初期化
-	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
-		(*itr).initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
-	m_map[0].setVisible(false);
+	MakedMap* map = new MakedMap();
+	map->initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
+	m_map.push_back(map);
+
 	m_layerManager.Initialize(DirectX::SimpleMath::Vector2(50.0f,60.0f));
 
 	// コリジョンチェックボタン
-	m_collisionCheckButton.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(235.0f, 35.0f));
+	m_collisionCheckButton.initialize(L"Resources/ColisionCheckButtanOn.png",DirectX::SimpleMath::Vector2(500.0f, 25.0f));
 	// マップサイズ変更ボタン
 	for (int i = 0; i < 4; i++)
 	{
@@ -116,19 +117,21 @@ void Game::Initialize(HWND window, int width, int height)
 	m_mapScrollBar[1]->setScale(XMFLOAT2(1.0f, 24.0f));
 
 	// クリアーボタン
-	m_ClearBotton.Initialize(Vector2(355.0f, 35.0f));
+	m_ClearBotton.Initialize(Vector2(50.0f, 25.0f));
 
 	//　右上の背景画像の初期化
-	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 150.0f),
-						DirectX::SimpleMath::Vector2(600.0f, 100.0f),
-						DirectX::SimpleMath::Vector2(725.0f, 215.0f));
+	m_status.initialize(DirectX::SimpleMath::Vector2(630.0f, 183.0f),
+						DirectX::SimpleMath::Vector2(680.0f, 185.0f),
+						DirectX::SimpleMath::Vector2(680.0f, 235.0f));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	m_backGround3.initialize(L"Resources/BackImage3.png", DirectX::SimpleMath::Vector2(630.0f, 447.0f));
 	
 	m_tileManager.Initialize(DirectX::SimpleMath::Vector2(495.0f,340.0f));
-	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(50.0f, 30.0f));
-	m_inputButton.Initialize(DirectX::SimpleMath::Vector2(150.0f, 30.0f));
+	m_outputButton.Initialize(DirectX::SimpleMath::Vector2(700.0f, 25.0f));
+	m_inputButton.Initialize(DirectX::SimpleMath::Vector2(600.0f, 25.0f));
+	m_mapResetButton.initialize(L"Resources/MapResetButton.png", DirectX::SimpleMath::Vector2(150.0f, 25.0f));
+	m_layerDeleteButton.initialize(L"Resources/LayerDeleteButton.png", DirectX::SimpleMath::Vector2(250.0f, 25.0f));
 
 	m_oldScrollWheelValue = 0;
 
@@ -165,6 +168,9 @@ void Game::Update(DX::StepTimer const& timer)
 
 	// ボタンの更新
 	m_collisionCheckButton.upDate(m_mouse);
+	m_mapResetButton.upDate(m_mouse);
+	m_layerDeleteButton.upDate(m_mouse);
+
 	for (int i = 0; i < 4; i++)
 	{
 		m_mapSizeChageButton[i]->upDate(m_mouse);
@@ -174,7 +180,10 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		m_mapScrollBar[i]->upDate(m_mouse);
 	}
-	m_map[0].TileScroll(m_mapScrollBar[0]->getStageNow(), m_mapScrollBar[1]->getStageNow());
+	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
+		(*itr)->TileScroll(m_mapScrollBar[0]->getStageNow(), m_mapScrollBar[1]->getStageNow());
+
+
 
 	// 左クリックしたら
 	if (m_mouse.leftButton)
@@ -183,7 +192,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 		tile = m_tileManager.CopySelectTile();
 
-		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+		m_map[m_layerManager.GetSelectLayer()]->beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	}
 
 	if (m_mouseTracker->leftButton == Mouse::ButtonStateTracker::ButtonState::PRESSED)
@@ -191,19 +200,20 @@ void Game::Update(DX::StepTimer const& timer)
 		m_tileManager.TileSelect(m_mouse.x, m_mouse.y);
 		/*m_status.TileChange(m_tileManager.GetSelectTile());
 		m_status.CollisionChange(m_mouse.x, m_mouse.y);*/
-		m_layerManager.PressedButton(m_mouse.x, m_mouse.y);
+		if (m_layerManager.PressedButton(m_mouse.x, m_mouse.y))
+		{
+			MakedMap* map = new MakedMap();
+			map->initialize(DirectX::SimpleMath::Vector2(235.5f, 360.0f));
+			map->mapReSize(m_map[0]->GetMapSize().x, m_map[0]->GetMapSize().y);
+			m_map.push_back(map);
+		}
 
 		//クリアーボタン処理
 		if (m_ClearBotton.PressedButton(m_mouse.x, m_mouse.y))
 		{
-			if (m_ClearBotton.Get_ClearFlag())
-			{
-				m_map[0].setVisible(false);
-			}
-			else
-			{
-				m_map[0].setVisible(true);
-			}
+			int num = m_layerManager.GetSelectLayer();
+			if (num != (int)m_map.size() - 1)
+				m_map[num]->setVisible(!m_map[num]->getVisible());
 		}
 	
 
@@ -216,7 +226,7 @@ void Game::Update(DX::StepTimer const& timer)
 			if (m_outputButton.SetSaveFilePath())
 			{
 				for (int i = 0; i < (int)m_map.size(); i++)
-					m_outputButton.OutPutCsv(i + 1, m_map[i].GetAllTileData(), m_map[i].GetMapSize());
+					m_outputButton.OutPutCsv(i + 1, m_map[i]->GetAllTileData(), m_map[i]->GetMapSize());
 			}
 		}
 
@@ -226,9 +236,15 @@ void Game::Update(DX::StepTimer const& timer)
 			if (m_inputButton.SetOpenFilePath())
 			{
 				Tile* tile = new Tile();
-				m_inputButton.InPutCsv(&m_map[m_layerManager.GetSelectLayer()]);
+				m_inputButton.InPutCsv(m_map[m_layerManager.GetSelectLayer()]);
 			}
 		}
+
+		// マップ全削除ボタンを押した
+		m_mapResetButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::MapReset(); });
+
+		// レイヤー削除ボタンを押した
+		m_layerDeleteButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::LayerDelete(); });
 
 		// コリジョンチェックボタンを押したら
 		m_collisionCheckButton.pressed(m_mouse.x, m_mouse.y, [this]() {Game::ChangeColisionCheck(); });
@@ -248,7 +264,7 @@ void Game::Update(DX::StepTimer const& timer)
 		Tile* tile = new Tile();
 		tile->initialize(0);
 
-		m_map[m_layerManager.GetSelectLayer()].beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
+		m_map[m_layerManager.GetSelectLayer()]->beClicked(tile, DirectX::SimpleMath::Vector2(m_mouse.x, m_mouse.y));
 	
 	}
 
@@ -260,7 +276,7 @@ void Game::Update(DX::StepTimer const& timer)
 
 		// マップのスクロール
 		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-			m_map[i - 1].TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
+			m_map[i - 1]->TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
 	}
 	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
 
@@ -281,12 +297,22 @@ void Game::Render()
 
 	// レイヤーの描画
 
-	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-			m_map[i - 1].draw();
+	if (m_map[m_layerManager.GetSelectLayer()]->getVisible() == false)
+	{
+		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
+			m_map[i - 1]->draw();
+	}
+	else
+		m_map[m_layerManager.GetSelectLayer()]->draw();
 	m_layerManager.Draw();
 
 	// コリジョンチェックボタン
 	m_collisionCheckButton.draw();
+
+	// マップ全削除ボタン
+	m_mapResetButton.draw();
+	// レイヤー削除ボタン
+	m_layerDeleteButton.draw();
 
 	// マップサイズ変更ボタン
 	for (int i = 0; i < 4; i++)
@@ -299,6 +325,8 @@ void Game::Render()
 	m_mapScrollBar[1]->draw();
 
 	// クリアーボタン
+	bool visible = m_map[m_layerManager.GetSelectLayer()]->getVisible();
+	m_ClearBotton.Set_ClearFlag(!visible);
 	m_ClearBotton.Draw();
 
 	m_status.draw();
@@ -310,13 +338,26 @@ void Game::Render()
 	// 文字描画
 	m_spriteBatch->Begin();
 
+	// レイヤー番号の描画
+	for (int i = 0; i < (int)m_map.size(); i++)
+	{
+		wchar_t layerNum[2];
+		_itow_s(i + 1, layerNum, 10);
+		wchar_t layerName[10] = L"Layer";
+		wcscat(layerName, layerNum);
+		m_spriteFont->DrawString(m_spriteBatch, layerName, XMFLOAT2(15.0f, 45.0f) + Vector2(i * 75, 0), Colors::Black);
+	}
+
 	// タイル名取得
 	std::wstring ws_name = m_tileManager.GetSelectTile()->getName();
 	// wstring→wchar_tに変換
 	const wchar_t* wc_name = ws_name.c_str();
 
-	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(500, 85));
-	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(500, 200));
+	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(630, 120.0f),Colors::Black);
+	m_spriteFont->DrawString(m_spriteBatch, L"TileName", XMFLOAT2(480, 120.0f), Colors::Black);
+	m_spriteFont->DrawString(m_spriteBatch, L"TileImage", XMFLOAT2(480, 170.0f), Colors::Black);
+	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(480, 220.0f), Colors::Black);
+
 	m_spriteBatch->End();
 
 Present();
@@ -332,22 +373,41 @@ void Game::ChangeColisionCheck()
 
 void Game::MapSizeChange(int ChangeX, int ChangeY)
 {
-
-	for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-		m_map[i - 1].mapReSize(m_map[i - 1].GetMapSize().x + ChangeX, m_map[i - 1].GetMapSize().y + ChangeY);
+	for (auto itr = m_map.begin(); itr != m_map.end(); itr++)
+	(*itr)->mapReSize((*itr)->GetMapSize().x + ChangeX, (*itr)->GetMapSize().y + ChangeY);
 
 	// スクロールの段階を決定(横)
-	int scrollStageX = m_map[0].GetMapSize().x - MakedMap::DRAW_TILE_NUM_X + 1;
+	int scrollStageX = m_map[0]->GetMapSize().x - MakedMap::DRAW_TILE_NUM_X + 1;
 	if (scrollStageX < 1)scrollStageX = 1;
 	m_mapScrollBar[0]->setStage(scrollStageX);
 
 	// スクロールの段階を決定(横)
-	int scrollStageY = m_map[0].GetMapSize().y - MakedMap::DRAW_TILE_NUM_Y + 1;
+	int scrollStageY = m_map[0]->GetMapSize().y - MakedMap::DRAW_TILE_NUM_Y + 1;
 	if (scrollStageY < 1)scrollStageY = 1;
 	m_mapScrollBar[1]->setStage(scrollStageY);
 }
 
+void Game::MapReset()
+{
+	m_map[m_layerManager.GetSelectLayer()]->mapReset();
+}
 
+void Game::LayerDelete()
+{
+	if ((int)m_map.size() > 1)
+	{
+		int i = 0;
+		for (auto itr = m_map.begin(); itr != m_map.end();)
+		{
+			if (i == m_layerManager.GetSelectLayer())
+				itr = m_map.erase(itr);
+			else
+				itr++;
+			i++;
+		}
+		m_layerManager.LayerDelete();
+	}
+}
 
 
 // Helper method to clear the back buffers.
