@@ -307,11 +307,15 @@ void MakedMap::TileScroll(int beginX, int beginY)
 void MakedMap::mapReset()
 {
 	std::vector<std::vector<OneTileData>>::iterator it1;
-	for (it1 = m_tiles.begin(); it1 != m_tiles.end() + DRAW_TILE_NUM_X; it1++)
+	for (it1 = m_tiles.begin(); it1 != m_tiles.end(); it1++)
 	{
 		std::vector<OneTileData> ::iterator it2;
-		for (it2 = (*it1).begin(); it2 != (*it1).end() + DRAW_TILE_NUM_Y; it2++)
+		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
+			if ((*it2).tile->getNum() == 0 && 
+				(*it2).tile->getColision() == false)
+				continue;
+
 			Vector2 pos = (*it2).tile->getPos();
 
 			(*it2).tile->initialize(0, pos);

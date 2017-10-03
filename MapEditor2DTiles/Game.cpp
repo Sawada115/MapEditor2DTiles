@@ -185,8 +185,9 @@ void Game::Update(DX::StepTimer const& timer)
 
 
 
-	// 左クリックしたら
-	if (m_mouse.leftButton)
+	// 左クリックしたら、かつ、スクロールバーをドラッグしていなければ
+	bool isScroll =  !(m_mapScrollBar[0]->getIsDrag() || m_mapScrollBar[1]->getIsDrag());
+	if (m_mouse.leftButton && isScroll)
 	{
 		Tile* tile = new Tile();
 

@@ -134,6 +134,9 @@ void UI_ScrollBar::barSizeCalc()
 	BUTTON_SIZE_X = this->getScale().x * DEFOULT_RAIL_SIZE;
 	BUTTON_SIZE_Y = this->getScale().y * DEFOULT_RAIL_SIZE;
 
+	// ƒo[‚ª‚Í‚Ýo‚È‚¢‚æ‚¤‚É‚·‚é
+	if (m_stageNow >= m_stage)	m_stageNow = m_stage - 1;
+
 	barPositionCalc();
 }
 

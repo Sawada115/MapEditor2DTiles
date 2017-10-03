@@ -33,6 +33,7 @@ public:
 	void setStage(int stage) { m_stage = stage; barSizeCalc(); };
 	// ゲット
 	int getStageNow() { return m_stageNow; };
+	bool getIsDrag() { return m_dragStart; };
 
 private:
 	// バーの大きさの計算
