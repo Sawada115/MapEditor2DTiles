@@ -78,7 +78,7 @@ void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 	m_ofn.lpstrInitialDir = m_folderPath;       // 初期フォルダ位置
 	m_ofn.lpstrFile = m_filePath;				// 選択ファイル格納
 	m_ofn.nMaxFile = MAX_PATH;
-	m_ofn.lpstrFilter = TEXT("CSV(カンマ区切り)(*.csv)\0*.csv");
+	//m_ofn.lpstrFilter = TEXT("CSV(カンマ区切り)(*.csv)\0*.csv");
 	m_ofn.lpstrTitle = TEXT("名前を付けて保存");
 	m_ofn.Flags = OFN_FILEMUSTEXIST;
 	m_ofn.lpstrFileTitle = m_fileName;			// 入力ファイル名
@@ -110,10 +110,12 @@ void MapOutPut::OutPutCsv(int layerNum,std::vector<Tile*> tileData,Vector2 mapSi
 	// ファイル名の作成 (入力したファイル名＋Layer＋レイヤー番号＋.csv)
 	TCHAR layeNum[MAX_PATH];
 	TCHAR filePath[MAX_PATH];
+	TCHAR fileName[MAX_PATH];
 	wsprintf(layeNum, TEXT("%d"), layerNum);
 	memset(filePath, NULL, MAX_PATH);
 
 	wcscat(filePath, m_filePath);
+	wcscat(filePath, m_fileName);
 	wcscat(filePath, _T("Layer"));
 	wcscat(filePath, layeNum);
 	wcscat(filePath, _T(".csv"));
@@ -176,6 +178,12 @@ bool MapOutPut::SetSaveFilePath()
 {	
 	// ダイアログを開く
 	bool result = GetSaveFileName(&m_ofn);
+
+	if (result)
+	{
+		CreateDirectory(m_ofn.lpstrFile, NULL);
+		wcscat(m_filePath, _T("\\"));
+	}
 	// フォルダ位置を元に戻す
 	SetCurrentDirectory(m_folderPath);
 	return result;
