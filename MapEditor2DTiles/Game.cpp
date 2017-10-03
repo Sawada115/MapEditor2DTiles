@@ -354,7 +354,7 @@ void Game::Render()
 	// wstring¨wchar_t‚É•ÏŠ·
 	const wchar_t* wc_name = ws_name.c_str();
 
-	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(630, 120.0f),Colors::Black);
+	m_spriteFont->DrawString(m_spriteBatch, wc_name, XMFLOAT2(600, 120.0f),Colors::Black);
 	m_spriteFont->DrawString(m_spriteBatch, L"TileName", XMFLOAT2(480, 120.0f), Colors::Black);
 	m_spriteFont->DrawString(m_spriteBatch, L"TileImage", XMFLOAT2(480, 170.0f), Colors::Black);
 	m_spriteFont->DrawString(m_spriteBatch, L"Colision", XMFLOAT2(480, 220.0f), Colors::Black);
