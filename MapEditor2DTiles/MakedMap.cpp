@@ -254,7 +254,7 @@ void MakedMap::TileScroll(int beginX, int beginY)
 
 	// スクロール可能(横)
 	if (m_drawBeginTile[0] + move[0] >= 0 && 
-		m_drawBeginTile[0] + move[0] < m_mapNum[1] &&
+		m_drawBeginTile[0] + move[0] < m_mapNum[0] &&
 		move[0] != 0)
 	{
 		// 描画開始位置をずらす  
@@ -279,7 +279,7 @@ void MakedMap::TileScroll(int beginX, int beginY)
 
 	// スクロール可能(縦)
 	if (m_drawBeginTile[1] + move[1] >= 0 && 
-		m_drawBeginTile[1] + move[1] < m_mapNum[0] &&
+		m_drawBeginTile[1] + move[1] < m_mapNum[1] &&
 		move[1] != 0)
 	{
 		m_drawBeginTile[1] += move[1];
