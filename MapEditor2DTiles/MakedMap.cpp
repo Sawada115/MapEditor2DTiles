@@ -391,7 +391,7 @@ void MakedMap::mapReSizeOneLine(int changeLine, int size)
 		{
 			// à íuÇê›íË
 			Vector2 glidPos =
-				Vector2((i*Tile::TILE_SIZE) - 195.0f, ((changeLine - m_drawBeginTile[1]) * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
+				Vector2(((i - m_drawBeginTile[0])*Tile::TILE_SIZE) - 195.0f, ((changeLine - m_drawBeginTile[1]) * Tile::TILE_SIZE) - 270.0f) + m_screenPos;
 			
 			// ëùÇ‚Ç∑
 			m_tiles[changeLine].push_back(createTileData(glidPos));
