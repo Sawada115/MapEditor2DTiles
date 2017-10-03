@@ -10,6 +10,7 @@
 #include <SpriteFont.h>
 #include "MakedMap.h"
 #include "UI_Button.h"
+#include "UI_ScrollBar.h"
 #include "Tile.h"
 #include "TileManager.h"
 #include "StatusTile.h"
@@ -98,6 +99,8 @@ private:
 	UI_Button m_collisionCheckButton;
 	// マップサイズ変更ボタン
 	UI_Button* m_mapSizeChageButton[4];
+	// マップのスクロールバー
+	UI_ScrollBar* m_mapScrollBar[2];
 	//レイヤーの透過処理の変更ボタン
 	ClearBotton m_ClearBotton;
 	// マップ全削除ボタン

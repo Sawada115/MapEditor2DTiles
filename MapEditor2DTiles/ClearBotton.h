@@ -39,6 +39,7 @@ public:
 	// ボタンの状態取得
 	int Get_ClearFlag();
 
+	void Set_ClearFlag(int flag) { m_ClearFlag = flag; };
 private:
 	//ボタン
 	Obj2d m_ClearBotton_ON;

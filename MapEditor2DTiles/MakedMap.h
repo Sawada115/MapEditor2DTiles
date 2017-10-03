@@ -23,6 +23,9 @@ public:
 		Tile* tile;		// タイル画像
 	};
 
+	static const int DRAW_TILE_NUM_X;
+	static const int DRAW_TILE_NUM_Y;
+
 	// 初期化
 	void initialize(DirectX::SimpleMath::Vector2 pos = DirectX::SimpleMath::Vector2(235.5f, 300.0f));
 	// 描画
@@ -45,6 +48,7 @@ public:
 
 	// スクロール
 	void TileScroll(int posX, int posY,int scrollValue);
+	void TileScroll(int beginX,int beginY);
 
 	// マップをリセット
 	void mapReset();
@@ -59,8 +63,6 @@ private:
 
 	// 描画するタイルの一番左上
 	int m_drawBeginTile[2];
-	static const int DRAW_TILE_NUM_X;
-	static const int DRAW_TILE_NUM_Y;
 
 	// 現在選択中のタイル
 	int m_choiceTile[2];
