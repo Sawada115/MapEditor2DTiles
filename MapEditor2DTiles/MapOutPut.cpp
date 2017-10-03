@@ -80,7 +80,7 @@ void MapOutPut::Initialize(DirectX::SimpleMath::Vector2 buttonPos)
 	m_ofn.nMaxFile = MAX_PATH;
 	//m_ofn.lpstrFilter = TEXT("CSV(カンマ区切り)(*.csv)\0*.csv");
 	m_ofn.lpstrTitle = TEXT("名前を付けて保存");
-	m_ofn.Flags = OFN_FILEMUSTEXIST;
+	m_ofn.Flags = OFN_OVERWRITEPROMPT;
 	m_ofn.lpstrFileTitle = m_fileName;			// 入力ファイル名
 	m_ofn.nMaxFileTitle = MAX_PATH;
 }
@@ -176,6 +176,10 @@ bool MapOutPut::isPressed(int posX, int posY )
 //----------------------------------------------------------------------
 bool MapOutPut::SetSaveFilePath()
 {	
+	// 過去データの削除
+	memset(m_filePath, NULL, MAX_PATH);
+	m_ofn.lpstrFile = m_filePath;
+
 	// ダイアログを開く
 	bool result = GetSaveFileName(&m_ofn);
 
