@@ -239,9 +239,21 @@ void Game::Update(DX::StepTimer const& timer)
 				Tile* tile = new Tile();
 				m_inputButton.InPutCsv(m_map[m_layerManager.GetSelectLayer()]);
 	
-				m_mapScrollBar[0]->setStage(static_cast<int>(m_map[0]->GetMapSize().x) - (MakedMap::DRAW_TILE_NUM_X - 1));
-				m_mapScrollBar[1]->setStage(static_cast<int>(m_map[0]->GetMapSize().y) - (MakedMap::DRAW_TILE_NUM_Y - 1));
-
+				// マップの一番大きい横幅、縦幅を探索
+				int x = 0, y = 0;
+				for (int i = 0; i < (int)m_map.size(); i++)
+				{
+					if (x < m_map[i]->GetMapSize().x)x = m_map[i]->GetMapSize().x;
+					if (y < m_map[i]->GetMapSize().y)y = m_map[i]->GetMapSize().y;
+				}
+				// マップのサイズを変更する
+				for (int i = 0; i < (int)m_map.size(); i++)
+					m_map[i]->mapReSize(x, y);
+				// スクロールバーを設定する
+				m_mapScrollBar[0]->setStage(static_cast<int>(m_map[m_layerManager.GetSelectLayer()]->GetMapSize().x) - (MakedMap::DRAW_TILE_NUM_X - 1));
+				if (m_mapScrollBar[0]->getStage() < 1)m_mapScrollBar[0]->setStage(1);
+				m_mapScrollBar[1]->setStage(static_cast<int>(m_map[m_layerManager.GetSelectLayer()]->GetMapSize().y) - (MakedMap::DRAW_TILE_NUM_Y - 1));
+				if (m_mapScrollBar[1]->getStage() < 1)m_mapScrollBar[1]->setStage(1);
 			}
 		}
 
