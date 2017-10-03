@@ -11,41 +11,41 @@
 // ----- タイルのベース --------------------------------------------------------------------------------
 TileBase::TileData TileBase::m_datas[180] = {	
 									// -------  10  --------- //
-	{ false,L"None" },{ false,L"RoadA1" },{ false,L"RoadA2" },{ false,L"RoadA3" },{ true,L"RoadB1" },{ true,L"RoadB2" },{ true,L"RoadB3" },{ false,L"RoadC1" },{ false,L"RoadC2" },{ false,L"RoadC3" },
+	{ false,L"None" },{ false,L"RoadToGrass (1)" },{ false,L"RoadToGrass (2)" },{ false,L"RoadToGrass (3)" },{ true,L"HoleToGrass (1)" },{ true,L"HoleToGrass (2)" },{ true,L"HoleToGrass (3)" },{ false,L"GrassToRoad (1)" },{ false,L"GrassToRoad (2)" },{ false,L"GrassToRoad (3)" },
 									// -------  20  --------- //
-	{ false,L"Grass1" },{ false,L"RoadA4" },{ false,L"RoadA5" },{ false,L"RoadA6" },{ true,L"RoadB4" },{ true,L"RoadB5" },{ true,L"RoadB6" },{ false,L"RoadC4" },{ false,L"RoadC5" },{ false,L"RoadC6" },
+	{ false,L"Grass1" },{ false,L"RoadToGrass (4)" },{ false,L"RoadToGrass (5)" },{ false,L"RoadToGrass (6)" },{ true,L"HoleToGrass (4)" },{ true,L"HoleToGrass (5)" },{ true,L"HoleToGrass (6)" },{ false,L"GrassToRoad (4)" },{ false,L"GrassToRoad (5)" },{ false,L"GrassToRoad (6)" },
 									// -------  30  --------- //
-	{ false,L"Grass2" },{ false,L"RoadA7" },{ false,L"RoadA8" },{ false,L"RoadA9" },{ true,L"RoadB7" },	{ true,L"RoadB8" },{ true,L"RoadB9" },{ false,L"RoadC7" },{ false,L"RoadC8" },{ false,L"RoadC9" },
+	{ false,L"Grass2" },{ false,L"RoadToGrass (7)" },{ false,L"RoadToGrass (8)" },{ false,L"RoadToGrass (9)" },{ true,L"HoleToGrass (7)" },	{ true,L"HoleToGrass (8)" },{ true,L"HoleToGrass (9)" },{ false,L"GrassToRoad (7)" },{ false,L"GrassToRoad (8)" },{ false,L"GrassToRoad (9)" },
 									// -------  40  --------- //
-	{ false,L"RoadD5" },{ true,L"RoadD1" },{ true,L"RoadD2" },{ true,L"RoadD3" },{ true,L"RoadE1" },{ true,L"RoadE2" },{ true,L"RoadE3" },{ true,L"RoadF1" },{ true,L"RoadF2" },{ true,L"RoadF3" },
+	{ false,L"RoadToHole (5)" },{ true,L"RoadToHole (1)" },{ true,L"RoadToHole (2)" },{ true,L"RoadToHole (3)" },{ true,L"GrassToHole (1)" },{ true,L"GrassToHole (2)" },{ true,L"GrassToHole (3)" },{ true,L"HoleToRoad (1)" },{ true,L"HoleToRoad (2)" },{ true,L"HoleToRoad (3)" },
 									// -------  50  --------- //
-	{ false,L"RoadD5" },{ true,L"RoadD4" },{ false,L"RoadD5" },{ true,L"RoadD6" },{ true,L"RoadE4" },{ false,L"RoadE5" },{ true,L"RoadE6" },{ true,L"RoadF4" },{ true,L"RoadF5" },{ true,L"RoadF6" },
+	{ false,L"RoadToHole (5)" },{ true,L"RoadToHole (4)" },{ false,L"RoadToHole (5)" },{ true,L"RoadToHole (6)" },{ true,L"GrassToHole (4)" },{ false,L"GrassToHole (5)" },{ true,L"GrassToHole (6)" },{ true,L"HoleToRoad (4)" },{ true,L"HoleToRoad (5)" },{ true,L"HoleToRoad (6)" },
 									// -------  60  --------- //
-	{ false,L"RoadD5" },{ true,L"RoadD7" },{ true,L"RoadD8" },{ true,L"RoadD9" },{ true,L"RoadE7" },{ true,L"RoadE8" },{ true,L"RoadE9" },{ true,L"RoadF7" },{ true,L"RoadF8" },{ true,L"RoadF9" },
+	{ false,L"RoadToHole (5)" },{ true,L"RoadToHole (7)" },{ true,L"RoadToHole (8)" },{ true,L"RoadToHole (9)" },{ true,L"GrassToHole (7)" },{ true,L"GrassToHole (8)" },{ true,L"GrassToHole (9)" },{ true,L"HoleToRoad (7)" },{ true,L"HoleToRoad (8)" },{ true,L"HoleToRoad (9)" },
 									// -------  70  --------- //
-	{ false,L"RoadH5" },{ true,L"RoadG1" },{ true,L"RoadG2" },{ true,L"RoadG3" },{ true,L"RoadH1" },{ true,L"RoadH2" },{ true,L"RoadH3" },{ true,L"RoadI1" },{ true,L"RoadI2" },{ true,L"RoadI3" },
+	{ false,L"ReverToGrass (5)" },{ true,L"RoadToRever (1)" },{ true,L"RoadToRever (2)" },{ true,L"RoadToRever (3)" },{ true,L"ReverToGrass (1)" },{ true,L"ReverToGrass (2)" },{ true,L"ReverToGrass (3)" },{ true,L"GrassToRever1 (1)" },{ true,L"GrassToRever1 (2)" },{ true,L"GrassToRever1 (3)" },
 									// -------  80  --------- //
-	{ false,L"RoadH5" },{ true,L"RoadG4" },{ false,L"RoadG5" },{ true,L"RoadG6" },{ true,L"RoadH4" },{ true,L"RoadH5" },{ true,L"RoadH6" },{ true,L"RoadI4" },{ false,L"RoadI5" },{ true,L"RoadI6" },
+	{ false,L"ReverToGrass (5)" },{ true,L"RoadToRever (4)" },{ false,L"RoadToRever (5)" },{ true,L"RoadToRever (6)" },{ true,L"ReverToGrass (4)" },{ true,L"ReverToGrass (5)" },{ true,L"ReverToGrass (6)" },{ true,L"GrassToRever1 (4)" },{ false,L"GrassToRever1 (5)" },{ true,L"GrassToRever1 (6)" },
 									// -------  90  --------- //
-	{ false,L"RoadH5" },{ true,L"RoadG7" },{ true,L"RoadG8" },{ true,L"RoadG9" },{ true,L"RoadH7" },{ true,L"RoadH8" },{ true,L"RoadH9" },{ true,L"RoadI7" },{ true,L"RoadI8" },{ true,L"RoadI9" },
+	{ false,L"ReverToGrass (5)" },{ true,L"RoadToRever (7)" },{ true,L"RoadToRever (8)" },{ true,L"RoadToRever (9)" },{ true,L"ReverToGrass (7)" },{ true,L"ReverToGrass (8)" },{ true,L"ReverToGrass (9)" },{ true,L"GrassToRever1 (7)" },{ true,L"GrassToRever1 (8)" },{ true,L"GrassToRever1 (9)" },
 									// -------  100  --------- //
-	{ false,L"RoadJ5" },{ true,L"RoadJ1" },{ true,L"RoadJ2" },{ true,L"RoadJ3" },{ true,L"RoadK1" },{ true,L"RoadK2" },{ true,L"RoadK3" },{ true,L"RoadL1" },{ true,L"RoadL2" },{ true,L"RoadL3" },
+	{ false,L"ReverToHole (5)" },{ true,L"ReverToHole (1)" },{ true,L"ReverToHole (2)" },{ true,L"ReverToHole (3)" },{ true,L"GrassToRever2 (1)" },{ true,L"GrassToRever2 (2)" },{ true,L"GrassToRever2 (3)" },{ true,L"HoleToRever (1)" },{ true,L"HoleToRever (2)" },{ true,L"HoleToRever (3)" },
 									// -------  110  --------- //
-	{ false,L"RoadJ5" },{ true,L"RoadJ4" },{ true,L"RoadJ5" },{ true,L"RoadJ6" },{ true,L"RoadK4" },{ false,L"RoadK5" },{ true,L"RoadK6" },{ true,L"RoadL4" },{ true,L"RoadL5" },{ true,L"RoadL6" },
+	{ false,L"ReverToHole (5)" },{ true,L"ReverToHole (4)" },{ true,L"ReverToHole (5)" },{ true,L"ReverToHole (6)" },{ true,L"GrassToRever2 (4)" },{ false,L"GrassToRever2 (5)" },{ true,L"GrassToRever2 (6)" },{ true,L"HoleToRever (4)" },{ true,L"HoleToRever (5)" },{ true,L"HoleToRever (6)" },
 									// -------  120  --------- //
-	{ false,L"RoadJ5" },{ true,L"RoadJ7" },{ true,L"RoadJ8" },{ true,L"RoadJ9" },{ true,L"RoadK7" },{ true,L"RoadK8" },{ true,L"RoadK9" },{ true,L"RoadL7" },{ true,L"RoadL8" },{ true,L"RoadL9" },
+	{ false,L"ReverToHole (5)" },{ true,L"ReverToHole (7)" },{ true,L"ReverToHole (8)" },{ true,L"ReverToHole (9)" },{ true,L"GrassToRever2 (7)" },{ true,L"GrassToRever2 (8)" },{ true,L"GrassToRever2 (9)" },{ true,L"HoleToRever (7)" },{ true,L"HoleToRever (8)" },{ true,L"HoleToRever (9)" },
 									// -------  130  --------- //
-	{ false,L"RoadM5" },{ true,L"RoadM1" },{ true,L"RoadM2" },{ true,L"RoadM3" },{ false,L"BridgeA1" },{ false,L"BridgeA2" },{ false,L"BridgeA3" },{ false,L"BridgeB1" },{ false,L"BridgeB2" },{ false,L"BridgeB3" },
+	{ false,L"ReverToRoad (5)" },{ true,L"ReverToRoad (1)" },{ true,L"ReverToRoad (2)" },{ true,L"ReverToRoad (3)" },{ false,L"BridgeToRiverD(1)" },{ false,L"BridgeToRiverD(2)" },{ false,L"BridgeToRiverD(3)" },{ false,L"BridgeToRiverW(1)" },{ false,L"BridgeToRiverW(2)" },{ false,L"BridgeToRiverW(3)" },
 									// -------  140  --------- //
-	{ false,L"RoadM5" },{ true,L"RoadM4" },{ true,L"RoadM5" },{ true,L"RoadM6" },{ false,L"BridgeA4" },{ false,L"BridgeA5" },{ false,L"BridgeA6" },{ false,L"BridgeB4" },{ false,L"BridgeB5" },{ false,L"BridgeB6" },
+	{ false,L"ReverToRoad (5)" },{ true,L"ReverToRoad (4)" },{ true,L"ReverToRoad (5)" },{ true,L"ReverToRoad (6)" },{ false,L"BridgeToRiverD(4)" },{ false,L"BridgeToRiverD(5)" },{ false,L"BridgeToRiverD(6)" },{ false,L"BridgeToRiverW(4)" },{ false,L"BridgeToRiverW(5)" },{ false,L"BridgeToRiverW(6)" },
 									// -------  150  --------- //
-	{ false,L"RoadM5" },{ true,L"RoadM7" },{ true,L"RoadM8" },{ true,L"RoadM9" },{ false,L"BridgeA7" },{ false,L"BridgeA8" },{ false,L"BridgeA9" },{ false,L"BridgeB7" },{ false,L"BridgeB8" },{ false,L"BridgeB9" },
+	{ false,L"ReverToRoad (5)" },{ true,L"ReverToRoad (7)" },{ true,L"ReverToRoad (8)" },{ true,L"ReverToRoad (9)" },{ false,L"BridgeToRiverD(7)" },{ false,L"BridgeToRiverD(8)" },{ false,L"BridgeToRiverD(9)" },{ false,L"BridgeToRiverW(7)" },{ false,L"BridgeToRiverW(8)" },{ false,L"BridgeToRiverW(9)" },
 									// -------  160  --------- //
-	{ false,L"None" },{ false,L"BridgeC1" },{ false,L"BridgeC2" },{ false,L"BridgeC3" },{ false,L"BridgeD1" },{ false,L"BridgeD2" },{ false,L"BridgeD3" },{ true,L"Tree1" },{ true,L"Tree2" },{ false,L"Grass3" },
+	{ false,L"None" },{ false,L"BridgeToClearD(1)" },{ false,L"BridgeToClearD(2)" },{ false,L"BridgeToClearD(3)" },{ false,L"BridgeToClearW(1)" },{ false,L"BridgeToClearW(2)" },{ false,L"BridgeToClearW(3)" },{ true,L"Tree1" },{ true,L"Tree2" },{ false,L"Grass3" },
 									// -------  170  --------- //
-	{ false,L"None" },{ false,L"BridgeC4" },{ false,L"BridgeC5" },{ false,L"BridgeC6" },{ false,L"BridgeD4" },{ false,L"BridgeD5" },{ false,L"BridgeD6" },{ true,L"Tree3" },{ true,L"Tree4" },{ false,L"Grass3" },
+	{ false,L"None" },{ false,L"BridgeToClearD(4)" },{ false,L"BridgeToClearD(5)" },{ false,L"BridgeToClearD(6)" },{ false,L"BridgeToClearW(4)" },{ false,L"BridgeToClearW(5)" },{ false,L"BridgeToClearW(6)" },{ true,L"Tree3" },{ true,L"Tree4" },{ false,L"Grass3" },
 									// -------  180  --------- //
-	{ false,L"None" },{ false,L"BridgeC7" },{ false,L"BridgeC8" },{ false,L"BridgeC9" },{ false,L"BridgeD7" },{ false,L"BridgeD8" },{ false,L"BridgeD9" },{ false,L"Grass3" },{ false,L"Grass3" },{ false,L"Grass3" },
+	{ false,L"None" },{ false,L"BridgeToClearD(7)" },{ false,L"BridgeToClearD(8)" },{ false,L"BridgeToClearD(9)" },{ false,L"BridgeToClearW(7)" },{ false,L"BridgeToClearW(8)" },{ false,L"BridgeToClearW(9)" },{ false,L"Grass3" },{ false,L"Grass3" },{ false,L"Grass3" },
 };
 
 
