@@ -312,9 +312,8 @@ void MakedMap::mapReset()
 		std::vector<OneTileData> ::iterator it2;
 		for (it2 = (*it1).begin(); it2 != (*it1).end(); it2++)
 		{
-			if ((*it2).tile->getNum() == 0 && 
-				(*it2).tile->getColision() == false)
-				continue;
+			// •Ï‚í‚Á‚Ä‚¢‚È‚¢ƒ}ƒX‚Í–³‹
+			if ((*it2).tile->getNum() == 0 && (*it2).tile->getColision() == false)continue;
 
 			Vector2 pos = (*it2).tile->getPos();
 
@@ -418,11 +417,13 @@ void MakedMap::mapReSizeSomeLine(int size)
 	// ‘å‚«‚­‚È‚éê‡
 	if (m_mapNum[1] < size)
 	{
-		// ’Ç‰Á‚·‚é—ñ
-		std::vector<OneTileData> newTileLine;
-
 		for ( m_mapNum[1]; m_mapNum[1] < size; m_mapNum[1]++)
 		{// ˆê—ñ‘‚â‚·
+
+			 // ’Ç‰Á‚·‚é—ñ
+			std::vector<OneTileData> newTileLine;
+
+
 			for (int i = 0; i < m_mapNum[0]; i++)
 			{
 				// ˆÊ’u‚ğİ’è
@@ -432,10 +433,11 @@ void MakedMap::mapReSizeSomeLine(int size)
 				// ‘‚â‚·
 				newTileLine.push_back(createTileData(glidPos));
 			}
+
+			// ‚Å‚«‚½—ñ‚ğ’Ç‰Á
+			m_tiles.push_back(newTileLine);
 		}
 
-		// ‚Å‚«‚½—ñ‚ğ’Ç‰Á
-		m_tiles.push_back(newTileLine);
 	}
 }
 

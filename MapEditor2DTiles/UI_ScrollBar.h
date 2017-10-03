@@ -35,9 +35,10 @@ public:
 	int getStageNow() { return m_stageNow; };
 	bool getIsDrag() { return m_dragStart; };
 
-private:
 	// バーの大きさの計算
 	void barSizeCalc();
+
+private:
 	// バーの位置の計算
 	void barPositionCalc();
 	// マウス情報からバーの位置を変える

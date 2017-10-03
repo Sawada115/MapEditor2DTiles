@@ -238,6 +238,10 @@ void Game::Update(DX::StepTimer const& timer)
 			{
 				Tile* tile = new Tile();
 				m_inputButton.InPutCsv(m_map[m_layerManager.GetSelectLayer()]);
+	
+				m_mapScrollBar[0]->setStage(static_cast<int>(m_map[0]->GetMapSize().x) - (MakedMap::DRAW_TILE_NUM_X - 1));
+				m_mapScrollBar[1]->setStage(static_cast<int>(m_map[0]->GetMapSize().y) - (MakedMap::DRAW_TILE_NUM_Y - 1));
+
 			}
 		}
 
@@ -274,10 +278,6 @@ void Game::Update(DX::StepTimer const& timer)
 	{
 		// パレットのスクロール
 		m_tileManager.TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
-
-		// マップのスクロール
-		for (int i = (int)m_map.size(); i > m_layerManager.GetSelectLayer(); i--)
-			m_map[i - 1]->TileScroll(m_mouse.x, m_mouse.y, m_mouse.scrollWheelValue - m_oldScrollWheelValue);
 	}
 	m_oldScrollWheelValue = m_mouse.scrollWheelValue;
 
